@@ -6,3 +6,5 @@ aantal andere producten ontwikkeld:
 die bruikbaar zijn bij event-driven werken. 
 - Beschrijving van bestaande belemmeringen en knelpunten om als overheid meer gebeurtenisgedreven te kunnen werken en hoe daar verbetering in kan worden gebracht
 -  ...
+
+** Documenten worden in december 2021 hier gepubliceerd. **
