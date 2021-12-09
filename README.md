@@ -1,5 +1,3 @@
-# Project Notificatieservices
-
 ## Inleiding
 
 Project Notificatieservices wil het mogelijk maken dat Nederlandse overheidsorganisaties
