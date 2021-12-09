@@ -30,7 +30,9 @@ om interoperabiliteit tussen services, platforms en systemen te bieden.
 Een van de uitgangspunten van het project was om zoveel mogelijk aan te sluiten bij wat wereldwijd gebruikelijk is (bijv. notificeren via het [publish-subscribe patroon](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) en om voort te bouwen op wat al ontwikkeld is (bijv. [CloudEvents](https://cloudevents.io/). In plaats van al uitgevonden wielen opnieuw, en waarschijnlijk slechter, te gaan uitvinden is aangesloten bij wat
 wereldwijd op dit gebied gebeurt en maken aanvullende afspraken waar dit binnen de context van de Nederlandse overheid nodig of wenselijk is.
 
-**De huidige werkversie van het profiel: [https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/)**
+**De huidige werkversie van het profiel staat op: [https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/)**
+
+Wilt u op feedback geven op het concept-profiel of op een andere manier meehelpen het profiel te verbeteren kijk dan op: [https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents)
 
 ## Andere producten
 
@@ -41,14 +43,9 @@ aantal andere producten ontwikkeld:
 - functionele handreikingen waarin bijv. is beschreven welke belemmeringen en knelpunten er zijn om als overheid meer gebeurtenisgedreven te kunnen werken en hoe daar verbetering in kan worden gebracht
 - achtergronddocumentatie waarin bijv. architectuurstijlen en implementatiepatronen worden beschreven die bruikbaar zijn bij het meer gebeurtenisgedreven gaan werken.
 
+In deze Github-repository vindt u [Achtergrond documentatie](./docs/Achtergrond-documentatie)  een aantal producten die binnen project Notificatiesservices zijn ontwikkeld (o.a. architectuur en een analyse van bestaande knelpunten en oplossingsrichtingen).
+
 ## Verwijzingen
-
-In deze Github-repository vindt u:
-
-- [Guideline for JSON, HTTP en Webhook](./docs/Use-of-json-http-webhook.md): een handreiking hoe het profiel gestandaardiseerd is te gebruiken bij oplossingen die gebruik maken van JSON, HTTP en/of Webhook.
-- [Achtergrond documentatie](./docs/Achtergrond-documentatie): verschillende producten
-  die tijdens de uitvoering van het project zijn ontwikkeld en als achtergronddocumentatie beschikbaar zijn (o.a. architectuur en een analyse van bestaande knelpunten en oplossingsrichtingen).
-
 Op Pleio vind u onder andere:
 
 - [Samenwerkingsruimte voor project Notificatieservices](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices): de plaats waar in 2021 binnen het project met een commmunity van medewerkers van overheidsorganisaties en leveranciers is samengewerkt.
