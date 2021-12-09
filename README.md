@@ -56,4 +56,6 @@ Op Pleio vind u onder andere:
 - [Hackathon verslagen](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices/files/710ac2c8-bdd3-49bc-8b76-10646ab93ddf): dagverslagen van een in november 2021
 gehouden hackathon waarbij een eerste beproeving van de concept berichtenstandaard is gedaan.
 
-Beheerder van deze repository is Ad Gerrits (VNG). Bereikbaar via email: ad.gerrits@vng.nl
+Beheerder van deze repository is Ad Gerrits (VNG): ad.gerrits@vng.nl
+
+Voor projectgerelateerde vragen kunt u contact opnemen met Stijn Schrijvers (VNG): stijn.schrijvers@vng.nl  
