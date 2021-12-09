@@ -30,7 +30,7 @@ om interoperabiliteit tussen services, platforms en systemen te bieden.
 Een van de uitgangspunten van het project was om zoveel mogelijk aan te sluiten bij wat wereldwijd gebruikelijk is (bijv. notificeren via het [publish-subscribe patroon](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) en om voort te bouwen op wat al ontwikkeld is (bijv. [CloudEvents](https://cloudevents.io/). In plaats van al uitgevonden wielen opnieuw, en waarschijnlijk slechter, te gaan uitvinden is aangesloten bij wat
 wereldwijd op dit gebied gebeurt en maken aanvullende afspraken waar dit binnen de context van de Nederlandse overheid nodig of wenselijk is.
 
-Het NL GOV profile for CloudEvents is gepubliceerd in het formaat dat gebruikelijk is voor publicatie van overheidsbrede standaarden. De huidige **werkversie** van het profiel: https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/
+**De huidige werkversie van het profiel: [https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/)**
 
 ## Andere producten
 
@@ -41,7 +41,7 @@ aantal andere producten ontwikkeld:
 - functionele handreikingen waarin bijv. is beschreven welke belemmeringen en knelpunten er zijn om als overheid meer gebeurtenisgedreven te kunnen werken en hoe daar verbetering in kan worden gebracht
 - achtergronddocumentatie waarin bijv. architectuurstijlen en implementatiepatronen worden beschreven die bruikbaar zijn bij het meer gebeurtenisgedreven gaan werken.
 
-## Verwijzignen
+## Verwijzingen
 
 In deze Github-repository vindt u:
 
@@ -52,7 +52,7 @@ In deze Github-repository vindt u:
 Op Pleio vind u onder andere:
 
 - [Samenwerkingsruimte voor project Notificatieservices](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices): de plaats waar in 2021 binnen het project met een commmunity van medewerkers van overheidsorganisaties en leveranciers is samengewerkt.
-- [communitypresentaties](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices/files/e49f6a1d-c1ae-4128-95c9-edc3d3e89caf): alle presentaties die gebruikt zijn tijdens
+- [Community presentaties](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices/files/e49f6a1d-c1ae-4128-95c9-edc3d3e89caf): alle presentaties die gebruikt zijn tijdens
   communitybijeenkomsten
 - [Werkgroep Berichtenstandaard presentaties](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices/files/4ff096f5-ba66-4c60-a9d1-44dcd9798897): alle presentaties die gebruikt zijn tijdens
   de werkgroep waarmee de berichtenstandaard is ontwikkeld.
