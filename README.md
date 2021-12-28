@@ -16,7 +16,9 @@ andere vorm.
 
 Gebeurtenissen doen zich in vele vormen en binnen vele contexten voor. Bij uitvoering van het project is gekozen voor een afbakening van de scope om te voorkomen dat er teveel vraagstukken tegelijkertijd zouden moeten worden opgelost. Een belangrijke afbakening is bijv. dat het project zich richt op geautomatiseerd notifceren tussen applicaties. Overigens is de verwachting dat veel projectresultaten ook bruikbaar zullen zijn voor zaken die nu buiten scope zijn geplaatst. ([Toelichting op projectscope](./projectscope))
 
-## NL GOV profile for CloudEvents
+## Producten
+
+### NL GOV profile for CloudEvents
 
 Het NL GOV profile for CloudEvents is een specificatie voor het gestandaardiseerd
 beschrijven en kunnen uitwisselen van plaatsgevonden gebeurtenissen tussen applicaties.
@@ -28,23 +30,42 @@ om interoperabiliteit tussen services, platforms en systemen te bieden.
 Een van de uitgangspunten van het project was om zoveel mogelijk aan te sluiten bij wat wereldwijd gebruikelijk is (bijv. notificeren via het [publish-subscribe patroon](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) en om voort te bouwen op wat al ontwikkeld is (bijv. [CloudEvents](https://cloudevents.io/). In plaats van al uitgevonden wielen opnieuw, en waarschijnlijk slechter, te gaan uitvinden is aangesloten bij wat
 wereldwijd op dit gebied gebeurt en maken aanvullende afspraken waar dit binnen de context van de Nederlandse overheid nodig of wenselijk is.
 
-**De huidige werkversie van het profiel staat op: [https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/)**
+**De huidige werkversie van het profiel staat op: [https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents)** Wilt u op feedback geven op het concept-profiel of op een andere manier meehelpen het profiel te verbeteren kijk dan op: [https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents)
 
-Wilt u op feedback geven op het concept-profiel of op een andere manier meehelpen het profiel te verbeteren kijk dan op: [https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents)
+### Technische handreikingen
 
-## Andere producten
+Onderstaande meer 'technische handreikingen' beschrijven hoe het NL GOV profiel gestandaardiseerd kan worden toegepast bij gebruik van een
+aantal vaak gebruikte gegevensformaten, transportprotocollen en patronen:
 
-Naast het NL GOV profiel, ook wel genoemd 'de berichtstandaard', zijn ook een
-aantal andere producten ontwikkeld:
+- [JSON-gegevensformaat](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents/blob/main/NL-GOV-Guideline-for-CloudEvents-JSON.md)
+- [HTTP-protocol](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents/blob/main/NL-GOV-Guideline-for-CloudEvents-HTTP.md)
+- [Webhook interactiepatroon](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents/blob/main/NL-GOV-Guideline-for-CloudEvents-Webhook.md).
 
-- technische handreikingen zoals hoe het NL GOV profiel gestandaardiseerd kan worden gebruikt met het JSON-gegevensformaat, HTTP-protocol en Webhook interactiepatroon.
-- functionele handreikingen waarin bijv. is beschreven welke belemmeringen en knelpunten er zijn om als overheid meer gebeurtenisgedreven te kunnen werken en hoe daar verbetering in kan worden gebracht
-- achtergronddocumentatie waarin bijv. architectuurstijlen en implementatiepatronen worden beschreven die bruikbaar zijn bij het meer gebeurtenisgedreven gaan werken.
+### Functionele handreikingen
 
-In deze Github-repository vindt u [Achtergrond documentatie](./docs/Achtergrond-documentatie)  een aantal producten die binnen project Notificatiesservices zijn ontwikkeld (o.a. architectuur en een analyse van bestaande knelpunten en oplossingsrichtingen).
+Onderstaande meer 'functionele handreikingen' beschrijven op een toegankelijke manieren een aantal belangrijke aspecten van gebeurtenisgedreven werken en notificeren:
+
+- [Introductie van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/20211223_Introductie_van_Notificeren.pdf) (definities, vormen, rollen, etc.)
+- [Waarom van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/20211223_Waarom_Notificeren.pdf)
+- [Randvoorwaardelijke aspecten](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/20211223_Randvoorwaarden_Notificeren.pdf) bij notificeren
+- [Leerpunten beproevingen](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/20211111---5e-bijeenkomst-community.pdf) van de concept berichtenstandaard. De van 1 t/m 5 november 2021 gehouden Hackathon waarin de berichtstandaard is berproeft heeft tot [deze demo](https://youtu.be/IdneTcAQFbA) geleid.
+
+In 2022 worden nog opgeleverd:
+
+- 'Transitiescenario's'
+- 'Definieren van gebeurtenenissen'
+
+### Architectuur handreikingen
+
+Binnen de overheid is het gebruik van gebeurtenisgedreven oplossingen nog relatief weinig ontwikkeld. Onderstaande handreiking beschrijft
+architectuuraspecten met betrekking tot gebeurtenisgedreven werken en notificeren. De handreiking is mede bedoeld om kennis hierover te
+vergroten zodat er in de toekomst effectief gebruik wordt gemaakt van wat er op dit vlak al beschikbaar is.
+
+- [Architectuuraspecten notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Notificeren-Bijlage-Architectuur.v0.2.pdf) met o.a. architectuurstijlen, uitwerking van het publish-subscribe patroon en implementatiepatronen. _Deze notitie wordt in jan 2022 vervangen door een sterk gewijzigde versie 0.3._
 
 ## Verwijzingen
-Op Pleio vind u onder andere:
+
+Tijdens de uitvoering van Project Notificatieservices is een Pleio-groep als samenwerkingsomgeving gebruikt. U vindt daar onder andere:
 
 - [Samenwerkingsruimte voor project Notificatieservices](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices): de plaats waar in 2021 binnen het project met een commmunity van medewerkers van overheidsorganisaties en leveranciers is samengewerkt.
 - [Community presentaties](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices/files/e49f6a1d-c1ae-4128-95c9-edc3d3e89caf): alle presentaties die gebruikt zijn tijdens
@@ -52,8 +73,8 @@ Op Pleio vind u onder andere:
 - [Werkgroep Berichtenstandaard presentaties](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices/files/4ff096f5-ba66-4c60-a9d1-44dcd9798897): alle presentaties die gebruikt zijn tijdens
   de werkgroep waarmee de berichtenstandaard is ontwikkeld.
 - [Hackathon verslagen](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices/files/710ac2c8-bdd3-49bc-8b76-10646ab93ddf): dagverslagen van een in november 2021
-gehouden hackathon waarbij een eerste beproeving van de concept berichtenstandaard is gedaan.
+  gehouden hackathon waarbij een eerste beproeving van de concept berichtenstandaard is gedaan.
 
 Beheerder van deze repository is Ad Gerrits (VNG): ad.gerrits@vng.nl
 
-Voor projectgerelateerde vragen kunt u contact opnemen met Stijn Schrijvers (VNG): stijn.schrijvers@vng.nl  
+Voor projectgerelateerde vragen kunt u contact opnemen met Stijn Schrijvers (VNG): stijn.schrijvers@vng.nl
