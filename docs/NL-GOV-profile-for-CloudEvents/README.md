@@ -12,6 +12,13 @@ wereldwijd op dit gebied gebeurt en maken aanvullende afspraken waar dit binnen 
 
 Het GOV NL profiel, en enkele daaraan gerelateerde producten, zijn nog volop in ontwikkeling. Als u een bijdrage wilt leveren wordt dit zeer gewaardeerd. Informatie over hoe u kunt bijdragen vindt u op een [aparte pagina](../../CONTRIBUTING.md).
 
-Bekijk hier [de laatste werkversie](https://vng-realisatie.github.io/notificatieservices/GOV-NL-profile-for-CloudEvents/) van het GOV NL profiel.
+**Bekijk hier [de laatste werkversie](https://vng-realisatie.github.io/notificatieservices/GOV-NL-profile-for-CloudEvents/) van het GOV NL profiel.**
 
-Zoals u daar kunt lezen in Appendix-1 is ook een handreiking, '[Guideline for JSON, HTTP en Webhook](Use-of-json-http-webhook.md)' ontwikkeld om het NL GOV profiel gestandaardiseerd toe te passen als gebruik wordt gemaakt van van het JSON-gegevensformaat, het HTTP-protocol en/of het Webhook interactiepatroon.
+
+Als 'aanvulling' op het profiel zijn ook enkele handreikingen gemaakt die beschrijven hoe het profiel gestandaardiseerd kan worden toegepast
+bij gebruik van een aantal vaak gebruikte gegevensformaten, transportprotocollen en patronen. Hierbij is ook gebruik gemaakt van bestaande 
+[CloudEvents specificaties](https://github.com/cloudevents/spec#cloudevents-documents):
+
+- [JSON-gegevensformaat](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents/blob/main/NL-GOV-Guideline-for-CloudEvents-JSON.md)
+- [HTTP-protocol](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents/blob/main/NL-GOV-Guideline-for-CloudEvents-HTTP.md)
+- [Webhook interactiepatroon](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents/blob/main/NL-GOV-Guideline-for-CloudEvents-Webhook.md).
