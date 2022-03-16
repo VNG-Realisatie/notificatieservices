@@ -6,9 +6,9 @@
 
 Naam | Aard | Korte beschrijving | Prio
 | :--- | :--- | :--- | :---
-__CE statuscodes__ | Afmaken | Uitzoeken wat CE zegt over http statuscodes (zie toelichting) | Must
-__Media type in header__ | Afmaken | Uitzoeken of media type application/cloudevents+json in http header opgenomen kan worden | Must
-__Charset header__ | Afmaken | Uitzoeken of charset=UTF-8 in http header opgenomen kan worden | Must
+_CE statuscodes_ | Afmaken | Uitzoeken wat CE zegt over http statuscodes (zie toelichting) | Must
+_Media type in header_ | Afmaken | Uitzoeken of media type application/cloudevents+json in http header opgenomen kan worden | Must
+_Charset header_ | Afmaken | Uitzoeken of charset=UTF-8 in http header opgenomen kan worden | Must
 Attribuut beschrijvingen | Keuze | Verwijzen we naar GOV NL profile of nemen we integrale tekst op? | Must
 Autorisatie | Afmaken | Autorisatie aspecten goed verwerken in OAS | Must
 Publicatie | Afmaken | Publicatie op finale lokatie | Must
