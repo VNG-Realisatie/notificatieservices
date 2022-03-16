@@ -39,6 +39,25 @@ Referentie naar de subscription op basis waarvan de notificatie doorgestuurd is.
 Er is besloten om geen onderverdeling aan te brengen binnen het data attribuut. Indeling hiervan wordt overgelaten aan de verschillende domeinen.
 (Achtergrond: Er is een discussie geweest of het zinvol zou zijn om binnen het data attribuut onderscheid te maken tussen identificerende gegevens en overige gegevens over een gebeurtenis).
 
+## Subscription API
+
+### Subscription resource, overzicht van attributen
+
+Alle attributen volgen de draft specificatie van de CloudEvents subscription werkgroep tenzij expliciet is aangegeven dat er een aanvulling of afwijking is. 
+
+Attribuut           | Opmerkingen
+| :--- | :--- 
+id                  | Formaat MOET UUID zijn.
+sinkcredential      | Alleen `ACCESSTOKEN` en `REFRESHTOKEN` zijn toegestaan. `PLAIN` niet.
+protocol            | Beperkt tot `HTTP`.
+protocolsettings    | Beperkt tot `HTTPSettings`. Dus niet `MQTTSettings`, `AMQPSettings`, `ApacheKafkaSettings`, `NATSSettings`.
+protocolsettings HTTPSettings.header | -
+protocolsettings HTTPSettings.method | MOET 'POST' zijn.
+source              | -
+types               | -
+filters             | De opties `Dialect` en `SQL filter` zijn niet toegestaan.
+yana.domains        | Shortcut for domain filter.
+
 ## JSON Event Format for CloudEvents
 
 Conform handreiking in GOV NL profile for CloudEvents.
@@ -71,22 +90,36 @@ Aanscherping:
 - Batched content mode: Niet toegestaan. Pas toestaan als er use cases voor zijn.
 - Binary content mode: Niet toegestaan. Pas toestaan als er use cases voor zijn.
 
-## Subscription API
+## HTTP 1.1 Web Hooks for Event Delivery
 
-### Subscription resource, overzicht van attributen
+**Deze tekst is overgenomen van het GOV NL profile en moet nog beoordeeld worden.**
 
-Alle attributen volgen de draft specificatie van de CloudEvents subscription werkgroep tenzij expliciet is aangegeven dat er een aanvulling of afwijking is. 
+Delivering notifications
+- A delivery request MUST use a HTTP POST request via HTTPS.
+- A delivery response MUST have the appropriate status code: 
+  - 200 OK of 200 Created if delivery had been accepted and processed and response carries a payload
+  - 201 Created of 204 No Content when accepted and processed but carries no payload
+  - 202 Accepted if accepted but not yet processed or processing status is unknown
+  - 410 Gone if delivery target has been retired
+  - 429 Too Many Requests when exceeding a request rate limit and MUST include the Retry-After header.
+  - 415 Unsupported Media Type wehen notification format is not understood.
+  - other error status codes apply as specified in RFC7231.
 
-Attribuut           | Opmerkingen
-| :--- | :--- 
-id                  | Formaat MOET UUID zijn.
-sinkcredential      | Alleen `ACCESSTOKEN` en `REFRESHTOKEN` zijn toegestaan. `PLAIN` niet.
-protocol            | Beperkt tot `HTTP`.
-protocolsettings    | Beperkt tot `HTTPSettings`. Dus niet `MQTTSettings`, `AMQPSettings`, `ApacheKafkaSettings`, `NATSSettings`.
-protocolsettings HTTPSettings.header | -
-protocolsettings HTTPSettings.method | MOET 'POST' zijn.
-source              | -
-types               | -
-filters             | De opties `Dialect` en `SQL filter` zijn niet toegestaan.
-yana.domains        | Shortcut for domain filter.
+Authorization
+- The delivery request MUST use one of the following two methods (both of which lean on the OAuth 2.0 Bearer Token RFC6750 model):
+- The access token is sent in the Authorization request header field; for OAuth 2.0 Bearer tokens, the "Bearer" scheme MUST be used.
+- The access token is added to the HTTP Request URI Query component as described in URI Query Parameter.
+
+Abuse protection
+It must be prevented that notifications are sent to recipients who have not requested this themselves. A legitimate delivery target needs to indicate that it agrees with notifications being delivered to it. Reaching the delivery agreement is realized using a validation handshake:
+- A handshake can either be executed immediately at registration time or as a "pre-flight" request immediately preceding a delivery.
+- Delivery targets SHOULD support the abuse protection feature. If a target does not support the feature, the sender MAY choose not to send to the target, at all, or send only at a very low request rate.
+- The validation request uses the HTTP OPTIONS method with header fields:
+  - WebHook-Request-Origin (required): a DNS expression that identifies the sending system
+  - WebHook-Request-Callback (optional): a callback URL that allows the delivery target to grant send permission asynchronously, via a simple HTTPS callback.
+  - WebHook-Request-Rate (optional): a positive integer number that expresses the request rate in "requests per minute"
+- The validation respons MUST be sent if the delivery target does allow delivery of events with header fields:
+  - WebHook-Allowed-Origin (required): MUST either be the origin name supplied in the WebHook-Request-Origin header, or a singular asterisk character ('*'), indicating that the delivery target supports notifications from all origins.
+  - WebHook-Allowed-Rate (depends): MUST be returned if the request contained the WebHook-Request-Rate, otherwise it SHOULD be returned; an integer number expresses the permitted request rate in "requests per minute" or asterisk when there is no rate limitation.
+
 
