@@ -1,16 +1,16 @@
 # Ontwerpbesluiten
 
-## Event attributes
+## Event attributen
 
-### Overview
+### Overzicht
 
-All attributes are conform the [GOV NL profile for Cloud Events](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/) specification unless explicitly stated otherwise.
+Alle attributen volgen de [GOV NL profile for Cloud Events](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/) specificatie tenzij expliciet is aangegeven dat er een aanvulling of afwijking is. 
 
-Attribute           | Remarks
+Attribuut           | Opmerkingen
 | :--- | :--- 
-id                  | Format MUST be UUID.
-source              | Format MUST be URN.
-specversion         | Although the version of Cloud Events is implied by the version of the OAS the decision was made to include this attribute in the resource to be fully Cloud Events compatible.
+id                  | Formaat MOET UUID zijn.
+source              | Formaat MOET URN zijn.
+specversion         | De OAS specificatie heeft al een versie numnmer. De Cloud Events versie zou afgeleid kunnen worden uit de beschrijving van de OAS. Om compatible te zijn met de Cloud Events berichtstandaard is besloten het 'specversion' attribuut toch expliciet als attribuut op te nemen.
 type                | -
 datacontenttype     | Value MUST be application/+json
 dataschema          | -
