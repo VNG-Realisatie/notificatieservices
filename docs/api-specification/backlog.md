@@ -8,6 +8,10 @@ CE statuscodes | Afmaken | Uitzoeken wat CE zegt over http statuscodes (zie toel
 Media type in header | Afmaken | Uitzoeken of media type application/cloudevents+json in http header opgenomen kan worden | Must
 Charset header | Afmaken | Uitzoeken of charset=UTF-8 in http header opgenomen kan worden | Must
 Attribuut beschrijvingen | Keuze | Verwijzen we naar GOV NL profile of nemen we integrale tekst op? | Must
+Autorisatie | Afmaken | Autorisatie aspecten goed verwerken in OAS | Must
+Publicatie | Afmaken | Publicatie op finale lokatie | Must
+Source format | Keuze | Waarom is Source in GOV NL profile niet 'MUST be URN'? | Should
+Json schema GOV NL | Afmaken | Json schema van CE moet aangepast worden voor GOV NL profile | Should
 Pull | Uitbreiding | Implementeren van GET op Events resource | Could
 
 ## Toelichtingen
