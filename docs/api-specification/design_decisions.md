@@ -1,4 +1,4 @@
-# Design decisions
+# Ontwerpbesluiten
 
 ## Event attributes
 
@@ -26,6 +26,10 @@ yana.subscriptionId | See explanation below.
 
 ### yana.domain
 
+This is an optional attribute to specify the domain of the events.
+Example: A system might offer functionality for case handling and for document handling. In such a situation a single source might offer events within both domains: cases and documents.
 
 ### yana.subscriptionId
+
+Referentie naar de subscription op basis waarvan de notificatie doorgestuurd is. (Ofwel het door de notificatie component ontvangen event voldeed aan de criteria van deze subscription).
 
