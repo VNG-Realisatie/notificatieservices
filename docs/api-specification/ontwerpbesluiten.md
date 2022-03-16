@@ -10,24 +10,25 @@ Attribuut           | Opmerkingen
 | :--- | :--- 
 id                  | Formaat MOET UUID zijn.
 source              | Formaat MOET URN zijn.
-specversion         | De OAS specificatie heeft al een versie numnmer. De Cloud Events versie zou afgeleid kunnen worden uit de beschrijving van de OAS. Om compatible te zijn met de Cloud Events berichtstandaard is besloten het `specversion` attribuut toch expliciet als attribuut op te nemen.
+specversion         | De OAS specificatie heeft al een versie numnmer. De Cloud Events versie zou afgeleid kunnen worden uit de beschrijving van de OAS. Om compatible te zijn met de Cloud Events berichtstandaard is besloten `specversion` toch expliciet op te nemen.
 type                | -
-datacontenttype     | Value MUST be application/+json
+datacontenttype     | Waarde MOET 'application/json' zijn.
 dataschema          | -
-~~subject~~         | Not allowed !
+~~subject~~         | Niet toegestaan.
 time                | -
-dataref             | This Cloud Events extension is allowed.
-sequence            | This Cloud Events extension is allowed.
-sequencetype        | This Cloud Events extension is allowed.
+dataref             | Deze Cloud Events extensie is toegestaan.
+sequence            | Deze Cloud Events extensie is toegestaan.
+sequencetype        | Deze Cloud Events extensie is toegestaan.
 data                | -
-data_base64         | As specified in the _JSON Event Format for CloudEvents_.
-yana.domain         | See explanation below.
-yana.subscriptionId | See explanation below.
+data_base64         | Zoals gespecificeerd in the _JSON Event Format for CloudEvents_.
+yana.domain         | Toelichting volgt na tabel.
+yana.subscriptionId | Toelichting volgt na tabel.
 
 ### yana.domain
 
-This is an optional attribute to specify the domain of the events.
-Example: A system might offer functionality for case handling and for document handling. In such a situation a single source might offer events within both domains: cases and documents.
+Optioneel attribuut. Kan opgenomen worden om het domein waartoe events behoren aan te geven.
+
+Voorbeeld: Conceptueel is besloten om zaken en documenten van elkaar te scheiden. Beiden vormen een apart domein. Er zijn zaaksystemen en documentsystemen. Het kan ook zijn dat een systeem functionaliteit voor beiden aanbied. In die situatie biedt een systeem (source) events over twee domeinen.
 
 ### yana.subscriptionId
 
