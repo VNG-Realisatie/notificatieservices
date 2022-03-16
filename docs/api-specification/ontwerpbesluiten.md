@@ -83,8 +83,8 @@ id                  | Formaat MOET UUID zijn.
 sinkcredential      | Alleen `ACCESSTOKEN` en `REFRESHTOKEN` zijn toegestaan. `PLAIN` niet.
 protocol            | Beperkt tot `HTTP`.
 protocolsettings    | Beperkt tot `HTTPSettings`. Dus niet `MQTTSettings`, `AMQPSettings`, `ApacheKafkaSettings`, `NATSSettings`.
-- HTTPSettings.header | -
-- HTTPSettings.method | MOET 'POST' zijn.
+  HTTPSettings.header | -
+  HTTPSettings.method | MOET 'POST' zijn.
 source              | -
 types               | -
 filters             | De opties `Dialect` en `SQL filter` zijn niet toegestaan.
