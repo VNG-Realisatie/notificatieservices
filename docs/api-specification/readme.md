@@ -24,5 +24,6 @@ YANA Catalog API | Om een beschrijving van een domein en de daarbinnen gebruikte
 ### Documentatie
 
 - [Samenvatting ontwerpbesluiten](./ontwerpbesluiten.md)
+- [Mapping ZGW Notificatie Routing Component API](./mapping_zgw_nrc.md)
 
 
