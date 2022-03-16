@@ -54,15 +54,25 @@ Een aantal variaties is niet toegestaan. Om deze expliciet aan te geven zijn is 
 
 Aanscherping:
 - Event should be transferred using the YANA notifications_post operation.
+
   ~~- Events can be transferred with all standard or application-defined HTTP request methods that support payload body transfers. Events can be also be transferred in HTTP responses and with all HTTP status codes that permit payload body transfers.~~
+
 - Only the structured mode is allowed.
+
   - structured (required): HTTP message body contains both event data and metadata attributes; an appropriate event format is used (non-batching) JSON is the only event format that MUST be supported)
+
   ~~- batched (optional): HTTP message body contains event data and metadata attributes from multiple events; an appropriate event format is used.~~
+
   ~~- binary (required): HTTP message body contains event data as-is; event attributes mapped to HTTP-headers; HTTP Content-Type header declares the media type.~~
+
 - Received Content-Type header value is application/cloudevents+json
+
   ~~- application/cloudevents(+xxxx): structured mode (xxx denotes the used event format)~~
+
   ~~- application/cloudevents-batch: batched mode~~
+
   ~~- Otherwise: binary mode (Content-Type header declares the media type.)~~
+
 - Structured content mode:
   - The HTTP message body MUST contain both event data and metadata attributes.
   - The HTTP Content-Type header MUST be set to the media type of an event format (E.g. application/cloudevents+json; charset=UTF-8)
