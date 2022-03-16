@@ -21,5 +21,8 @@ YANA Notification API | Voor het aanleveren van events bij de notificatiecompone
 YANA Subscription API | Voor het aanmaken en onderhouden van abonnementen. Dit is een eerste concept gebaseerd op de voorlopige resultaten van de CloudEVents werkgroep voor abonneren. Op dit onderdeel moeten nog diverse use cases worden uitgewerkt.
 YANA Catalog API | Om een beschrijving van een domein en de daarbinnen gebruikte typen en filterattributen te kunnen specificeren. Dit is een ruw prototype met vooral de vraag 'moeten we dit wel zo willen?'. Deze structuren zijn vooral bedoeld voor validatie van binnenkomende events en niet zo zeer voor consumptie door mensen. Wel zou er uit dit soort structuren eenvoudig eenduidige documentatie gegenereerd kunnen worden.
 
+### Documentatie
+
+(Samenvatting ontwerpbesluiten)[./ontwerpbesluiten.md]
 
 
