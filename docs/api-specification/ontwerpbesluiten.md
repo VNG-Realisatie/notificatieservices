@@ -10,7 +10,7 @@ Attribuut           | Opmerkingen
 | :--- | :--- 
 id                  | Formaat MOET UUID zijn.
 source              | Formaat MOET URN zijn.
-specversion         | De OAS specificatie heeft al een versie numnmer. De Cloud Events versie zou afgeleid kunnen worden uit de beschrijving van de OAS. Om compatible te zijn met de Cloud Events berichtstandaard is besloten het 'specversion' attribuut toch expliciet als attribuut op te nemen.
+specversion         | De OAS specificatie heeft al een versie numnmer. De Cloud Events versie zou afgeleid kunnen worden uit de beschrijving van de OAS. Om compatible te zijn met de Cloud Events berichtstandaard is besloten het `specversion` attribuut toch expliciet als attribuut op te nemen.
 type                | -
 datacontenttype     | Value MUST be application/+json
 dataschema          | -
