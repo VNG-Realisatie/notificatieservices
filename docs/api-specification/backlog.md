@@ -32,11 +32,12 @@ Pull | Uitbreiding | Implementeren van GET op Events resource | Could
 
 Naam | Aard | Korte beschrijving | Prio
 | :--- | :--- | :--- | :---
-Conceptueel | Afmaken | Abonneren uitwerken vanuit enkele veel voorkomende scenario's | Could
-Operaties | Afmaken | Welke operaties zijn zinvol/gewenst | Could
-Filters | Keuze | Willen we filters conform CE draft vormgeven? De vorm is waarschijnlijk handig als je het criterium wilt evalueren. De vorm lijkt minder handig om het criterium te specifieren. | Could
-yana.domains | Keuze | Willen we dat dit, net als types, een array is. Hoe zinvol is dit filter (check op basis van use cases). Vermoeden: komt voor in combinaties met andere filters en kan daardoor niet goed in een shortcut vormgegeven worden. | Could
-Verificatie sink | Keuze | Wat willen we hierbij overnemen van de CloudEvents draft? Tekst is al opgenomen in onderdeel ontwerpbesluiten en kan daar direct aangepast worden. | Could
+Conceptueel | Afmaken | Abonneren uitwerken vanuit enkele veel voorkomende scenario's | Should
+Operaties | Afmaken | Welke operaties zijn zinvol/gewenst | Should
+Filters | Keuze | Willen we filters conform CE draft vormgeven? De vorm is waarschijnlijk handig als je het criterium wilt evalueren. De vorm lijkt minder handig om het criterium te specifieren. | Should
+yana.domains | Keuze | Willen we dat dit, net als types, een array is. Hoe zinvol is dit filter (check op basis van use cases). Vermoeden: komt voor in combinaties met andere filters en kan daardoor niet goed in een shortcut vormgegeven worden. | Should
+Verificatie sink | Keuze | Wat willen we hierbij overnemen van de CloudEvents draft? Tekst is al opgenomen in onderdeel ontwerpbesluiten en kan daar direct aangepast worden. | Should
+Mapping ZGW | Controle | Mapping is niet 100%. Proberen te verbeteren of accepteren? Testen aan de hand van use cases? | Should
 
 ## Catalog API
 
@@ -44,4 +45,5 @@ Naam | Aard | Korte beschrijving | Prio
 | :--- | :--- | :--- | :---
 Conceptueel | Afmaken | Hoe zinvol is deze API? Is een tekstuele beschrijving voorlopig niet voldoende? | Should
 Conceptueel | Afmaken | Bij welk detailniveau trek je de grens? | Should
+Mapping ZGW | Controle | Mapping is niet 100%. Proberen te verbeteren of accepteren? Testen aan de hand van use cases? | Should
 
