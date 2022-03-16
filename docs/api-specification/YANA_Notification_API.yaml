@@ -120,7 +120,7 @@ components:
           minLength: 1
           nullable: true
           example: '2021-08-16T15:29:30.833664Z'
-        yana.subscription:
+        yana.subscriptionId:
           title: yana.subscriptionId
           description: Event meets the filter criteria of this subscription.
           type: string
