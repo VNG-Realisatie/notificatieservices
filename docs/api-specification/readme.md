@@ -23,6 +23,6 @@ YANA Catalog API | Om een beschrijving van een domein en de daarbinnen gebruikte
 
 ### Documentatie
 
-(Samenvatting ontwerpbesluiten)[./ontwerpbesluiten.md]
+- [Samenvatting ontwerpbesluiten](./ontwerpbesluiten.md)
 
 
