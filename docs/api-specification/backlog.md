@@ -1,5 +1,5 @@
 # Backlog
 
-Naam | Duiding | Prio
+Naam | Korte beschrijving | Prio
 | :--- | :--- | :---
 Pull | Implementeren van GET op Events resource | Could have
