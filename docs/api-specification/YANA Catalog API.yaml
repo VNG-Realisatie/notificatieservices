@@ -1,0 +1,459 @@
+openapi: 3.0.0
+info:
+  title: YANA Catalog API
+  description: 'YANA Catalog API
+    YANA (Yet Another Notification API)
+
+    API to manage an event catalog.
+    Work in progress. Can be changed completely without notice.
+    '
+  license:
+    name: EUPL 1.2
+    url: https://opensource.org/licenses/EUPL-1.2
+  version: 0.0.2
+security:
+- JWT-Claims: []
+paths:
+  /domains:
+    get:
+      operationId: domains_list
+      description: Request all domains
+      parameters:
+      - name: name
+        in: query
+        description: Name of the domain
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Domain'
+      tags:
+      - domains
+    post:
+      operationId: domains_create
+      description: Create a domain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Domain'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: URL waar de resource leeft.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+      tags:
+      - domains
+    parameters: []
+  /domains/{name}:
+    get:
+      operationId: domains_read
+      description: Request info about a specific domain
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+      tags:
+      - domains/{name}
+    parameters:
+    - name: name
+      in: path
+      description: Domain name
+      required: true
+      schema:
+        type: string
+  /eventtypes:
+    get:
+      operationId: eventtypes_list
+      description: Request all eventtypes
+      parameters:
+      - name: name
+        in: query
+        description: Name of the eventtype
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Eventtype'
+      tags:
+      - eventtypes
+    post:
+      operationId: eventtypes_create
+      description: Create an eventtype
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Eventtype'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: URL waar de resource leeft.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Eventtype'
+      tags:
+      - eventtypes
+    parameters: []
+  /eventtypes/{name}:
+    get:
+      operationId: eventtypes_read
+      description: Request info about a specific eventtype
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Eventtype'
+      tags:
+      - eventtypes/{name}
+    parameters:
+    - name: name
+      in: path
+      description: Eventtype name
+      required: true
+      schema:
+        type: string        
+  /filter_attributes:
+    get:
+      operationId: filter_attributes_list
+      description: Request all filter attributes
+      parameters:
+      - name: name
+        in: query
+        description: Name of the filter_attribute
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Filter_attribute'
+      tags:
+      - filter_attributes
+    post:
+      operationId: filter_attributes_create
+      description: Create a filter_attribute
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Filter_attribute'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: URL waar de resource leeft.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter_attribute'
+      tags:
+      - filter_attributes
+    parameters: []      
+  /sources:
+    get:
+      operationId: sources_list
+      description: Request all sources
+      parameters:
+      - name: urn
+        in: query
+        description: Urn of the source
+        required: false
+        schema:
+          type: string
+      - name: domain
+        in: query
+        description: Domain offered by the source
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Source'
+      tags:
+      - sources
+    post:
+      operationId: sources_create
+      description: Create a source
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Source'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: URL waar de resource leeft.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+      tags:
+      - sources
+    parameters: []
+  /sources/{urn}:
+    get:
+      operationId: sources_read
+      description: Request info about a specific source
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'API-version in the context of the call. Example: 1.2.1.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+      tags:
+      - sources/{urn}
+    parameters:
+    - name: urn
+      in: path
+      description: Uniform resource name (urn)
+      required: true
+      schema:
+        type: string
+        format: urn
+servers:
+# Added by API Auto Mocking Plugin
+- description: SwaggerHub API Auto Mocking
+  url: https://virtserver.swaggerhub.com/KorverInformatica/subscription/0.0.1
+- url: /api/v1
+components:
+  securitySchemes:
+    JWT-Claims:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+  schemas:
+    Domain:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          title: name
+          description: Name of the domain.
+          type: string
+          minLength: 1
+        description:
+          title: description
+          description: Description of the eventtype
+          type: string
+          minLength: 1   
+          nullable: true
+        documentationLink:
+          title: documentationLink
+          description: Link to human readable information about the source and its notifications
+          type: string
+          format: url
+          minLength: 1
+          nullable: true
+          example: 'https://www.vngrealisatie.nl/DocumentSysteem/Notificaties.html'
+        types:
+          title: types
+          description: Types offered by the domain
+          type: array
+          items:
+            type: string
+          nullable: true
+          example: 'nl.vng.zgw.zaken.status_gewijzigd'
+    Eventtype:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          title: name
+          description: Name of the eventtype
+          type: string
+          minLength: 1
+        description:
+          title: description
+          description: Description of the eventtype
+          type: string
+          minLength: 1
+          nullable: true
+    Filter_attribute:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          title: name
+          description: Name of the attribute
+          type: string
+          minLength: 1
+          example: 'vertrouwlijk'
+        description:
+          title: description
+          description: Description of the eventtype
+          type: string
+          minLength: 1          
+          nullable: true
+        # Je zou datatypering kunnen toevoegen, als voorbeeld twee attributen daarvoor.
+        # Je kunt hierin natuurlijk de volledige OAS 3.1 / Json schema attributes opnemen.
+        # Hoe gewenst is dit?
+        type:
+          title: type
+          description: Type of the attribute
+          type: string
+          minLength: 1
+          nullable: true
+          example: 'string'
+        format:
+          title: format
+          description: Format of the attribute
+          type: string
+          minLength: 1
+          nullable: true
+          example: 'url'
+        source:
+          title: source
+          description: The attribute is relevant for notifications from this source
+          type: string
+          format: urn
+          minLength: 1
+          nullable: true
+          example: 'urn:nld:oin:00000001234567890000:systeem:DocumentSysteem'
+        topic:
+          title: topic
+          description: The attribute is relevant for notifications from this domain
+          type: string
+          minLength: 1
+          nullable: true
+          example: 'nl.vng.zgw.documenten'
+        # Begrip 'type' komt twee keer voor, daardoor prefix nodig
+        eventtype:
+          title: eventtype
+          description: The attribute is relevant for notifications of this type
+          type: string
+          format: reverse-dns
+          minLength: 1
+          nullable: true
+          example: 'nl.vng.zgw.documenten.document_gecreerd'
+    Source:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          title: urn
+          description: Urn of the source
+          type: string
+          minLength: 1
+          example: 'urn:nld:oin:00000001234567890000:systeem:DocumentSysteem'
+        domains:
+          title: domains
+          description: Domains offered by the source
+          type: array
+          items:
+            type: string
+          nullable: true
+          example: 'zaken, documenten'          
