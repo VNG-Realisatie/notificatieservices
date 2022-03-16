@@ -71,4 +71,22 @@ Aanscherping:
 - Batched content mode: Niet toegestaan. Pas toestaan als er use cases voor zijn.
 - Binary content mode: Niet toegestaan. Pas toestaan als er use cases voor zijn.
 
+## Subscription API
+
+### Subscription resource, overzicht van attributen
+
+Alle attributen volgen de draft specificatie van de CloudEvents subscription werkgroep tenzij expliciet is aangegeven dat er een aanvulling of afwijking is. 
+
+Attribuut           | Opmerkingen
+| :--- | :--- 
+id                  | Formaat MOET UUID zijn.
+sinkcredential      | Alleen `ACCESSTOKEN` en `REFRESHTOKEN` zijn toegestaan. `PLAIN` niet.
+protocol            | Beperkt tot `HTTP`.
+protocolsettings    | Beperkt tot `HTTPSettings`. Dus niet `MQTTSettings`, `AMQPSettings`, `ApacheKafkaSettings`, `NATSSettings`.
+- HTTPSettings.header | -
+- HTTPSettings.method | MOET 'POST' zijn.
+source              | -
+types               | -
+filters             | De opties `Dialect` en `SQL filter` zijn niet toegestaan.
+yana.domains        | Shortcut for domain filter.
 
