@@ -5,6 +5,9 @@ De API-specificatie is work in progress. _Alles kan nog op ieder moment wijzigen
 
 ## Quick reference: OAS3 Specificaties
 
+Nieuwe geconsolideerde versie: (Catalogus beperkt tot domain en filterAttributes)
+[ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/Notification.yaml)
+
 Onderdeel | Links
 | :--- | :---
 YANA Notification API | [ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Notification_API.yaml), [Swagger](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Notification_API.yaml) of [YAML](https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Notification_API.yaml)
