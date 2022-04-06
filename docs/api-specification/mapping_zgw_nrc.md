@@ -2,13 +2,13 @@
 
 ## Events resource
 
-ZGW Attribuut | Events resource attribuut | Opmerkingen
-| :--- | :--- | :---
-kanaal        | domain | -
+ZGW Attribuut | Events resource attribuut | Opmerkingen | Voorbeeld
+| :--- | :--- | :--- | :---
+kanaal        | domain | - | nl.vng.zgw.zaken of nl.vng.zgw.documenten
 hoofdObject   | data.resourceUrl | Notificaties beperkeen tot de hoofdresource. Deze noemen we voortaan 'resource'. Uit het eventtype blijkt welke subresource(s) betrokken zijn.
 actie         | type | Format voor conversie van bestaande typen: <hoofdobject>_<resource>_<actie>. Bijvoorbeeld Zaak_status_gewijzigd
 aanmaakdatum  | time | -
-kenmerken     | nl.vng.zgw.<domain>.<naam> = <value> | -
+kenmerken     | nl.vng.zgw.&lt;domain&gt;.&lt;naam&gt; = <value> | -
 
 Deprecated attributen voor backwards compatibility:
 
