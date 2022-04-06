@@ -22,7 +22,7 @@ paths:
   /events:
     post:
       operationId: events_post
-      summary: Publish an event
+      summary: Publish an event.
       description: 'Publish an event.
         The component will distribute the event to the subscribers when the criteria of a subscription are met.'
       parameters:
