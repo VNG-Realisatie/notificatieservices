@@ -4,11 +4,11 @@
 
 ZGW Attribuut | Events resource attribuut | Opmerkingen
 | :--- | :--- | :---
-kanaal        | events.yana.domain | -
-hoofdObject   | events.data.resourceUrl | Notificaties beperkeen tot de hoofdresource. Deze noemen we voortaan 'resource'. Uit het eventtype blijkt welke subresource(s) betrokken zijn.
-actie         | events.type | Format voor conversie van bestaande typen: <hoofdobject>_<resource>_<actie>. Bijvoorbeeld Zaak_status_gewijzigd
-aanmaakdatum  | events.time | -
-kenmerken     | nl.vng.zgw.<naam> = <value> | -
+kanaal        | domain | -
+hoofdObject   | data.resourceUrl | Notificaties beperkeen tot de hoofdresource. Deze noemen we voortaan 'resource'. Uit het eventtype blijkt welke subresource(s) betrokken zijn.
+actie         | type | Format voor conversie van bestaande typen: <hoofdobject>_<resource>_<actie>. Bijvoorbeeld Zaak_status_gewijzigd
+aanmaakdatum  | time | -
+kenmerken     | nl.vng.zgw.<domain>.<naam> = <value> | -
 
 Deprecated attributen voor backwards compatibility:
 
