@@ -14,24 +14,24 @@ Deprecated attributen voor backwards compatibility:
 
 ZGW Attribuut | Events resource attribuut | Opmerkingen
 | :--- | :--- | :---
-hoofdobject | events.data.deprecated_hoofdObject | Let op `hoofdObject` moet ook naar `events.data.resource` 
-resource    | events.data.deprecated_resource | -
-resourceUrl | events.data.deprecated_resourceUrl | -
+hoofdobject | data.deprecated_hoofdObject | Let op `hoofdObject` moet ook naar `events.data.resource` 
+resource    | data.deprecated_resource | -
+resourceUrl | data.deprecated_resourceUrl | -
 
 ## Subscription resource
 
 ZGW Attribuut | Subscription resource attribuut | Opmerkingen
 | :--- | :--- | :---
-callbackUrl     | subscription.sink | -
-auth            | subscription.sinkcredential | -
-kanalen.filters | subscription.filter | Niet backwards compatible.
-kanalen.naam    | subscription.yana.domain | Niet backwards compatible.
+callbackUrl     | sink | -
+auth            | sinkcredential | -
+kanalen.filters | filter | Niet backwards compatible.
+kanalen.naam    | domain | Niet backwards compatible.
 
 ## Topic resource
 
-ZGW Attribuut | Subscription resource attribuut | Opmerkingen
+ZGW Attribuut | Domain resource attribuut | Opmerkingen
 | :--- | :--- | :---
 url              | - | Niet gemapped
-naam             | domains.name | -
-documentatieLink | domains.documentationLink | _
-filters          | attributes resource | -
+naam             | name | -
+documentatieLink | documentationLink | _
+filters          | filterAttributes | -
