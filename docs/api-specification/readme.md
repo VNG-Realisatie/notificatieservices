@@ -6,7 +6,7 @@ De API-specificatie is work in progress. _Alles kan nog op ieder moment wijzigen
 ## Quick reference: OAS3 Specificaties
 
 Nieuwe geconsolideerde versie: (Catalogus beperkt tot domain en filterAttributes)
-[ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/Notification.yaml)
+[ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/Notifications.yaml)
 
 Onderdeel | Links
 | :--- | :---
