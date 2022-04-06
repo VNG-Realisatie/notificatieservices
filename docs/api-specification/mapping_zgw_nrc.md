@@ -8,7 +8,7 @@ kanaal        | domain | - | nl.vng.zgw.zaken of nl.vng.zgw.documenten
 hoofdObject   | data.resourceUrl | Notificaties beperkeen tot de hoofdresource. Deze noemen we voortaan 'resource'. Uit het eventtype blijkt welke subresource(s) betrokken zijn.
 actie         | type | Format voor conversie van bestaande typen: <hoofdobject>_<resource>_<actie>. Bijvoorbeeld Zaak_status_gewijzigd
 aanmaakdatum  | time | -
-kenmerken     | nl.vng.zgw.&lt;domain&gt;.&lt;naam&gt; = <value> | -
+kenmerken     | &lt;domain&gt;.&lt;naam&gt; = &lt;value&gt; | - | nl.vng.zgw.zaken.vertrouwelijkheid
 
 Deprecated attributen voor backwards compatibility:
 
