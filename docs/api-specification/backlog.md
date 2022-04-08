@@ -28,7 +28,6 @@ Verificatie sink | Keuze | Wat willen we hierbij overnemen van de CloudEvents dr
 Attribuut beschrijvingen | Schrijven | Uitbreiden en controleren attribuut beschrijvingen. Verwijzen we naar GOV NL profile of nemen we integrale tekst op? | Should
 Filters beschrijven | Schrijven | Beschrijven hoe filters werken | Should
 Scenario's gebruik abonneren | Schrijven | Abonneren uitwerken vanuit enkele veel voorkomende scenario's | Could
-CE mapping | Schrijven | Pagina maken met expliciete mapping tussen CE en API (staat nu in ontwerpbesluiten) | Could
 
 ## Potentiele wijzigingen aan GOV NL profile for CloudEvents
 - Waarom is Source in GOV NL profile niet 'MUST be URN'? 
