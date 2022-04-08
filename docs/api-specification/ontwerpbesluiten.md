@@ -24,15 +24,17 @@ data_base64         | Zoals gespecificeerd in _JSON Event Format for CloudEvents
 yana.domain         | Toelichting volgt na tabel.
 yana.subscriptionId | Toelichting volgt na tabel.
 
-### events.yana.domain
+### events.domain
 
 Optioneel attribuut. Kan opgenomen worden om het domein waartoe events behoren aan te geven.
 
 Voorbeeld: Conceptueel is besloten om zaken en documenten van elkaar te scheiden. Beiden vormen een apart domein. Er zijn zaaksystemen en documentsystemen. Het kan ook zijn dat een systeem functionaliteit voor beiden aanbied. In die situatie biedt een systeem (source) events over twee domeinen.
 
-### events.yana.subscriptionId
+### events.subscription
 
 Referentie naar de subscription op basis waarvan de notificatie doorgestuurd is. (Ofwel het door de notificatie component ontvangen event voldeed aan de criteria van deze subscription).
+
+n.b. Als de notificatie component zelf geabonneerd is op een source dan kan het zijn dat deze source het uuid van die subscription opneemt in het te publiceren event (dus in de body van de POST events). Die uuid MOET dan NIET doorgestuurd worden bij publicatie maar vervangen worden door de uuid van het abonnement dat door de component gebruikt is om te bepalen of het event doorgestuurd moest worden.
 
 ### events.data
 
@@ -54,13 +56,14 @@ protocolsettings    | Beperkt tot `HTTPSettings`. Dus niet `MQTTSettings`, `AMQP
 protocolsettings HTTPSettings.header | -
 protocolsettings HTTPSettings.method | MOET 'POST' zijn.
 source              | -
+domain              | Niet aanwezig CE en dus ook niet in de CE draft voor abonneren. Wel logisch om, naar analogie van source, dit attribuut ook in de subscription op te nemen. Net zoals source is het een enkelvoudig attribuut. Per subscription kan dus 1 domain opgegeven worden. (Overigens zou je via het filters attribuut wel meerdere domains kunnen opgeven.
 types               | -
 filters             | De opties `Dialect` en `SQL filter` zijn niet toegestaan.
-yana.domains        | Shortcut for domain filter.
 
 ## JSON Event Format for CloudEvents
 
 Conform handreiking in GOV NL profile for CloudEvents.
+
 Aanscherping:
 - The _GOV NL profile for CloudEvents JSONSchema_ for the spec can be used to validate events in JSON.
 - JSON Batch Format is niet toegestaan.
