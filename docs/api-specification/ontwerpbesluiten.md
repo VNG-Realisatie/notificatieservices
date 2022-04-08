@@ -20,7 +20,7 @@ dataref             | Deze Cloud Events extensie is toegestaan.
 sequence            | Deze Cloud Events extensie is toegestaan.
 sequencetype        | Deze Cloud Events extensie is toegestaan.
 data                | -
-data_base64         | Zoals gespecificeerd in the _JSON Event Format for CloudEvents_.
+data_base64         | Zoals gespecificeerd in _JSON Event Format for CloudEvents_.
 yana.domain         | Toelichting volgt na tabel.
 yana.subscriptionId | Toelichting volgt na tabel.
 
