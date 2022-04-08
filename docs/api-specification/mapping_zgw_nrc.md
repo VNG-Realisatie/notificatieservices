@@ -4,23 +4,41 @@
 
 ZGW Attribuut | Events resource attribuut | Opmerkingen | Voorbeeld
 | :--- | :--- | :--- | :---
-| specversion | ... | ...
-| id | ... | ...
-| source | ... | ...
-| datacontenttype | ... | ...
-kanaal        | domain | - | nl.vng.zgw.zaken of nl.vng.zgw.documenten
-hoofdObject   | data.resourceUrl | Notificaties beperkeen tot de hoofdresource. Deze noemen we voortaan 'resource'. Uit het eventtype blijkt welke subresource(s) betrokken zijn.
-actie         | type | Format voor conversie van bestaande typen: <hoofdobject>_<resource>_<actie>. Bijvoorbeeld Zaak_status_gewijzigd
+kanaal        | domain | - | nl.vng.zaken of nl.vng.documenten
+hoofdObject   | data.resourceUrl | Notificaties worden beperkt tot de hoofdresource. Zie toelichting bij deprecated attributen.
+resource      | - | Zie toelichting bij deprecated attributen.
+resourceUrl   | - | Zie toelichting bij deprecated attributen.
+actie         | type | Format voor conversie van bestaande typen: <hoofdobject>_<resource>_<actie>. Bijvoorbeeld Zaakstatus_gewijzigd
 aanmaakdatum  | time | -
-kenmerken     | &lt;domain&gt;.&lt;naam&gt; = &lt;value&gt; | - | nl.vng.zgw.zaken.vertrouwelijkheid
+kenmerken     | &lt;domain&gt;.&lt;naam&gt; = &lt;value&gt; | - | nl.vng.zaken.vertrouwelijkheid
 
-Deprecated attributen voor backwards compatibility:
+### Deprecated attributen voor backwards compatibility:
 
 ZGW Attribuut | Events resource attribuut | Opmerkingen
 | :--- | :--- | :---
 hoofdobject | data.deprecated_hoofdObject | Let op `hoofdObject` moet ook naar `events.data.resource` 
 resource    | data.deprecated_resource | -
 resourceUrl | data.deprecated_resourceUrl | -
+
+Toelichting:
+Bij generiek gebruik van de API zullen er veel events zijn die impact hebben op meerdere resources. Denk bijvoorbeeld aan het ontstaan of registreren van een nieuw complex object met meerdere subresources. Er zijn dan twee opties: alle subresources vermelden of helemaal geen subresources vermelden. We hebben kozen voor het laatste, ook voor de situaties waarin er 'toevallig' wel precies 1 (sub)resource wordt geraakt door het event.
+Met deze manier van werken verschuift de inhoud van de notificatie van gegevensgeorienteerd (precies vertellen welke resources geraakt zijn) naar gebeurtenisgeorienteerd (waarbij het aan de afnemer overgelaten wordt om te bepalen welke informatie verwerkt moet worden nav de gebeurtenis).
+We voorkomen hiermee ook eventuele privacy issues die ontstaan als een afnemer een bepaalde resource niet mag inzien en ook niet mag weten dat deze aangepast is. Denk bijvoorbeeld aan resource over iemands nationaliteit.
+
+### Nieuwe attributen
+
+Onderstaande attributen zijn toegevoegd omdat ze onderdeel zijn van de CloudEvents berichtspecificatie. Zie het [GOV NL profile for CloudEvents](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents/) voor meer informatie over de semantiek van deze attributen.
+  
+Events resource attribuut | Opmerkingen | Voorbeeld
+| :--- | :--- | :---
+specversion | CloudEvents versie | 1.0
+id | Uuid van event | 2febb675-b06c-4f3a-8fc3-f6649aa25ae4
+source | Bron van het event | urn:nld:oin:00000001234567890000:systeem:Zaaksysteem
+datacontenttype | Contenttype van het data-attribuut | application/json
+dataschema | Optioneel schema dat de inhoud van het data-attribuut beschrijft | https:www.vng.nl/zgw/zaken/status_gewijzigd_schema.json
+sequence | Nummer voor ordening van de events | 42
+sequencetype | Datatype van sequence. Momenteel zijn alleen integers toegestaan | Integer
+dataref | Zie toelichting OAS en/of CE specificatie voor gebruik | 
 
 ## Subscription resource
 
