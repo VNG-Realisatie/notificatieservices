@@ -28,6 +28,7 @@ Verificatie sink | Keuze | Wat willen we hierbij overnemen van de CloudEvents dr
 Attribuut beschrijvingen | Schrijven | Uitbreiden en controleren attribuut beschrijvingen. Verwijzen we naar GOV NL profile of nemen we integrale tekst op? | Should
 Filters beschrijven | Schrijven | Beschrijven hoe filters werken | Should
 Scenario's gebruik abonneren | Schrijven | Abonneren uitwerken vanuit enkele veel voorkomende scenario's | Could
+Mapping ZGW acties | Schrijven | Patroon voor mapping van de op https://github.com/vng-Realisatie/zaken-api/blob/1.2.0/src/notificaties.md genoemd acties beschrijven.
 
 ## Potentiele wijzigingen aan GOV NL profile for CloudEvents
 - Waarom is Source in GOV NL profile niet 'MUST be URN'? 
