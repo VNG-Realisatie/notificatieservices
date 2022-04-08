@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: Notification Client API
+  description: "Notifications Client API
+
+    Work in progress. Can be changed completely without notice.
+
+    The events resource is based on the [GOV NL profile for CloudEvents](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents).
+    "
+  license:
+    name: EUPL 1.2
+    url: https://opensource.org/licenses/EUPL-1.2
+  version: 0.0.9
+security:
+- JWT-Claims: []
+paths:
+  /events:
+  # /{webhooks_path}:  
+    post:
+      operationId: events_post
+      summary: Push event
+      description: The event will be pushed to the client by posting it to the events resource.
+      parameters:
+      - name: Content-Type
+        in: header
+        description: HTTP Content-Type
+        required: true
+        schema:
+          type: string
+          enum:
+            - "application/cloudevents+json"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Event"
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: "API-version in the context of the call. Example: 1.2.1."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
+      tags:
+      - events
+    parameters: []
+
+servers:
+- url: /api/v1
+components:
+  securitySchemes:
+    JWT-Claims:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+  schemas:
+
+    EventCore:
+      required:
+      - id
+      - source
+      - specversion
+      - type
+      type: object
+      properties:
+        specversion:
+          title: specversion
+          description: The version of the CloudEvents specification which the event uses.
+          type: string
+          minLength: 1
+          example: "1.0"
+        id:
+          title: id
+          description: Identifies the event.
+          type: string
+          format: uuid
+          minLength: 1
+          example: "2febb675-b06c-4f3a-8fc3-f6649aa25ae4"
+        source:
+          title: source
+          description: Identifies the context in which an event happened.
+          type: string
+          format: urn
+          minLength: 1
+          example: "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem"
+        domain:
+          title: domain
+          description: Name of the domain to which the event belongs.
+          type: string
+          format: reverse-dns
+          minLength: 1
+          nullable: true
+          example: "nl.vng.zaken"
+        type:
+          title: type
+          description: This attribute contains a value describing the type of event related to the originating occurrence.
+          type: string
+          format: reverse-dns
+          minLength: 1
+          example: "nl.vng.zaken.status_gewijzigd"
+        time:
+          title: time
+          description: Timestamp of when the occurrence happened.
+          type: string
+          format: date-time
+          minLength: 1
+          nullable: true
+          example: "2022-03-16T15:29:30.833664Z"
+        subscription:
+          title: subscription
+          description: "The event was posted to the API because the filter criteria of this subscription were met. The uuid refers to a subscription on the source that published this event. It should be passed through when this event is delivered to the subscribers! If an event is distributed to a subscriber this attribute should be overwritten (or filled) with the uuid of the subscription of the subscriber that triggered the delivery."
+          type: string
+          format: uuid
+          minLength: 1
+          nullable: true
+          example: "a2de4777-1160-4562-a996-b79d27b30c99"
+        datacontenttype:
+          title: datacontenttype
+          description: Content type of data value. [RFC 2046](https://tools.ietf.org/html/rfc2046)
+          type: string
+          minLength: 1
+          nullable: true
+          example: "application/json"
+        dataschema:
+          title: dataschema
+          description: Identifies the schema that data adheres to.
+          type: string
+          format: uri
+          minLength: 1
+          nullable: true
+          example: "https:www.vng.nl/zgw/zaken/status_gewijzigd_schema.json"
+        sequence:
+          description: Value expressing the relative order of the event. This enables interpretation of data supercedence.
+          type: string
+          minLength: 1
+          example: "42"
+        sequencetype:
+          description: Specifies the semantics of the sequence attribute.
+          type: string
+          minLength: 1
+          nullable: true
+          enum:
+            - Integer
+    EventExtension:
+      type: object
+      properties:
+        <domain>.<key1>:
+          type: string
+          example: "<value1>"
+        <domain>.<key2>:
+          type: string
+          example: "<value2>"
+        <domain>.<keyN>:
+          type: string
+          example: "<valueN>"
+    Event:
+      allOf:
+        - $ref: "#/components/schemas/EventCore"
+        - $ref: "#/components/schemas/EventExtension"
+        - properties:
+            data:
+              type: object
+              additionalProperties:
+                type: string
+            data_base64:
+              description: The presence of the data_base64 member clearly indicates that the value is a Base64 encoded binary data, which the serializer MUST decode into a binary runtime data type.
+              type: string
+              format: byte
+              nullable: true
+            dataref:
+              description: A reference to a location where the event payload is stored.
+              type: string
+              format: uri
+              minLength: 1
+              nullable: true
