@@ -21,9 +21,9 @@ resource    | data.deprecated_resource | -
 resourceUrl | data.deprecated_resourceUrl | -
 
 Toelichting:
-Bij generiek gebruik van de API zullen er veel events zijn die impact hebben op meerdere resources. Denk bijvoorbeeld aan het ontstaan of registreren van een nieuw complex object met meerdere subresources. Er zijn dan twee opties: alle subresources vermelden of helemaal geen subresources vermelden. We hebben kozen voor het laatste, ook voor de situaties waarin er 'toevallig' wel precies 1 (sub)resource wordt geraakt door het event.
+Bij generiek gebruik van de API zullen er veel events zijn die impact hebben op meerdere resources. Bijvoorbeeld bij het ontstaan of registreren van een nieuw complex object met meerdere subresources. Er zijn dan twee opties: alle subresources vermelden of helemaal geen subresources vermelden. Er is gekozen voor het laatste. Ook voor de situaties waarin er 'toevallig' wel precies 1 (sub)resource wordt geraakt door het event.
 Met deze manier van werken verschuift de inhoud van de notificatie van gegevensgeorienteerd (precies vertellen welke resources geraakt zijn) naar gebeurtenisgeorienteerd (waarbij het aan de afnemer overgelaten wordt om te bepalen welke informatie verwerkt moet worden nav de gebeurtenis).
-We voorkomen hiermee ook eventuele privacy issues die ontstaan als een afnemer een bepaalde resource niet mag inzien en ook niet mag weten dat deze aangepast is. Denk bijvoorbeeld aan resource over iemands nationaliteit.
+Met deze werkwijze worden ook potentiele privacy issues voorkomen die ontstaan als een afnemer een bepaalde resource niet mag inzien en ook niet mag weten dat deze aangepast is. Bijvoorbeeld een resource met informatie over iemands nationaliteit.
 
 ### Nieuwe attributen
 
