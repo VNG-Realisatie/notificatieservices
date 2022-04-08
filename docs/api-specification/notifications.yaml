@@ -1,0 +1,717 @@
+openapi: 3.0.0
+info:
+  title: Notification API
+  description: "Notifications API
+
+    The API consists of three parts:
+    1. Publishing events (resource Events)
+    2. Subscribing to receive events (resource Subscriptions)
+    3. Basic information about domains (resource Domains)
+
+    Work in progress. Can be changed completely without notice.
+
+    The events resource is based on the [GOV NL profile for CloudEvents](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents).
+    The subscription resource was derived from the [CloudEvents Subscription v1.0.0-wip](https://github.com/cloudevents/spec/tree/main/subscriptions). This specification is work in progress.
+    "
+  license:
+    name: EUPL 1.2
+    url: https://opensource.org/licenses/EUPL-1.2
+  version: 0.0.9
+security:
+- JWT-Claims: []
+paths:
+  /events:
+    post:
+      operationId: events_post
+      summary: Publish an event
+      description: The component will distribute the event to the subscribers when the criteria of a subscription are met.
+      parameters:
+      - name: Content-Type
+        in: header
+        description: HTTP Content-Type
+        required: true
+        schema:
+          type: string
+          enum:
+            - "application/cloudevents+json"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Event"
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: "API-version in the context of the call. Example: 1.2.1."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
+      tags:
+      - events
+    parameters: []
+
+  /domains:
+    get:
+      operationId: domains_list
+      summary: List domains
+      description: Returns a list with information about all domains.
+      responses:
+        "200":
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: "API-version in the context of the call. Example: 1.2.1."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Domain"
+      tags:
+      - domains
+    post:
+      operationId: domains_post
+      summary: Define a domain
+      description: Defines a new domain with its basis properties and filter attributes.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Domain"
+        required: true
+      responses:
+        "201":
+          description: Created
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: "API-version in the context of the call. Example: 1.2.1."
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: Url of the resource
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Domain"
+      tags:
+      - domains
+    parameters: []
+  /domains/{name}:
+    get:
+      operationId: domains_get
+      summary: Request domain info
+      description: Returns information about the specified domain.
+      parameters:
+      - in: "path"
+        name: "name"
+        description: Name of the domain
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: "API-version in the context of the call. Example: 1.2.1."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Domain"
+      tags:
+      - domains
+
+    put:
+      operationId: domains_put
+      summary: Update domain
+      description: Update the specified domain by replacing all properties.
+      parameters:
+        - in: "path"
+          name: "name"
+          required: true
+          schema:
+            type: string
+          description: Name of the domain
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Domain"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Domain"
+        "400":
+          description: Invalid or malformed request
+        "404":
+          description: Domain not found
+      tags:
+      - domains
+    delete:
+      operationId: domains_delete
+      summary: Delete domain
+      description: Delete the specified domain.
+      parameters:
+        - in: "path"
+          name: "name"
+          required: true
+          schema:
+            type: string
+          description: Name of the domain
+      responses:
+        "200":
+          description: Successfully deleted
+        "404":
+          description: Domain not found
+      tags:
+      - domains
+
+  /subscriptions:
+    get:
+      operationId: subscriptions_list
+      summary: List subscriptions
+      description: Returns a list with information about all subscriptions.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: A list of subscriptions
+                items:
+                  $ref: "#/components/schemas/Subscription"
+      tags:
+      - subscriptions
+    post:
+      operationId: subscriptions_post
+      summary: Subscribe
+      description: Subscribe to receive events.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SubscriptionRequest"
+      responses:
+        "201":
+          description: Created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+          headers:
+            Location:
+              schema:
+                type: string
+                format: url
+        "400":
+          description: Invalid or malformed request
+      tags:
+      - subscriptions
+  /subscriptions/{uuid}:
+    get:
+      operationId: subscription_get
+      summary: Request subscription info
+      description: Returns information about the specified subscription.
+      parameters:
+        - in: "path"
+          name: "uuid"
+          description: Uuid of the subscription
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+        "404":
+          description: Subscription not found
+      tags:
+      - subscriptions
+    put:
+      operationId: subscription_put
+      summary: Update subscription
+      description: Update the specified subscription by replacing all properties.
+      parameters:
+        - in: "path"
+          name: "uuid"
+          required: true
+          schema:
+            type: string
+          description: Uuid of the subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Subscription"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+        "400":
+          description: Invalid or malformed request
+        "404":
+          description: Subscription not found
+      tags:
+      - subscriptions
+    delete:
+      operationId: subscription_delete
+      summary: Delete subscription
+      description: Delete the specified subscription.
+      parameters:
+        - in: "path"
+          name: "uuid"
+          required: true
+          schema:
+            type: string
+          description: Uuid of the subscription
+      responses:
+        "200":
+          description: Successfully deleted
+        "404":
+          description: Subscription not found
+      tags:
+      - subscriptions
+
+servers:
+- url: /api/v1
+components:
+  securitySchemes:
+    JWT-Claims:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+  schemas:
+
+    Domain:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          title: name
+          description: Name of the domain.
+          type: string
+          minLength: 1
+          example: "nl.vng.zaken"
+        documentationLink:
+          title: documentationLink
+          description: Link to human readable information about the domain and its notifications
+          type: string
+          format: url
+          minLength: 1
+          nullable: true
+          example: "https://www.vngrealisatie.nl/ZaakSysteem/Notificaties.html"
+        filterAttributes:
+          title: filterAttributes
+          description: Filter attributes offered by the domain
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                title: name
+                description: Name of the filter attribute
+                type: string
+                minLength: 1
+                example: "vertrouwlijk"
+          nullable: true
+
+    EventCore:
+      required:
+      - id
+      - source
+      - specversion
+      - type
+      type: object
+      properties:
+        specversion:
+          title: specversion
+          description: The version of the CloudEvents specification which the event uses.
+          type: string
+          minLength: 1
+          example: "1.0"
+        id:
+          title: id
+          description: Identifies the event.
+          type: string
+          format: uuid
+          minLength: 1
+          example: "2febb675-b06c-4f3a-8fc3-f6649aa25ae4"
+        source:
+          title: source
+          description: Identifies the context in which an event happened.
+          type: string
+          format: urn
+          minLength: 1
+          example: "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem"
+        domain:
+          title: domain
+          description: Name of the domain to which the event belongs.
+          type: string
+          format: reverse-dns
+          minLength: 1
+          nullable: true
+          example: "nl.vng.zaken"
+        type:
+          title: type
+          description: This attribute contains a value describing the type of event related to the originating occurrence.
+          type: string
+          format: reverse-dns
+          minLength: 1
+          example: "nl.vng.zaken.status_gewijzigd"
+        time:
+          title: time
+          description: Timestamp of when the occurrence happened.
+          type: string
+          format: date-time
+          minLength: 1
+          nullable: true
+          example: "2022-03-16T15:29:30.833664Z"
+        subscription:
+          title: subscription
+          description: "The event was posted to the API because the filter criteria of this subscription were met. The uuid refers to a subscription on the source that published this event. It should be passed through when this event is delivered to the subscribers! If an event is distributed to a subscriber this attribute should be overwritten (or filled) with the uuid of the subscription of the subscriber that triggered the delivery."
+          type: string
+          format: uuid
+          minLength: 1
+          nullable: true
+          example: "a2de4777-1160-4562-a996-b79d27b30c99"
+        datacontenttype:
+          title: datacontenttype
+          description: Content type of data value. [RFC 2046](https://tools.ietf.org/html/rfc2046)
+          type: string
+          minLength: 1
+          nullable: true
+          example: "application/json"
+        dataschema:
+          title: dataschema
+          description: Identifies the schema that data adheres to.
+          type: string
+          format: uri
+          minLength: 1
+          nullable: true
+          example: "https:www.vng.nl/zgw/zaken/status_gewijzigd_schema.json"
+        sequence:
+          description: Value expressing the relative order of the event. This enables interpretation of data supercedence.
+          type: string
+          minLength: 1
+          example: "42"
+        sequencetype:
+          description: Specifies the semantics of the sequence attribute.
+          type: string
+          minLength: 1
+          nullable: true
+          enum:
+            - Integer
+    EventExtension:
+      type: object
+      properties:
+        <domain>.<key1>:
+          type: string
+          example: "<value1>"
+        <domain>.<key2>:
+          type: string
+          example: "<value2>"
+        <domain>.<keyN>:
+          type: string
+          example: "<valueN>"
+    Event:
+      allOf:
+        - $ref: "#/components/schemas/EventCore"
+        - $ref: "#/components/schemas/EventExtension"
+        - properties:
+            data:
+              type: object
+              additionalProperties:
+                type: string
+            data_base64:
+              description: The presence of the data_base64 member clearly indicates that the value is a Base64 encoded binary data, which the serializer MUST decode into a binary runtime data type.
+              type: string
+              format: byte
+              nullable: true
+            dataref:
+              description: A reference to a location where the event payload is stored.
+              type: string
+              format: uri
+              minLength: 1
+              nullable: true
+
+    SubscriptionRequest:
+      properties:
+        protocol:
+          title: protocol      
+          description: Identifier of the delivery protocol.
+          type: string
+          enum: ["HTTP"]
+          minLength: 1
+          nullable: true
+          example: "HTTP"        
+        protocolSettings:
+          title: protocolSettings
+          description: Delivery protocol specific settings.
+          type: object
+          allOf:
+            - properties:
+                headers:
+                  type: object
+                  additionalProperties:
+                    type: string
+                method:
+                  type: string
+                  example: "POST"
+          nullable: true
+        sink:
+          title: sink
+          description: The address to which events shall be delivered using the selected protocol.
+          type: string
+          format: url
+          minLength: 1
+          nullable: true
+          example: "https://endpoint.example.com/webhook"
+        sinkCredential:
+          title: sinkCredential
+          description: Credential required to access the sink.
+          oneOf:
+            - $ref: "#/components/schemas/AccessTokenCredential"
+            - $ref: "#/components/schemas/RefreshTokenCredential"
+          nullable: true
+        config:
+          title: config
+          description: Implementation-specific configuration parameters needed by the subscription manager for acquiring events.
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+        source:
+          title: source      
+          description: Source to which the subscription applies.
+          type: string
+          format: urn
+          minLength: 1
+          nullable: true
+          example: "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem"
+        domain:
+          title: domain
+          description: Domain to which the subscription applies.
+          type: string
+          format: reverse-dns
+          minLength: 1
+          nullable: true
+          example: "nl.vng.zaken"          
+        types:
+          title: types      
+          description: CloudEvent types eligible to be delivered by this subscription.
+          type: array
+          items:
+            type: string
+          nullable: true
+        filters:
+          title: filters
+          description: "This filter evaluates to 'true' if all contained filters are 'true'"
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/AllFilter"
+              - $ref: "#/components/schemas/AnyFilter"
+              - $ref: "#/components/schemas/NotFilter"
+              - $ref: "#/components/schemas/ExactFilter"
+              - $ref: "#/components/schemas/PrefixFilter"
+              - $ref: "#/components/schemas/SuffixFilter"
+          nullable: true
+    Subscription:
+      type: object
+      title: "Subscription"
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: The unique identifier of the subscription in the scope of the subscription manager.
+              example: "a2de4777-1160-4562-a996-b79d27b30c99"
+        - $ref: "#/components/schemas/SubscriptionRequest"
+      required:
+        - id
+
+    SinkCredential:
+      type: object
+      properties:
+         credentialType:
+            type: string
+            enum: ["ACCESSTOKEN", "REFRESHTOKEN"]
+            description: "The type of the credential."
+      additionalProperties: false
+    AccessTokenCredential:
+      type: object
+      description: An access token credential.
+      allOf:
+        - $ref: "#/components/schemas/SinkCredential"
+        - properties:
+            accessToken:
+              description: An access token is a previously acquired token granting access to the target resource.
+              type: string
+            accessTokenExpiresUtc:
+              type: string
+              format: date-time
+              description: An absolute UTC instant at which the token shall be considered expired.
+            accessTokenType:
+              description: Type of the access token (See https://tools.ietf.org/html/rfc6749#section-7.1).
+              type: string
+              default: bearer
+          required:
+            - accessToken
+            - accessTokenExpiresUtc
+    RefreshTokenCredential:
+      type: object
+      description: An access token credential with a refresh token.
+      allOf:
+        - $ref: "#/components/schemas/AccessTokenCredential"
+        - type: object
+          properties:
+            refreshToken:
+              description: An refresh token credential used to acquire access tokens.
+              type: string
+            refreshTokenEndpoint:
+              type: string
+              format: uri
+              description: A URL at which the refresh token can be traded for an access token.
+      required:
+        - refreshToken
+        - refreshTokenEndpoint
+
+    AllFilter:
+      allOf:
+        - type: object
+          description: "all filter"
+          properties:
+            all:
+              description: "This filter evaluates to 'true' if all contained filters are 'true'"
+              type: array
+              minItems: 1
+              items:
+                oneOf:
+                - $ref: "#/components/schemas/AllFilter"
+                - $ref: "#/components/schemas/AnyFilter"
+                - $ref: "#/components/schemas/NotFilter"
+                - $ref: "#/components/schemas/ExactFilter"
+                - $ref: "#/components/schemas/PrefixFilter"
+                - $ref: "#/components/schemas/SuffixFilter"
+          additionalProperties: false
+    AnyFilter:
+      allOf:
+        - type: object
+          description: "any filter"
+          properties:
+            any:
+              description: "This filter evaluates to 'true' if any contained filters are 'true'"
+              type: array
+              minItems: 1
+              items:
+                oneOf:
+                  - $ref: "#/components/schemas/AllFilter"
+                  - $ref: "#/components/schemas/AnyFilter"
+                  - $ref: "#/components/schemas/NotFilter"
+                  - $ref: "#/components/schemas/ExactFilter"
+                  - $ref: "#/components/schemas/PrefixFilter"
+                  - $ref: "#/components/schemas/SuffixFilter"
+          additionalProperties: false
+    NotFilter:
+      allOf:
+        - type: object
+          description: "not filter"
+          properties:
+            not:
+              type: object
+              properties:
+                filter:
+                  oneOf:
+                    - $ref: "#/components/schemas/AllFilter"
+                    - $ref: "#/components/schemas/AnyFilter"
+                    - $ref: "#/components/schemas/NotFilter"
+                    - $ref: "#/components/schemas/ExactFilter"
+                    - $ref: "#/components/schemas/PrefixFilter"
+                    - $ref: "#/components/schemas/SuffixFilter"
+          additionalProperties: false
+    ExactFilter:
+      allOf:
+        - type: object
+          description: "all filter"
+          properties:
+            exact:
+              title: "exact filter"
+              description: "This filter evaluates to 'true' if the 'value' exactly matches the value of the indicated CloudEvents context attribute"
+              required:
+                - attribute
+                - value
+              properties:
+                attribute:
+                  type: string
+                  description: attribute name
+                value:
+                  type: string
+                  description: value
+          additionalProperties: false
+    PrefixFilter:
+      allOf:
+        - type: object
+          description: "all filter"
+          properties:
+            prefix:
+              title: "prefix filter"
+              description: "This filter evaluates to 'true' if the 'value' is a prefix of the value of the indicated CloudEvents context attribute"
+              required:
+                - attribute
+                - value
+              properties:
+                attribute:
+                  type: string
+                  description: attribute name
+                value:
+                  type: string
+                  description: value
+              additionalProperties: false
+    SuffixFilter:
+      allOf:
+        - type: object
+          description: "all filter"
+          properties:
+            suffix:
+              title: "suffix filter"
+              description: "This filter evaluates to 'true' if the 'value' is a suffix of the value of the indicated CloudEvents context attribute"
+              required:
+                - attribute
+                - value
+              properties:
+                attribute:
+                  type: string
+                  description: attribute name
+                value:
+                  type: string
+                  description: value
+              additionalProperties: false
