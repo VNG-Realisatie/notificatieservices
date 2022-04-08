@@ -13,7 +13,7 @@ API voor notificatie client:
 
 ## Toelichting
 
-Bovenstaande versie is nog geen officiele RC. Zie [Backlog](./backlog.md) voor de nog openstaande acties.
+Bovenstaande versie is nog geen officiele RC. Zie [backlog](./backlog.md) voor de nog openstaande acties.
 
 In eerdere versies was sprake van drie verschillende specificaties:
 - publiceren van events
