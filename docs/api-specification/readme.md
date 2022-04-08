@@ -8,7 +8,7 @@ De API-specificatie is work in progress. _Alles kan nog op ieder moment wijzigen
 API voor notificatie component:
 [ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications.yaml)
 
-API voor client:
+API voor notificatie client:
 [ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications_client.yaml)
 
 ## Toelichting
