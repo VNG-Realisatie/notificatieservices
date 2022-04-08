@@ -12,7 +12,7 @@ _Charset header_ | Afmaken | Uitzoeken of charset=UTF-8 in http header opgenomen
 Filters correct? | Controle | Is filters attribuut in de subscriptions resource goed gedeclareerd. Dit attribuut is recursief. In de oorspronkelijke spec van CE stond bij ieder subtype van filter steeds: $ref: "#/components/schemas/Filter". Dit is weggehaald. Achteraf was deze constructie mogelijk opgenomen om een oneindige loop in software die de OAS leest te voorkomen. Mogelijk dus toch weer opnemen in de specificatie. | Must
 Autorisatie | Afmaken | Autorisatie aspecten goed verwerken in OAS | Must
 
-### Toelichting: CE Statuscodes
+### Toelichting bij issue van CE Statuscodes
 Resources:
 - https://github.com/cloudevents/spec/tree/main
 - https://github.com/cloudevents/spec/tree/main/cloudevents/bindings
