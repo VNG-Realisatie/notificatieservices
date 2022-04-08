@@ -8,7 +8,7 @@ kanaal        | domain | - | nl.vng.zaken of nl.vng.documenten
 hoofdObject   | data.resourceUrl | Notificaties worden beperkt tot de hoofdresource. Zie toelichting bij deprecated attributen.
 resource      | - | Zie toelichting bij deprecated attributen.
 resourceUrl   | - | Zie toelichting bij deprecated attributen.
-actie         | type | Format voor conversie van bestaande typen: <hoofdobject>_<resource>_<actie>. Bijvoorbeeld Zaakstatus_gewijzigd
+actie         | type | Format voor conversie van bestaande typen: &lt;hoofdobject&gt;&lt;resource&gt;&lt;actie&gt;. Bijvoorbeeld Zaakstatus_gewijzigd
 aanmaakdatum  | time | -
 kenmerken     | &lt;domain&gt;.&lt;naam&gt; = &lt;value&gt; | - | nl.vng.zaken.vertrouwelijkheid
 
@@ -33,9 +33,9 @@ Events resource attribuut | Opmerkingen | Voorbeeld
 | :--- | :--- | :---
 specversion | CloudEvents versie | 1.0
 id | Uuid van event | 2febb675-b06c-4f3a-8fc3-f6649aa25ae4
-source | Bron van het event | urn:nld:oin:00000001234567890000:systeem:Zaaksysteem
+source | Bron van het event | `urn:nld:oin:00000001234567890000:systeem:Zaaksysteem`
 datacontenttype | Contenttype van het data-attribuut | application/json
-dataschema | Optioneel schema dat de inhoud van het data-attribuut beschrijft | https:www.vng.nl/zgw/zaken/status_gewijzigd_schema.json
+dataschema | Optioneel schema dat de inhoud van het data-attribuut beschrijft | `https:www.vng.nl/zgw/zaken/status_gewijzigd_schema.json`
 sequence | Nummer voor ordening van de events | 42
 sequencetype | Datatype van sequence. Momenteel zijn alleen integers toegestaan | Integer
 dataref | Zie toelichting OAS en/of CE specificatie voor gebruik | 
