@@ -1,28 +1,28 @@
-# YANA - Yet Another Notification API
+# Notifications API
 
 Dit is een tijdelijke locatie om te kunnen werken aan API-specificatie voor een generieke notificatiecomponent.
 De API-specificatie is work in progress. _Alles kan nog op ieder moment wijzigen!_
 
 ## Quick reference: OAS3 Specificaties
 
-Nieuwe geconsolideerde versie: (Catalogus beperkt tot domain en filterAttributes)
-[ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/Notifications.yaml)
+API voor notificatie component:
+[ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications.yaml)
 
-Onderdeel | Links
-| :--- | :---
-YANA Notification API | [ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Notification_API.yaml), [Swagger](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Notification_API.yaml) of [YAML](https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Notification_API.yaml)
-YANA Subscription API | [ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Subscription_API.yaml), [Swagger](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Subscription_API.yaml) of [YAML](https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Subscription_API.yaml)
-YANA Catalog API | [ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Catalog_API.yaml), [Swagger](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Catalog_API.yaml) of [YAML](https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/YANA_Catalog_API.yaml)
+API voor client:
+[ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications_client.yaml)
 
 ## Toelichting
 
-### De API is opgedeeld in drie onderdelen:
+Bovenstaande versie is nog geen officiele RC. Zie [Backlog](./backlog.md) voor de nog openstaande acties.
 
-Onderdeel | Beschrijving
-| :--- | :---
-YANA Notification API | Voor het aanleveren van events bij de notificatiecomponent. Ook clients dienen deze API te implementeren om events te kunnen ontvangen.
-YANA Subscription API | Voor het aanmaken en onderhouden van abonnementen. Dit is een eerste concept gebaseerd op de voorlopige resultaten van de CloudEVents werkgroep voor abonneren. Op dit onderdeel moeten nog diverse use cases worden uitgewerkt.
-YANA Catalog API | Om een beschrijving van een domein en de daarbinnen gebruikte typen en filterattributen te kunnen specificeren. Dit is een ruw prototype met vooral de vraag 'moeten we dit wel zo willen?'. Deze structuren zijn vooral bedoeld voor validatie van binnenkomende events en niet zo zeer voor consumptie door mensen. Wel zou er uit dit soort structuren eenvoudig eenduidige documentatie gegenereerd kunnen worden.
+In eerdere versies was sprake van drie verschillende specificaties:
+- publiceren van events
+- abonneren
+- definieren en bevragen van de achterliggende catalogus (met domeinen, gebeurtenistypen etc).
+
+Dit was gedaan vanuit de gedachte dat het publicatie gedeelte voor alle overheidspartijen bruikbaar zou zijn en het abonneren en de catalogus niet. Bij de uitwerking blijkt echter dat er toch al snel subtiele maar wezenlijke verschillen ontstaan. Zo willen we bij de gemeentelijke API gebruikmaken van het concept 'domein' (als vervanging van het begrip 'topic' in de ZGW API) en wil het kadaster waarschijnlijk een pull ipv een push mechanisme gaan gebruiken (waarvoor een get operatie op de events resource nodig is).
+
+We hebben daarom besloten de API specificatie echt specifiek uit te werken als generieke notificatie API voor het gemeentelijke domein. Daardoor zijn publiceren, abonneren en een beperkte catalogus ondergebracht in één OAS. De OAS is nog steeds als basis te gebruiken voor andere overheidspartijen.
 
 ### Documentatie
 
