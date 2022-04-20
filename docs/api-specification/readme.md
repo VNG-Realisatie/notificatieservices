@@ -30,4 +30,9 @@ We hebben daarom besloten de API specificatie echt specifiek uit te werken als g
 - [Samenvatting ontwerpbesluiten](./ontwerpbesluiten.md)
 - [Mapping op ZGW Notificatie Routing Component API](./mapping_zgw_nrc.md)
 
+## Overige links
+
+[ZGW Notificatie Routeringscomponent](https://notificaties-api.vng.cloud/)
+[ZGW Notificatie Client Specificatie](https://vng-realisatie.github.io/gemma-zaken/standaard/notificaties-consumer/index)
+[CloudEvents Subscription documentatie](https://github.com/cloudevents/spec/tree/main/subscriptions) incl. yaml voor CE subsciption
 
