@@ -40,7 +40,7 @@ sequence | Nummer voor ordening van de events | 42
 sequencetype | Datatype van sequence. Momenteel zijn alleen integers toegestaan | Integer
 dataref | Zie toelichting OAS en/of CE specificatie voor gebruik | 
 
-## Subscription resource
+## Abonnementen resource
 
 ZGW Attribuut | Subscription resource attribuut | Opmerkingen
 | :--- | :--- | :---
@@ -49,7 +49,7 @@ auth            | sinkcredential | -
 kanalen.filters | filter | Niet backwards compatible.
 kanalen.naam    | domain | Niet backwards compatible.
 
-## Topic resource
+## Kanalen resource
 
 ZGW Attribuut | Domain resource attribuut | Opmerkingen
 | :--- | :--- | :---
