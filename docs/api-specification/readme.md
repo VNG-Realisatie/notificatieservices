@@ -33,6 +33,8 @@ We hebben daarom besloten de API specificatie echt specifiek uit te werken als g
 ## Overige links
 
 [ZGW Notificatie Routeringscomponent](https://notificaties-api.vng.cloud/)
+
 [ZGW Notificatie Client Specificatie](https://vng-realisatie.github.io/gemma-zaken/standaard/notificaties-consumer/index)
+
 [CloudEvents Subscription documentatie](https://github.com/cloudevents/spec/tree/main/subscriptions) incl. yaml voor CE subsciption
 
