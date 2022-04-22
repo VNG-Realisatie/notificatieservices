@@ -27,7 +27,7 @@ paths:
       description: The component will distribute the event to the subscribers when the criteria of a subscription are met.
       requestBody:
         content:
-          application/cloudevents+json:
+          application/cloudevents+json; charset=utf-8:
             schema:
               $ref: "#/components/schemas/Event"
         required: true
@@ -41,7 +41,7 @@ paths:
               description: 'Geeft een specifieke API-versie aan in de context van
                 een specifieke aanroep. Voorbeeld: 1.2.1.'
           content:
-            application/json:
+            application/cloudevents+json; charset=utf-8:
               schema:
                 type: object
         '201':
@@ -58,7 +58,7 @@ paths:
                 format: uri
               description: URL waar de resource leeft.
           content:
-            application/json:
+            application/cloudevents+json; charset=utf-8:
               schema:
                 type: object
         '202':
@@ -75,7 +75,7 @@ paths:
                 format: uri
               description: URL waar de resource leeft.
           content:
-            application/json:
+            application/cloudevents+json; charset=utf-8:
               schema:
                 type: object
         '204':
