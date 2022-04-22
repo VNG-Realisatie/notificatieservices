@@ -19,6 +19,15 @@ Resources:
 - Slide uit 6e bijeenkomst berichtenwerkgroep (Titel: CloudEvents HTTP 1.1 Web Hooks for Event Delivery - Version 1.0.1)
 - Webhooks specificatie (in 1.0.1 versie van CE)
 
+### Voorgestelde wijzigingen door Kadaster (n.a.v. bezoek 21/4)
+- id van event moet voor kadaster toch unformatted string zijn en geen uuid. (Net zoals GOV NL).
+- Subject attribuut moeten we toch in OAS opnemen. Anders zijn we niet CE compatible.
+- Data is in CE en GOV NL een string en geen object.
+- Time kan scherper door te verwijzen naar ISO 8601.
+- Naast Subscription ook SubscriberReference toevoegen. Dit kan bijvoorbeeld een zaak- of dossiernummer zijn dat de subscriber nodig heeft om de notificatie intern te routeren/goed te verwerken. Moet dan toegevoegd worden aan zowel de events als de subscription resource.
+- Nog te bespreken met team: wil je iets van een aparte indicator voor correcties. (Maar dan volgt al snel de vraag wat voor soort correctie het is. Correctie van actuele waarde of aanpassing in eerdere historische voorkomens? De eerste kunnen afnemers mogelijk nog geautomatiseerd verwerken, tweede vaak niet).
+- Nog te bespreken met team: we willen geen prefixen voor extension attributes. Wordt nu nog nergens voorgeschreven maar staan wel als voorbeeld in GOV NL profile (paragraaf 8).
+
 ## Aanvullende specificaties / documentatie
 
 Naam | Aard | Korte beschrijving | Prio
