@@ -4,14 +4,23 @@ info:
   description: "Notifications API
 
     The API consists of three parts:
+    
     1. Publishing events (resource Events)
+    
     2. Subscribing to receive events (resource Subscriptions)
+    
     3. Basic information about domains (resource Domains)
 
-    Work in progress. Can be changed completely without notice.
 
     The events resource is based on the [GOV NL profile for CloudEvents](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents).
-    The subscription resource was derived from the [CloudEvents Subscription v1.0.0-wip](https://github.com/cloudevents/spec/tree/main/subscriptions). This specification is work in progress.
+    
+    
+    The subscription resource was derived from the [CloudEvents Subscription v1.0.0-wip](https://github.com/cloudevents/spec/tree/main/subscriptions). 
+    
+    The scopes for autorisation are described [here](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/scopes.md).
+    
+    
+    This specification is work in progress. It can be changed completely without notice.
     "
   license:
     name: EUPL 1.2
@@ -225,6 +234,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - events
+      security:
+        - JWT-Claims:
+            - events.publish
     parameters: []
 
   /domains:
@@ -397,6 +409,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - domains
+      security:
+        - JWT-Claims:
+            - (events.publish | events.consume)
     post:
       operationId: domains_post
       summary: Define a domain
@@ -559,6 +574,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - domains
+      security:
+        - JWT-Claims:
+            - events.publish
     parameters: []
   /domains/{name}:
     get:
@@ -743,7 +761,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - domains
-
+      security:
+        - JWT-Claims:
+            - (events.publish | events.consume)
     put:
       operationId: domains_put
       summary: Update domain
@@ -920,6 +940,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - domains
+      security:
+        - JWT-Claims:
+            - events.publish
     delete:
       operationId: domains_delete
       summary: Delete domain
@@ -1074,7 +1097,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - domains
-
+      security:
+        - JWT-Claims:
+            - events.publish
   /subscriptions:
     get:
       operationId: subscriptions_list
@@ -1245,6 +1270,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - subscriptions
+      security:
+        - JWT-Claims:
+            - (events.publish | events.consume)
     post:
       operationId: subscriptions_post
       summary: Subscribe
@@ -1407,6 +1435,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - subscriptions
+      security:
+        - JWT-Claims:
+            - events.consume
   /subscriptions/{uuid}:
     get:
       operationId: subscription_get
@@ -1591,6 +1622,9 @@ paths:
                 $ref: '#/components/schemas/Fout'  
       tags:
       - subscriptions
+      security:
+        - JWT-Claims:
+            - (events.publish | events.consume)
     put:
       operationId: subscription_put
       summary: Update subscription
@@ -1767,6 +1801,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - subscriptions
+      security:
+        - JWT-Claims:
+            - events.consume
     delete:
       operationId: subscription_delete
       summary: Delete subscription
@@ -1927,7 +1964,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - subscriptions
-
+      security:
+        - JWT-Claims:
+            - events.consume
 servers:
 - url: /api/v1
 components:
