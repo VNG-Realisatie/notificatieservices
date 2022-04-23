@@ -9,8 +9,8 @@ Naam | Aard | Korte beschrijving | Prio
 ~~_CE statuscodes_~~ | ~~Afmaken~~ | ~~Uitzoeken wat CE zegt over http statuscodes (zie toelichting)~~ | ~~Must~~
 ~~_Media type in header_~~| ~~Afmaken~~ | ~~Uitzoeken of media type application/cloudevents+json in http header opgenomen kan worden~~ | ~~Must~~
 ~~_Charset header_~~ | ~~Afmaken~~ | ~~Uitzoeken of charset=UTF-8 in http header opgenomen kan worden. [Referentie CE spec](https://github.com/cloudevents/spec/blob/v1.0.1/http-protocol-binding.md)~~ | ~~Must~~
-Filters correct? | Controle | Is filters attribuut in de subscriptions resource goed gedeclareerd. Dit attribuut is recursief. In de oorspronkelijke spec van CE stond bij ieder subtype van filter steeds: $ref: "#/components/schemas/Filter". Dit is weggehaald. Achteraf was deze constructie mogelijk opgenomen om een oneindige loop in software die de OAS leest te voorkomen. Mogelijk dus toch weer opnemen in de specificatie. | Must
-Autorisatie | Afmaken | Autorisatie aspecten goed verwerken in OAS | Must
+~~Filters correct?~~ | ~~Controle~~ | ~~Is filters attribuut in de subscriptions resource goed gedeclareerd. Dit attribuut is recursief. In de oorspronkelijke spec van CE stond bij ieder subtype van filter steeds: $ref: "#/components/schemas/Filter". Dit is weggehaald. Achteraf was deze constructie mogelijk opgenomen om een oneindige loop in software die de OAS leest te voorkomen. Mogelijk dus toch weer opnemen in de specificatie.~~ | ~~Must~~
+~~Autorisatie~~ | ~~Afmaken~~ | ~~Autorisatie aspecten goed verwerken in OAS~~ | ~~Must~~
 
 ### Toelichting bij issue van CE Statuscodes
 Resources:
