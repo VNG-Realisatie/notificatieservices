@@ -2205,6 +2205,7 @@ components:
           type: array
           items:
             oneOf:
+              - $ref: "#/components/schemas/Filter"
               - $ref: "#/components/schemas/AllFilter"
               - $ref: "#/components/schemas/AnyFilter"
               - $ref: "#/components/schemas/NotFilter"
@@ -2273,8 +2274,14 @@ components:
         - refreshToken
         - refreshTokenEndpoint
 
+    Filter:
+      title: "Filter"
+      description: "A filter from a selection of multiple filter types and dialects"
+      type: object
+      additionalProperties: true
     AllFilter:
       allOf:
+        - $ref: "#/components/schemas/Filter"
         - type: object
           description: "all filter"
           properties:
@@ -2283,16 +2290,20 @@ components:
               type: array
               minItems: 1
               items:
+                title: "Filter entry"
                 oneOf:
+                - $ref: "#/components/schemas/Filter"
                 - $ref: "#/components/schemas/AllFilter"
                 - $ref: "#/components/schemas/AnyFilter"
                 - $ref: "#/components/schemas/NotFilter"
                 - $ref: "#/components/schemas/ExactFilter"
                 - $ref: "#/components/schemas/PrefixFilter"
                 - $ref: "#/components/schemas/SuffixFilter"
+                - $ref: "#/components/schemas/SqlFilter"
           additionalProperties: false
     AnyFilter:
       allOf:
+        - $ref: "#/components/schemas/Filter"
         - type: object
           description: "any filter"
           properties:
@@ -2301,88 +2312,105 @@ components:
               type: array
               minItems: 1
               items:
+                title: "Filter entry"
                 oneOf:
+                  - $ref: "#/components/schemas/Filter"
                   - $ref: "#/components/schemas/AllFilter"
                   - $ref: "#/components/schemas/AnyFilter"
                   - $ref: "#/components/schemas/NotFilter"
                   - $ref: "#/components/schemas/ExactFilter"
                   - $ref: "#/components/schemas/PrefixFilter"
                   - $ref: "#/components/schemas/SuffixFilter"
+                  - $ref: "#/components/schemas/SqlFilter"
           additionalProperties: false
     NotFilter:
       allOf:
+        - $ref: "#/components/schemas/Filter"
         - type: object
           description: "not filter"
           properties:
             not:
               type: object
-              properties:
-                filter:
-                  oneOf:
-                    - $ref: "#/components/schemas/AllFilter"
-                    - $ref: "#/components/schemas/AnyFilter"
-                    - $ref: "#/components/schemas/NotFilter"
-                    - $ref: "#/components/schemas/ExactFilter"
-                    - $ref: "#/components/schemas/PrefixFilter"
-                    - $ref: "#/components/schemas/SuffixFilter"
+              oneOf:
+                - $ref: "#/components/schemas/Filter"
+                - $ref: "#/components/schemas/AllFilter"
+                - $ref: "#/components/schemas/AnyFilter"
+                - $ref: "#/components/schemas/NotFilter"
+                - $ref: "#/components/schemas/ExactFilter"
+                - $ref: "#/components/schemas/PrefixFilter"
+                - $ref: "#/components/schemas/SuffixFilter"
+                - $ref: "#/components/schemas/SqlFilter"
           additionalProperties: false
     ExactFilter:
       allOf:
+        - $ref: "#/components/schemas/Filter"
         - type: object
-          description: "all filter"
+          title: "exact filter"
+          description: "This filter evaluates to 'true' if the 'value' exactly matches the value of the indicated CloudEvents context attribute"
           properties:
             exact:
-              title: "exact filter"
-              description: "This filter evaluates to 'true' if the 'value' exactly matches the value of the indicated CloudEvents context attribute"
-              required:
-                - attribute
-                - value
-              properties:
-                attribute:
-                  type: string
-                  description: attribute name
-                value:
-                  type: string
-                  description: value
+              $ref: "#/components/schemas/CloudEventsAttribute"
           additionalProperties: false
     PrefixFilter:
       allOf:
+        - $ref: "#/components/schemas/Filter"
         - type: object
-          description: "all filter"
+          title: "prefix filter"
+          description: "This filter evaluates to 'true' if the 'value' is a prefix of the value of the indicated CloudEvents context attribute"
           properties:
             prefix:
-              title: "prefix filter"
-              description: "This filter evaluates to 'true' if the 'value' is a prefix of the value of the indicated CloudEvents context attribute"
-              required:
-                - attribute
-                - value
-              properties:
-                attribute:
-                  type: string
-                  description: attribute name
-                value:
-                  type: string
-                  description: value
-              additionalProperties: false
+              $ref: "#/components/schemas/CloudEventsAttribute"
+          additionalProperties: false
     SuffixFilter:
       allOf:
+        - $ref: "#/components/schemas/Filter"
         - type: object
-          description: "all filter"
+          title: "suffix filter"
+          description: "This filter evaluates to 'true' if the 'value' is a suffix of the value of the indicated CloudEvents context attribute"
           properties:
             suffix:
-              title: "suffix filter"
-              description: "This filter evaluates to 'true' if the 'value' is a suffix of the value of the indicated CloudEvents context attribute"
-              required:
-                - attribute
-                - value
-              properties:
-                attribute:
-                  type: string
-                  description: attribute name
-                value:
-                  type: string
-                  description: value
-              additionalProperties: false
+              $ref: "#/components/schemas/CloudEventsAttribute"
+          additionalProperties: false
+    SqlFilter:
+      allOf:
+        - $ref: "#/components/schemas/Filter"
+        - type: object
+          description: "CESQL filter"
+          properties:
+            sql:
+              type: string
+              description: "The CESQL expression"
+          additionalProperties: true
+    CloudEventsAttribute:
+      type: object
+      description: "CloudEvents defined attributes."
+      additionalProperties: # extension attributes
+        type: string
+      properties:
+        id:
+          type: string
+          description: Identifies the event.
+        source:
+          type: string
+          description: Identifies the context in which an event happened.
+        specversion:
+          type: string
+          description: The version of the CloudEvents specification which the event uses.
+        type:
+          type: string
+          description: Describes the type of event related to the originating occurrence.
+        datacontenttype:
+          type: string
+          description: Content type of the data value.
+        dataschema:
+          type: string
+          description: Identifies the schema that data adheres to.
+        subject:
+          type: string
+          description: Describes the subject of the event in the context of the event producer.
+        time:
+          type: string
+          description: Timestamp of when the occurrence happened.              
     Fout:
       required:
       - code
