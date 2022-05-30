@@ -2,30 +2,26 @@ openapi: 3.0.0
 info:
   title: Notification API
   description: "Notifications API
-
     The API consists of three parts:
-    
+
     1. Publishing events (resource Events)
-    
+    The events resource is based on the [GOV NL profile for CloudEvents](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents).
+    This specification only contains brief descriptions of the attributes of the event. Please refer to the GOV NL profile for additional information.
+
     2. Subscribing to receive events (resource Subscriptions)
-    
+    The subscription resource was derived from the [CloudEvents Subscription v1.0.0-wip](https://github.com/cloudevents/spec/tree/main/subscriptions).
+    This specification only contains brief descriptions of the attributes of the subscription. Please refer to the draft CE Subscription Specification for additional information.
+
     3. Basic information about domains (resource Domains)
 
-
-    The events resource is based on the [GOV NL profile for CloudEvents](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents).
-    
-    
-    The subscription resource was derived from the [CloudEvents Subscription v1.0.0-wip](https://github.com/cloudevents/spec/tree/main/subscriptions). 
-    
     The scopes for autorisation are described [here](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/scopes.md).
-    
-    
+
     This specification is work in progress. It can be changed completely without notice.
     "
   license:
     name: EUPL 1.2
     url: https://opensource.org/licenses/EUPL-1.2
-  version: 0.0.9
+  version: 0.1.0
 security:
 - JWT-Claims: []
 paths:
@@ -47,8 +43,7 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/cloudevents+json; charset=utf-8:
               schema:
@@ -59,13 +54,12 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
             Location:
               schema:
                 type: string
                 format: uri
-              description: URL waar de resource leeft.
+              description: 'Uri to the created instance.'
           content:
             application/cloudevents+json; charset=utf-8:
               schema:
@@ -76,13 +70,12 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
             Location:
               schema:
                 type: string
                 format: uri
-              description: URL waar de resource leeft.
+              description: 'Uri to the created instance.'
           content:
             application/cloudevents+json; charset=utf-8:
               schema:
@@ -93,145 +86,133 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
             Location:
               schema:
                 type: string
                 format: uri
-              description: URL waar de resource leeft.
+              description: 'Uri to the created instance.'
         '400':
           description: Bad request
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidatieFout'
+                $ref: '#/components/schemas/ValidationError'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
       tags:
       - events
       security:
@@ -251,8 +232,7 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/json:
               schema:
@@ -266,11 +246,9 @@ paths:
                   next:
                     type: string
                     format: uri
-                    nullable: true
                   previous:
                     type: string
                     format: uri
-                    nullable: true
                   results:
                     type: array
                     items:
@@ -281,132 +259,121 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidatieFout'
+                $ref: '#/components/schemas/ValidationError'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
       tags:
       - domains
       security:
@@ -429,13 +396,12 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
             Location:
               schema:
                 type: string
                 format: uri
-              description: URL waar de resource leeft.
+              description: 'Uri to the created instance.'
           content:
             application/json:
               schema:
@@ -446,132 +412,120 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidatieFout'
+                $ref: '#/components/schemas/ValidationError'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
-          content:
+              description: 'Version of the API. For example: 1.2.1.'
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
       tags:
       - domains
       security:
@@ -597,8 +551,7 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/json:
               schema:
@@ -609,156 +562,143 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidatieFout'
+                $ref: '#/components/schemas/ValidationError'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '404':
           description: Not found
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '412':
           description: Precondition failed
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van een
-                specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
       tags:
       - domains
       security:
@@ -788,8 +728,7 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/json:
               schema:
@@ -800,144 +739,132 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidatieFout'
+                $ref: '#/components/schemas/ValidationError'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '404':
           description: Not found
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
       tags:
       - domains
       security:
@@ -961,140 +888,128 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '404':
           description: Not found
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
       tags:
       - domains
       security:
@@ -1112,8 +1027,7 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/json:
               schema:
@@ -1127,11 +1041,9 @@ paths:
                   next:
                     type: string
                     format: uri
-                    nullable: true
                   previous:
                     type: string
                     format: uri
-                    nullable: true
                   results:
                     type: array
                     items:
@@ -1142,132 +1054,121 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidatieFout'
+                $ref: '#/components/schemas/ValidationError'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
       tags:
       - subscriptions
       security:
@@ -1290,13 +1191,12 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
             Location:
               schema:
                 type: string
                 format: uri
-              description: URL waar de resource leeft.
+              description: 'Uri to the created instance.'
           content:
             application/json:
               schema:
@@ -1307,132 +1207,121 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidatieFout'
+                $ref: '#/components/schemas/ValidationError'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
       tags:
       - subscriptions
       security:
@@ -1458,8 +1347,7 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/json:
               schema:
@@ -1470,156 +1358,143 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidatieFout'
+                $ref: '#/components/schemas/ValidationError'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '404':
           description: Not found
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '412':
           description: Precondition failed
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van een
-                specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'  
+                $ref: '#/components/schemas/Error'
       tags:
       - subscriptions
       security:
@@ -1649,8 +1524,7 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/json:
               schema:
@@ -1661,144 +1535,132 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidatieFout'
+                $ref: '#/components/schemas/ValidationError'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '404':
           description: Not found
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
       tags:
       - subscriptions
       security:
@@ -1828,140 +1690,128 @@ paths:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
         '401':
           description: Unauthorized
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '404':
           description: Not found
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '406':
           description: Not acceptable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '409':
           description: Conflict
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '410':
           description: Gone
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '415':
           description: Unsupported media type
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '429':
           description: Too many requests
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '501':
           description: Not Implemented
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
         '503':
           description: Service Unavailable
           headers:
             API-version:
               schema:
                 type: string
-              description: 'Geeft een specifieke API-versie aan in de context van
-                een specifieke aanroep. Voorbeeld: 1.2.1.'
+              description: 'Version of the API. For example: 1.2.1.'
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/Fout'
+                $ref: '#/components/schemas/Error'
       tags:
       - subscriptions
       security:
@@ -1994,88 +1844,82 @@ components:
           type: string
           format: url
           minLength: 1
-          nullable: true
           example: "https://www.vngrealisatie.nl/ZaakSysteem/Notificaties.html"
         filterAttributes:
           title: filterAttributes
-          description: Filter attributes offered by the domain
+          description: Filter attributes offered by the domain.
           type: array
           items:
-            type: object
-            properties:
-              name:
-                title: name
-                description: Name of the filter attribute
-                type: string
-                minLength: 1
-                example: "vertrouwlijk"
-          nullable: true
+            type: string
+            minLength: 1
 
     EventCore:
       required:
       - id
       - source
+      - domain
       - specversion
       - type
       type: object
       properties:
         specversion:
           title: specversion
-          description: The version of the CloudEvents specification which the event uses.
+          description: The version of the CloudEvents specification which the event uses. Compliant event producers MUST use a value of 1.0 when referring to this version of the specification.
           type: string
           minLength: 1
           example: "1.0"
         id:
           title: id
-          description: Identifies the event.
+          description: Identifies the event. Producers MUST ensure that source + id is unique for each distinct event. SHOULD be a uuid.
           type: string
-          format: uuid
           minLength: 1
           example: "2febb675-b06c-4f3a-8fc3-f6649aa25ae4"
         source:
           title: source
-          description: Identifies the context in which an event happened.
+          description: Identifies the context in which an event happened. SHOULD be a URN notation with 'nld' as namespace identifier. SHOULD contain consecutive a unique identifier of the organization that publishes the event followed by the source system that publishes the event. Involved organizations SHOULD agree on how organizations and systems are uniquely identified (e.g. via the use of OIN, KVK-nummer or eIDAS legal identifier for organization identification);
           type: string
           format: urn
           minLength: 1
           example: "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem"
         domain:
           title: domain
-          description: Name of the domain to which the event belongs.
+          description: Name of the domain to which the event belongs. Can be seen as the namespace of the event.(This attribute is not listed in the GOV NL profile for CloudEvents)
           type: string
           format: reverse-dns
           minLength: 1
-          nullable: true
           example: "nl.vng.zaken"
         type:
           title: type
-          description: This attribute contains a value describing the type of event related to the originating occurrence.
+          description: This attribute contains a value describing the type of event. Type SHOULD start with the domain followed by the name of the event. Events SHOULD be expressed in the past tense. If subtypes are required those SHOULD be expressed using a dot '.' between the super and subtype(s). The type MAY contain version information. Version information SHOULD be appended at the end of the string.
           type: string
           format: reverse-dns
           minLength: 1
           example: "nl.vng.zaken.status_gewijzigd"
         time:
           title: time
-          description: Timestamp of when the occurrence happened.
+          description: Timestamp of the event. SHOULD be the timestamp the event was registerd in the source system and NOT the time the event occurred in reality. The exact meaning of time MUST be clearly documented.
           type: string
           format: date-time
           minLength: 1
-          nullable: true
           example: "2022-03-16T15:29:30.833664Z"
         subscription:
           title: subscription
-          description: "The event was posted to the API because the filter criteria of this subscription were met. The uuid refers to a subscription on the source that published this event. It should be passed through when this event is delivered to the subscribers! If an event is distributed to a subscriber this attribute should be overwritten (or filled) with the uuid of the subscription of the subscriber that triggered the delivery."
+          description: Usually empty. Only used in situations where notificationservices are chained. For example notificationservice2 (ns2) is subscribed to notifcationservice1 (ns1). When ns1 sends an event to ns2 this attribute SHOULD contain the subscription id of the subscription that ns1 has on ns2 (that was resposible for receiving the event). Note this attribute is overwritten when the event is passed through to a client. It will be set to the value of the subscription id of the subscription of the client.
           type: string
           format: uuid
           minLength: 1
-          nullable: true
           example: "a2de4777-1160-4562-a996-b79d27b30c99"
-        datacontenttype:
-          title: datacontenttype
-          description: Content type of data value. [RFC 2046](https://tools.ietf.org/html/rfc2046)
+        subscriberReference:
+          title: subscriberReference
+          description: Usually empty. Only used in situations where notificationservices are chained. For example notificationservice2 (ns2) is subscribed to notifcationservice1 (ns1). When ns1 sends an event to ns2 this attribute COULD contain the subscriberReference the was specified when ns2 subscribed to ns1. Note this attribute is overwritten when the event is passed through to a client. It will be set to the value of the subscriberReference of the subscription of the client (when specified by the client).
           type: string
           minLength: 1
-          nullable: true
+          example: "1285c6bc-1b54-48d8-96e2-c55a3f970c39"
+        datacontenttype:
+          title: datacontenttype
+          description: Content type of data value. In this version of the API the value MUST be 'application/json'. In future versions of the API other values such as described in [RFC 2046](https://tools.ietf.org/html/rfc2046) MAY be used.
+          type: string
+          minLength: 1
           example: "application/json"
         dataschema:
           title: dataschema
@@ -2083,30 +1927,33 @@ components:
           type: string
           format: uri
           minLength: 1
-          nullable: true
           example: "https:www.vng.nl/zgw/zaken/status_gewijzigd_schema.json"
+        subject:
+          title: subject
+          description: Included to be compatible with CloudEvents specification. The GOV NL profile states 'Decision on whether or not to use the attribute and/or the exact interpretation is postponed. To be determined partly on the basis of future agreements about subscription and filtering.'
+          type: string
+          minLength: 1
         sequence:
           description: Value expressing the relative order of the event. This enables interpretation of data supercedence.
           type: string
           minLength: 1
           example: "42"
         sequencetype:
-          description: Specifies the semantics of the sequence attribute.
+          description: Specifies the semantics of the sequence attribute. (Currently limited to the value INTEGER).
           type: string
           minLength: 1
-          nullable: true
           enum:
             - Integer
     EventExtension:
       type: object
       properties:
-        <domain>.<key1>:
+        <key1>:
           type: string
           example: "<value1>"
-        <domain>.<key2>:
+        <key2>:
           type: string
           example: "<value2>"
-        <domain>.<keyN>:
+        <keyN>:
           type: string
           example: "<valueN>"
     Event:
@@ -2122,158 +1969,100 @@ components:
               description: The presence of the data_base64 member clearly indicates that the value is a Base64 encoded binary data, which the serializer MUST decode into a binary runtime data type.
               type: string
               format: byte
-              nullable: true
             dataref:
-              description: A reference to a location where the event payload is stored.
+              description: A reference to a location where the event payload is stored. If both the data attribute and the dataref attribute are specified their contents MUST be identical.
               type: string
               format: uri
               minLength: 1
-              nullable: true
 
     SubscriptionRequest:
       properties:
         protocol:
-          title: protocol      
-          description: Identifier of the delivery protocol.
-          type: string
-          enum: ["HTTP"]
-          minLength: 1
-          nullable: true
-          example: "HTTP"        
+          $ref: "#/components/schemas/Protocol"
         protocolSettings:
-          title: protocolSettings
-          description: Delivery protocol specific settings.
-          type: object
-          allOf:
-            - properties:
-                headers:
-                  type: object
-                  additionalProperties:
-                    type: string
-                method:
-                  type: string
-                  example: "POST"
-          nullable: true
+          oneOf:
+            # - $ref: "#/components/schemas/ProtocolSettings"
+            # - $ref:  "#/components/schemas/AMQPSettings"
+            # - $ref:  "#/components/schemas/ApacheKafkaSettings"
+            - $ref:  "#/components/schemas/HTTPSettings"
+            # - $ref:  "#/components/schemas/MQTTSettings"
+            # - $ref:  "#/components/schemas/NATSSettings"
         sink:
-          title: sink
-          description: The address to which events shall be delivered using the selected protocol.
           type: string
           format: url
-          minLength: 1
-          nullable: true
+          description: REQUIRED. The address to which events shall be delivered using the selected protocol.
           example: "https://endpoint.example.com/webhook"
         sinkCredential:
-          title: sinkCredential
-          description: Credential required to access the sink.
           oneOf:
+            # - $ref: "#/components/schemas/SinkCredential"
             - $ref: "#/components/schemas/AccessTokenCredential"
+            # - $ref: "#/components/schemas/PlainCredential"
             - $ref: "#/components/schemas/RefreshTokenCredential"
-          nullable: true
-        config:
-          title: config
-          description: Implementation-specific configuration parameters needed by the subscription manager for acquiring events.
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
         source:
-          title: source      
-          description: Source to which the subscription applies.
           type: string
+          # format: uri-reference
           format: urn
-          minLength: 1
-          nullable: true
+          description: OPTIONAL. Source to which the subscription applies. May be implied by the request address.
           example: "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem"
         domain:
-          title: domain
-          description: Domain to which the subscription applies.
           type: string
           format: reverse-dns
-          minLength: 1
-          nullable: true
-          example: "nl.vng.zaken"          
+          description: OPTIONAL. Domain to which the subscription applies.
+          example: "nl.vng.zaken"
         types:
-          title: types      
-          description: CloudEvent types eligible to be delivered by this subscription.
+          description: "CloudEvent types eligible to be delivered by this subscription"
           type: array
           items:
             type: string
-          nullable: true
         filters:
-          title: filters
           description: "This filter evaluates to 'true' if all contained filters are 'true'"
           type: array
           items:
+            title: "Filter entry"
             oneOf:
-              - $ref: "#/components/schemas/Filter"
+              # - $ref: "#/components/schemas/Filter"
               - $ref: "#/components/schemas/AllFilter"
               - $ref: "#/components/schemas/AnyFilter"
               - $ref: "#/components/schemas/NotFilter"
               - $ref: "#/components/schemas/ExactFilter"
               - $ref: "#/components/schemas/PrefixFilter"
               - $ref: "#/components/schemas/SuffixFilter"
-          nullable: true
+              # - $ref: "#/components/schemas/SqlFilter"
+        config:
+          description: OPTIONAL. Implementation-specific configuration parameters needed by the subscription manager for acquiring events.
+          type: object
+          additionalProperties:
+            type: string
+        subscriberReference:
+          description: OPTIONAL. Events that are send to the subscriber will contain this reference. The subscriber can use the reference for internal routing of the event.
+          type: string
+          example: "1285c6bc-1b54-48d8-96e2-c55a3f970c39"
+      required:
+        - sink
+        - protocol
     Subscription:
       type: object
       title: "Subscription"
       allOf:
+        - $ref: "#/components/schemas/SubscriptionRequest"
         - type: object
           properties:
             id:
               type: string
               format: uuid
-              description: The unique identifier of the subscription in the scope of the subscription manager.
+              description: REQUIRED. The unique identifier of the subscription in the scope of the subscription manager.
+              # example: 1119920371
               example: "a2de4777-1160-4562-a996-b79d27b30c99"
-        - $ref: "#/components/schemas/SubscriptionRequest"
       required:
         - id
-
-    SinkCredential:
-      type: object
-      properties:
-         credentialType:
-            type: string
-            enum: ["ACCESSTOKEN", "REFRESHTOKEN"]
-            description: "The type of the credential."
-      additionalProperties: false
-    AccessTokenCredential:
-      type: object
-      description: An access token credential.
-      allOf:
-        - $ref: "#/components/schemas/SinkCredential"
-        - properties:
-            accessToken:
-              description: An access token is a previously acquired token granting access to the target resource.
-              type: string
-            accessTokenExpiresUtc:
-              type: string
-              format: date-time
-              description: An absolute UTC instant at which the token shall be considered expired.
-            accessTokenType:
-              description: Type of the access token (See https://tools.ietf.org/html/rfc6749#section-7.1).
-              type: string
-              default: bearer
-          required:
-            - accessToken
-            - accessTokenExpiresUtc
-    RefreshTokenCredential:
-      type: object
-      description: An access token credential with a refresh token.
-      allOf:
-        - $ref: "#/components/schemas/AccessTokenCredential"
-        - type: object
-          properties:
-            refreshToken:
-              description: An refresh token credential used to acquire access tokens.
-              type: string
-            refreshTokenEndpoint:
-              type: string
-              format: uri
-              description: A URL at which the refresh token can be traded for an access token.
-      required:
-        - refreshToken
-        - refreshTokenEndpoint
-
+        - sink
+        - protocol
+    Protocol:
+      type: string
+      # enum: ["HTTP", "MQTT3", "MQTT5", "AMQP", "NATS", "KAFKA"]
+      enum: ["HTTP"]
+      description: REQUIRED. Identifier of a delivery protocol.
+      example: "HTTP"
     Filter:
       title: "Filter"
       description: "A filter from a selection of multiple filter types and dialects"
@@ -2292,14 +2081,14 @@ components:
               items:
                 title: "Filter entry"
                 oneOf:
-                - $ref: "#/components/schemas/Filter"
+                # - $ref: "#/components/schemas/Filter"
                 - $ref: "#/components/schemas/AllFilter"
                 - $ref: "#/components/schemas/AnyFilter"
                 - $ref: "#/components/schemas/NotFilter"
                 - $ref: "#/components/schemas/ExactFilter"
                 - $ref: "#/components/schemas/PrefixFilter"
                 - $ref: "#/components/schemas/SuffixFilter"
-                - $ref: "#/components/schemas/SqlFilter"
+                # - $ref: "#/components/schemas/SqlFilter"
           additionalProperties: false
     AnyFilter:
       allOf:
@@ -2314,14 +2103,14 @@ components:
               items:
                 title: "Filter entry"
                 oneOf:
-                  - $ref: "#/components/schemas/Filter"
+                  # - $ref: "#/components/schemas/Filter"
                   - $ref: "#/components/schemas/AllFilter"
                   - $ref: "#/components/schemas/AnyFilter"
                   - $ref: "#/components/schemas/NotFilter"
                   - $ref: "#/components/schemas/ExactFilter"
                   - $ref: "#/components/schemas/PrefixFilter"
                   - $ref: "#/components/schemas/SuffixFilter"
-                  - $ref: "#/components/schemas/SqlFilter"
+                  # - $ref: "#/components/schemas/SqlFilter"
           additionalProperties: false
     NotFilter:
       allOf:
@@ -2332,14 +2121,14 @@ components:
             not:
               type: object
               oneOf:
-                - $ref: "#/components/schemas/Filter"
+                # - $ref: "#/components/schemas/Filter"
                 - $ref: "#/components/schemas/AllFilter"
                 - $ref: "#/components/schemas/AnyFilter"
                 - $ref: "#/components/schemas/NotFilter"
                 - $ref: "#/components/schemas/ExactFilter"
                 - $ref: "#/components/schemas/PrefixFilter"
                 - $ref: "#/components/schemas/SuffixFilter"
-                - $ref: "#/components/schemas/SqlFilter"
+                # - $ref: "#/components/schemas/SqlFilter"
           additionalProperties: false
     ExactFilter:
       allOf:
@@ -2371,16 +2160,16 @@ components:
             suffix:
               $ref: "#/components/schemas/CloudEventsAttribute"
           additionalProperties: false
-    SqlFilter:
-      allOf:
-        - $ref: "#/components/schemas/Filter"
-        - type: object
-          description: "CESQL filter"
-          properties:
-            sql:
-              type: string
-              description: "The CESQL expression"
-          additionalProperties: true
+    # SqlFilter:
+    #   allOf:
+    #     - $ref: "#/components/schemas/Filter"
+    #     - type: object
+    #       description: "CESQL filter"
+    #       properties:
+    #         sql:
+    #           type: string
+    #           description: "The CESQL expression"
+    #       additionalProperties: true
     CloudEventsAttribute:
       type: object
       description: "CloudEvents defined attributes."
@@ -2410,8 +2199,142 @@ components:
           description: Describes the subject of the event in the context of the event producer.
         time:
           type: string
-          description: Timestamp of when the occurrence happened.              
-    Fout:
+          description: Timestamp of when the occurrence happened.
+    ProtocolSettings:
+      type: object
+      additionalProperties: false
+    HTTPSettings:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/ProtocolSettings"
+        - properties:
+            headers:
+              type: object
+              additionalProperties:
+                type: string
+            method:
+              type: string
+              enum: ["POST"]
+              example: "POST"
+    # MQTTSettings:
+    #   type: object
+    #   allOf:
+    #     - $ref: "#/components/schemas/ProtocolSettings"
+    #     - properties:
+    #         topicName:
+    #           type: string
+    #         qos:
+    #           type: integer
+    #           format: int32
+    #         retain:
+    #           type: boolean
+    #         expiry:
+    #           type: integer
+    #           format: int32
+    #         userProperties:
+    #           type: object
+    #       required:
+    #         - topicName
+    # AMQPSettings:
+    #   type: object
+    #   allOf:
+    #     - $ref: "#/components/schemas/ProtocolSettings"
+    #     - properties:
+    #         address:
+    #           type: string
+    #         linkName:
+    #           type: string
+    #         senderSettlementMode:
+    #           type: string
+    #           enum: ["settled", "unsettled"]
+    #         linkProperties:
+    #           type: object
+    #           additionalProperties:
+    #              type: string
+    # ApacheKafkaSettings:
+    #   type: object
+    #   allOf:
+    #     - $ref: "#/components/schemas/ProtocolSettings"
+    #     - properties:
+    #         topicName:
+    #           type: string
+    #         partitionKeyExtractor:
+    #           type: string
+    #         clientId:
+    #           type: string
+    #         ackMode:
+    #           type: integer
+    #       required:
+    #         - topicName
+    # NATSSettings:
+    #   type: object
+    #   allOf:
+    #     - $ref: "#/components/schemas/ProtocolSettings"
+    #     - properties:
+    #         subject:
+    #           type: string
+    #       required:
+    #         - subject
+    SinkCredential:
+      type: object
+      properties:
+         credentialType:
+            type: string
+            # enum: ["PLAIN", "ACCESSTOKEN", "REFRESHTOKEN"]
+            enum: ["ACCESSTOKEN", "REFRESHTOKEN"]
+            description: "The type of the credential."
+      additionalProperties: false
+    # PlainCredential:
+    #   type: object
+    #   description: A plain credential as a combination of an identifier and a secret.
+    #   allOf:
+    #     - $ref: "#/components/schemas/SinkCredential"
+    #     - properties:
+    #         identifier:
+    #           description: The identifier might be an account or username.
+    #           type: string
+    #         secret:
+    #           description: The secret might be a password or passphrase.
+    #           type: string
+    AccessTokenCredential:
+      type: object
+      description: An access token credential.
+      allOf:
+        - $ref: "#/components/schemas/SinkCredential"
+        - properties:
+            accessToken:
+              description: REQUIRED. An access token is a previously acquired token granting access to the target resource.
+              type: string
+            accessTokenExpiresUtc:
+              type: string
+              format: date-time
+              description: RECOMMENDED. An absolute UTC instant at which the token shall be considered expired.
+            accessTokenType:
+              description: OPTIONAL. )Type of the access token (See https://tools.ietf.org/html/rfc6749#section-7.1).
+              type: string
+              default: bearer
+          required:
+            - accessToken
+            - accessTokenExpiresUtc
+    RefreshTokenCredential:
+      type: object
+      description: An access token credential with a refresh token.
+      allOf:
+        - $ref: "#/components/schemas/AccessTokenCredential"
+        - type: object
+          properties:
+            refreshToken:
+              description: REQUIRED. An refresh token credential used to acquire access tokens.
+              type: string
+            refreshTokenEndpoint:
+              type: string
+              format: uri
+              description: REQUIRED. A URL at which the refresh token can be traded for an access token.
+      required:
+        - refreshToken
+        - refreshTokenEndpoint
+
+    Error:
       required:
       - code
       - title
@@ -2422,16 +2345,16 @@ components:
       properties:
         type:
           title: Type
-          description: URI referentie naar het type fout, bedoeld voor developers
+          description: URI referentie naar het type Error, bedoeld voor developers
           type: string
         code:
           title: Code
-          description: Systeemcode die het type fout aangeeft
+          description: Systeemcode die het type Error aangeeft
           type: string
           minLength: 1
         title:
           title: Title
-          description: Generieke titel voor het type fout
+          description: Generieke titel voor het type Error
           type: string
           minLength: 1
         status:
@@ -2440,12 +2363,12 @@ components:
           type: integer
         detail:
           title: Detail
-          description: Extra informatie bij de fout, indien beschikbaar
+          description: Extra informatie bij de Error, indien beschikbaar
           type: string
           minLength: 1
         instance:
           title: Instance
-          description: URI met referentie naar dit specifiek voorkomen van de fout.
+          description: URI met referentie naar dit specifiek voorkomen van de Error.
             Deze kan gebruikt worden in combinatie met server logs, bijvoorbeeld.
           type: string
           minLength: 1
@@ -2463,15 +2386,15 @@ components:
           minLength: 1
         code:
           title: Code
-          description: Systeemcode die het type fout aangeeft
+          description: Systeemcode die het type Error aangeeft
           type: string
           minLength: 1
         reason:
           title: Reason
-          description: Uitleg wat er precies fout is met de gegevens
+          description: Uitleg wat er precies Error is met de gegevens
           type: string
           minLength: 1
-    ValidatieFout:
+    ValidationError:
       required:
       - code
       - title
@@ -2483,16 +2406,16 @@ components:
       properties:
         type:
           title: Type
-          description: URI referentie naar het type fout, bedoeld voor developers
+          description: URI referentie naar het type Error, bedoeld voor developers
           type: string
         code:
           title: Code
-          description: Systeemcode die het type fout aangeeft
+          description: Systeemcode die het type Error aangeeft
           type: string
           minLength: 1
         title:
           title: Title
-          description: Generieke titel voor het type fout
+          description: Generieke titel voor het type Error
           type: string
           minLength: 1
         status:
@@ -2501,12 +2424,12 @@ components:
           type: integer
         detail:
           title: Detail
-          description: Extra informatie bij de fout, indien beschikbaar
+          description: Extra informatie bij de Error, indien beschikbaar
           type: string
           minLength: 1
         instance:
           title: Instance
-          description: URI met referentie naar dit specifiek voorkomen van de fout.
+          description: URI met referentie naar dit specifiek voorkomen van de Error.
             Deze kan gebruikt worden in combinatie met server logs, bijvoorbeeld.
           type: string
           minLength: 1
