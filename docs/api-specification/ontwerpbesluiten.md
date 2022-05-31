@@ -1,5 +1,7 @@
 # Ontwerpbesluiten
 
+Beknopte samenvatting van de belangrijkste ontwerpbesluiten.
+
 ## GOV NL profile for CloudEvents (berichtstandaard)
 
 ### Events resource, overzicht van attributen
