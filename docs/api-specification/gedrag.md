@@ -1,13 +1,13 @@
 # Beschrijving gedrag van API
 
-## events.post
+## /events post
 
 - Het binnengekomen event wordt opgeslagen. (Mag na doorsturen verwijderd worden).
 - Direct na het opslaan wordt statuscode `200` geretourneerd.
 
 Zie _processen in de notificatie component_ voor de verdere verwerking van het event.
 
-## Processen in de notificatie component
+### Processen in de notificatie component
 
 In hoofdlijnen worden de volgende stappen uitgevoerd:
 1. Bepalen welke subscriptions in aanmerking komen om het binnengekomen event te ontvangen
@@ -18,27 +18,27 @@ In de implementatie kunnen deze stappen mogelijk los van elkaar/deels parallel u
 
 De drie stappen worden hieronder stuk voor stuk beschreven:
 
-### 1 Bepalen relevante subscriptions
+#### 1 Bepalen relevante subscriptions
 
 - Alle subscriptions worden langsgelopen
 - Per subscription wordt gekeken of het event voldoet aan de opgegeven filtercriteria (zie specificatie _beoordelen filtercriteria_)
 - Als een event voldoet kan dit event klaargemaakt worden voor aflevering (stap 2)
 
-### 2 Event klaarmaken voor aflevering
+#### 2 Event klaarmaken voor aflevering
 
 - Maak een copy van het event
 - Vul in het attribuut `subscription` het id van de subscription van de afnemer in
 - Vul in het attribuut `subscriberReference` de subscriber reference van de subscription van de afnemer in. Is er in de subscription geen subscriber reference opgenomen, maak het attribuut dan leeg.
 - Het event kan nu afgeleverd worden bij de afnemer (Stap 3)
 
-### 3 Event afleveren
+#### 3 Event afleveren
 
 - Het event wordt afgeleverd door een POST te doen op het door de afnemer opgegeven endpoint. Dit endpoint is te vinden in het `sink` attribute van de subscription.
 - Als de afnemer in de protocolSettings http headerattributes heeft opgenomen dan moeten deze worden overgenomen in de POST
 
 In het afleveren kunnen naar eigen inzicht zekerheden rond de aflevering ingebouwd worden. Bijvoorbeeld herhaling van aflevering indien een node tijdelijk niet beschikbaar is. En inzet van deadletter queue's als een node bij herhaling niet bereikbaar is. Et cetera.
 
-### Beoordelen filtercriteria
+#### Beoordelen filtercriteria
 
 Een subscription kent vier attributen voor filtering: `source`, `domain`, `types` en `filters`. De attributen `source` en `domain` kunnen 1 waarde bevatten. Het attribuut `types` kan een array van typen bevatten. Daarbij voldoet het event als het een type heeft dat in deze array voorkomt. Het `filters` attribuut kan een geneste logische structuur bevatten (zie specificatie _Toelichting subscription.filters attribuut_).
 
@@ -62,7 +62,7 @@ als logische expressie ziet dit filer er alsvolgt uit:
 
 `(domain = "persoon") AND ( (type = "persoon_verhuisd") OR (type = "persoon_overleden"))`
 
-### Het `filters` attribuut
+#### Het `filters` attribuut
 
 De attributen `source`, `domain` en `types` zijn eigenlijk niet nodig. De filters die met deze attributen te maken zijn kunnen namelijk ook met behulp van het filters attribuut uitgedrukt worden. Via het filters attribuut kan een logische espressie doorgegeven worden. Om dit te illustreren is hieronder een voorbeeld uitgewerkt:
 
@@ -177,7 +177,7 @@ In deze laatste vorm zal de expressie aangeleverd moeten worden.
 
 Waarschijnlijk is deze vorm door de CE werkgroep gekozen omdat de expressie in deze vorm direct uit te voeren is (en niet eerst geparseerd hoeft te worden). Het zou wel bijzonder handig zijn als er iets van een hulpmiddel zou komen waarmee logische expressie omgezet zouden kunnen worden in dit soort json structuren.
 
-## subscriptions.post
+## /subscriptions post
 
 Bij een post op de subscription resource moet o.a. het eindpoint (de sink) gevalideerd worden. Hierbij volgende we de webhooks specificatie van CloudEvent. Deze is voor de volledigheid hieronder overgenomen.
 
