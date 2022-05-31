@@ -2,7 +2,7 @@
 
 ## events.post
 
-- Het binnengekomen event wordt opgeslagen.
+- Het binnengekomen event wordt opgeslagen. (Mag na doorsturen verwijderd worden).
 - Direct na het opslaan wordt statuscode `200` geretourneerd.
 
 Zie _processen in de notificatie component_ voor de verdere verwerking van het event.
@@ -36,11 +36,11 @@ De drie stappen worden hieronder stuk voor stuk beschreven:
 - Het event wordt afgeleverd door een POST te doen op het door de afnemer opgegeven endpoint. Dit endpoint is te vinden in het `sink` attribute van de subscription.
 - Als de afnemer in de protocolSettings http headerattributes heeft opgenomen dan moeten deze worden overgenomen in de POST
 
-In het afleveren kunnen naar eigen inzicht zekerheden rond de aflevering ingebouwd worden. Bijvoorbeeld herhaling van aflevering indien een node tijdelijk niet beschikbaar is. En inzet van deadletter queue's als een node bij herhaling niet bereikbaar is.
+In het afleveren kunnen naar eigen inzicht zekerheden rond de aflevering ingebouwd worden. Bijvoorbeeld herhaling van aflevering indien een node tijdelijk niet beschikbaar is. En inzet van deadletter queue's als een node bij herhaling niet bereikbaar is. Et cetera.
 
 ### Beoordelen filtercriteria
 
-Een subscription kent vier attributen voor filtering: `source`, `domain`, `types` en `filters`. De attributen `source` en `domain` kunnen 1 waarde bevatten. Het attribuut `types` kan een array van typen bevatten. Daarbij voldoet het event als het een type heeft dat in deze array voorkomt. Het `filters` attribuut kan een geneste logische structuur bevatten (nadere toelichting volgt).
+Een subscription kent vier attributen voor filtering: `source`, `domain`, `types` en `filters`. De attributen `source` en `domain` kunnen 1 waarde bevatten. Het attribuut `types` kan een array van typen bevatten. Daarbij voldoet het event als het een type heeft dat in deze array voorkomt. Het `filters` attribuut kan een geneste logische structuur bevatten (zie specificatie _Toelichting subscription.filters attribuut_).
 
 Regels:
 - Een event mag pas doorgestuurd worden als aan de criteria van al deze filterattributen voldaan is.
@@ -64,7 +64,35 @@ als logische expressie ziet dit filer er alsvolgt uit:
 
 ### Het `filters` attribuut
 
-De attributen `source`, `domain` en `types` zijn eigenlijk niet nodig. De filters die met deze attributen te maken zijn kunnen namelijk ook met behulp van het filters attribuut uitgedrukt worden.
+De attributen `source`, `domain` en `types` zijn eigenlijk niet nodig. De filters die met deze attributen te maken zijn kunnen namelijk ook met behulp van het filters attribuut uitgedrukt worden. Via het filters attribuut kan een logische espressie doorgegeven worden. Om dit te illustreren is hieronder een voorbeeld uitgewerkt:
+
+Stel we alleen events ontvangen die:
+of afkomstig zijn uit het zaken domein en dan alleen als een status is gewijzigd of een zaak gesloten is,
+of afkomstig zijn uit het documenten domein waarbij ons beperken tot vertrouwelijke documenten.
+
+Als logische expressie ziet dit criterium er alsvolgt uit:
+
+`(
+  domain = "nl.vng.zaken" 
+  and 
+  (
+    type = "nl.vng.zaken.status_gewijzigd" 
+    or 
+    type = "nl.vng.zaken.zaak_gesloten"
+  )
+)
+
+or 
+
+(
+  domain = "nl.vng.documenten" 
+  and 
+  vertrouwelijkheid = "normaal"
+)`
+
+
+
+https://en.wikipedia.org/wiki/Polish_notation
 
 **TODO** hiervan moet nog een voorbeeld uitgewerkt worden. 
 
