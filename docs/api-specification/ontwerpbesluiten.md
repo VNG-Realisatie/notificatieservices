@@ -8,33 +8,29 @@ Alle attributen volgen de [GOV NL profile for CloudEvents](https://vng-realisati
 
 Attribuut           | Opmerkingen
 | :--- | :--- 
-id                  | Formaat MOET UUID zijn.
+id                  | - (Initieel eis dat id een uuid MOET zijn, na overleg met Kadaster veranderd in SHOULD).
 source              | Formaat MOET URN zijn.
-specversion         | De OAS specificatie heeft al een versie numnmer. De CloudEvents versie zou afgeleid kunnen worden uit de beschrijving van de OAS. Om compatible te zijn met de CloudEvents berichtstandaard is besloten `specversion` toch expliciet op te nemen.
+specversion         | De OAS specificatie heeft al een versie numnmer. De CloudEvents versie zou afgeleid kunnen worden uit de beschrijving van de OAS. Om compatible te zijn met de CE berichtstandaard is besloten `specversion` toch expliciet op te nemen.
 type                | -
 datacontenttype     | Waarde MOET 'application/json' zijn.
 dataschema          | -
-~~subject~~         | Niet toegestaan.
+subject             | - (Initieel niet opgenomen. Moet echter wel opgenomen worden om compatible te zijn met CE).
 time                | -
-dataref             | Deze Cloud Events extensie is toegestaan.
-sequence            | Deze Cloud Events extensie is toegestaan.
-sequencetype        | Deze Cloud Events extensie is toegestaan.
+dataref             | Deze CE extensie is toegestaan.
+sequence            | Deze CE extensie is toegestaan.
+sequencetype        | Deze CE extensie is toegestaan.
 data                | -
 data_base64         | Zoals gespecificeerd in _JSON Event Format for CloudEvents_.
-yana.domain         | Toelichting volgt na tabel.
-yana.subscriptionId | Toelichting volgt na tabel.
+domain              | Toelichting volgt na tabel.
+subscription        | Zie description in OAS.
+subscriberReference | Zie description in OAS.
 
 ### events.domain
 
-Optioneel attribuut. Kan opgenomen worden om het domein waartoe events behoren aan te geven.
+Verplicht attribuut. MOET opgenomen worden om het domein waartoe events behoren aan te geven.
+n.b. Was initieel optioneel. Het attribuut heeft echter de functie van een namespace. Events zullen gerouteerd worden over allerlei hubs (notificatiecomponenten). Daarbij is cruciaal dat er geen verwarring kan ontstaan over events. Vandaar de verplichting.
 
 Voorbeeld: Conceptueel is besloten om zaken en documenten van elkaar te scheiden. Beiden vormen een apart domein. Er zijn zaaksystemen en documentsystemen. Het kan ook zijn dat een systeem functionaliteit voor beiden aanbied. In die situatie biedt een systeem (source) events over twee domeinen.
-
-### events.subscription
-
-Referentie naar de subscription op basis waarvan de notificatie doorgestuurd is. (Ofwel het door de notificatie component ontvangen event voldeed aan de criteria van deze subscription).
-
-n.b. Als de notificatie component zelf geabonneerd is op een source dan kan het zijn dat deze source het uuid van die subscription opneemt in het te publiceren event (dus in de body van de POST events). Die uuid MOET dan NIET doorgestuurd worden bij publicatie maar vervangen worden door de uuid van het abonnement dat door de component gebruikt is om te bepalen of het event doorgestuurd moest worden.
 
 ### events.data
 
@@ -59,6 +55,7 @@ source              | -
 domain              | Niet aanwezig CE en dus ook niet in de CE draft voor abonneren. Wel logisch om, naar analogie van source, dit attribuut ook in de subscription op te nemen. Net zoals source is het een enkelvoudig attribuut. Per subscription kan dus 1 domain opgegeven worden. (Overigens zou je via het filters attribuut wel meerdere domains kunnen opgeven.
 types               | -
 filters             | De opties `Dialect` en `SQL filter` zijn niet toegestaan.
+subscriberReference | Zie description in OAS.
 
 ## JSON Event Format for CloudEvents
 
