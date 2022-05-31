@@ -2,10 +2,24 @@
 
 ## /events post
 
+- Het binnengekomen event wordt gecontroleerd. Zie _Controleren event_ hieronder.
 - Het binnengekomen event wordt opgeslagen. (Mag na doorsturen verwijderd worden).
 - Direct na het opslaan wordt statuscode `200` geretourneerd.
 
 Zie _processen in de notificatie component_ voor de verdere verwerking van het event.
+
+### Controleren event
+
+Regels:
+- Of het `data` attribuut is gevuld of het `data_base64` attribuut is gevuld, niet beiden. (XOR)
+- Sequence / SequenceType moeten ofwel beiden voorkomen of beiden niet.
+- Er mogen alleen extra attributen in het event voorkomen die gedefinieerd zijn in het `filterAttributes` van het `domein`.
+  Voorbeeld: Stel `domain.filterAttributes = {bronorganisatie, vertrouwelijkheid}`. Stel er komt een event binnen met daarin de attributen `vertrouwelijkheid` en `test`. Het attribuut `vertrouwelijkheid` is toegestaan, `test` niet. Merk op dat niet alle bij het `domein` gespecificeerde `filterAttributen` in het event voor hoeven te komen.
+
+Wat we _NIET_ controleren:
+- `Domain` is eigenlijk een namespace. Eigenlijk zouden attributen zoals `type` moeten beginnen met het domein. (Voorbeeld: domain = nl.vng.zaken, type = nl.vng.zaken.status_gewijzigd) 
+- Domainspecifieke extension attributen zouden kunnen beginnen met het domein. Voorbeeld: nl.brp.bsn ipv bsn.
+- Of de `data` voldoet aan een eventueel opgegeven `dataschema`.
 
 ### Processen in de notificatie component
 
