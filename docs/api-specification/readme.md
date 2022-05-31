@@ -28,7 +28,7 @@ We hebben daarom besloten de API specificatie echt specifiek uit te werken als g
 
 ### Documentatie
 
-- [Backlog](./backlog.md)
+- [Backlog]([./projects/1))
 - [Samenvatting ontwerpbesluiten](./ontwerpbesluiten.md)
 - [Mapping op ZGW Notificatie Routing Component API](./mapping_zgw_nrc.md)
 
