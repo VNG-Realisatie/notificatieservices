@@ -110,26 +110,26 @@ In deze vorm is het voor mensen redelijk leesbaar. Voor executie door software i
 
 De expressie komt er, zonder allerlei haakjes maar met zorgvuldig inspringen, alsvolgt uit te zien:
 
-```
-Any
-  All
-    Equals
-      Attribute = "domain"
-      Value = "nl.vng.zaken"
-    Any
-      Equals
-        Attribute = "type" 
-        Value = "nl.vng.zaken.status_gewijzigd"
-      Equals
-        Attribute = "type"
-        Value = "nl.vng.zaken.zaak_gesloten"
-  All
-    Equals
-      Attribute = "domain"
-      Value = "nl.vng.documenten"
-    Equals
-      Attribute = "vertrouwelijkheid"
-      Value = "normaal"
+```yaml
+- any:
+  - all:
+    - exact:
+        attribute: domain
+        value: nl.vng.zaken
+    - any:
+      - exact:
+          attribute: domain
+          value: nl.vng.zaken
+      - exact:
+          attribute: type
+          value: nl.vng.zaken.zaak_gesloten
+  - all:
+    - exact:
+        attribute: domain
+        value: nl.vng.zaken
+    - exact:
+        attribute: type
+        value: nl.vng.zaken.zaak_gesloten
 ```
 
 vertaald naar een Json structuur krijgen we vervolgens:
