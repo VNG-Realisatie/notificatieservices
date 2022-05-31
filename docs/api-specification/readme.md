@@ -11,11 +11,13 @@ API voor notificatie component:
 API voor notificatie client:
 [ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications_client.yaml)
 
+Aanvullende specificaties:
 [Beschrijving gedrag](./gedrag.md)
+[Scopes](./scopes.md)
 
 ## Toelichting
 
-Bovenstaande versie is nog geen officiele RC. Zie [backlog](./backlog.md) voor de nog openstaande acties.
+Bovenstaande versie is nog geen officiele RC. Zie [backlog](https://github.com/VNG-Realisatie/notificatieservices/projects/1) voor de nog openstaande acties.
 
 In eerdere versies was sprake van drie verschillende specificaties:
 - publiceren van events
@@ -34,7 +36,8 @@ We hebben daarom besloten de API specificatie echt specifiek uit te werken als g
 
 ## Overige links
 
+- [GOV NL profile for CloudEvents](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents)
+- [CloudEvents Subscription documentatie](https://github.com/cloudevents/spec/tree/main/subscriptions) incl. yaml voor CE subsciption
 - [ZGW Notificatie Routeringscomponent](https://notificaties-api.vng.cloud/)
 - [ZGW Notificatie Client Specificatie](https://vng-realisatie.github.io/gemma-zaken/standaard/notificaties-consumer/index)
-- [CloudEvents Subscription documentatie](https://github.com/cloudevents/spec/tree/main/subscriptions) incl. yaml voor CE subsciption
 
