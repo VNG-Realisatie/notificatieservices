@@ -195,6 +195,7 @@ Waarschijnlijk is deze vorm door de CE werkgroep gekozen omdat de expressie in d
 
 Bij een post op de subscription resource moet o.a. het eindpoint (de sink) gevalideerd worden. Hierbij volgende we de webhooks specificatie van CloudEvent. Deze is voor de volledigheid hieronder overgenomen.
 
+```
 Delivering notifications
 - A delivery request MUST use a HTTP POST request via HTTPS.
 - A delivery response MUST have the appropriate status code: 
@@ -222,6 +223,7 @@ It must be prevented that notifications are sent to recipients who have not requ
 - The validation respons MUST be sent if the delivery target does allow delivery of events with header fields:
   - WebHook-Allowed-Origin (required): MUST either be the origin name supplied in the WebHook-Request-Origin header, or a singular asterisk character ('*'), indicating that the delivery target supports notifications from all origins.
   - WebHook-Allowed-Rate (depends): MUST be returned if the request contained the WebHook-Request-Rate, otherwise it SHOULD be returned; an integer number expresses the permitted request rate in "requests per minute" or asterisk when there is no rate limitation.
+```
 
 
 
