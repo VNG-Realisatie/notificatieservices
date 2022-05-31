@@ -72,7 +72,8 @@ of afkomstig zijn uit het documenten domein waarbij ons beperken tot vertrouweli
 
 Als logische expressie ziet dit criterium er alsvolgt uit:
 
-`(
+```
+(
   domain = "nl.vng.zaken" 
   and 
   (
@@ -88,13 +89,93 @@ or
   domain = "nl.vng.documenten" 
   and 
   vertrouwelijkheid = "normaal"
-)`
+)
+```
 
+In deze vorm is het voor mensen redelijk leesbaar. Voor executie door software is een andere structurering echter handiger. Daarbij wordt eerst de operator opgegeven (AND, OR...) en dan de operanden. (Zie [Polish Notation](https://en.wikipedia.org/wiki/Polish_notation))
 
+De expressie komt er, zonder allerlei haakjes maar met zorgvuldig inspringen, alsvolgt uit te zien:
 
-https://en.wikipedia.org/wiki/Polish_notation
+```
+Any
+  All
+    Equals
+      Attribute = "domain"
+      Value = "nl.vng.zaken"
+    Any
+      Equals
+        Attribute = "type" 
+        Value = "nl.vng.zaken.status_gewijzigd"
+      Equals
+        Attribute = "type"
+        Value = "nl.vng.zaken.zaak_gesloten"
+  All
+    Equals
+      Attribute = "domain"
+      Value = "nl.vng.documenten"
+    Equals
+      Attribute = "vertrouwelijkheid"
+      Value = "normaal"
+```
 
-**TODO** hiervan moet nog een voorbeeld uitgewerkt worden. 
+vertaald naar een Json structuur krijgen we vervolgens:
+
+```json
+{
+    "id": "....",
+    "filters": [
+        {
+            "any": [
+                {
+                    "all": [
+                        {
+                            "exact": {
+                                "attribute": "domain",
+                                "value": "nl.vng.zaken"
+                            }
+                        },
+                        {
+                            "any": [
+                                {
+                                    "exact": {
+                                        "attribute": "domain",
+                                        "value": "nl.vng.zaken"
+                                    }
+                                },
+                                {
+                                    "exact": {
+                                        "attribute": "type",
+                                        "value": "nl.vng.zaken.zaak_gesloten"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "all": [
+                        {
+                            "exact": {
+                                "attribute": "domain",
+                                "value": "nl.vng.zaken"
+                            }
+                        },
+                        {
+                            "exact": {
+                                "attribute": "type",
+                                "value": "nl.vng.zaken.zaak_gesloten"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+In deze laatste vorm zal de expressie aangeleverd moeten worden.
+
+Waarschijnlijk is deze vorm door de CE werkgroep gekozen omdat de expressie in deze vorm direct uit te voeren is (en niet eerst geparseerd hoeft te worden). Het zou wel bijzonder handig zijn als er iets van een hulpmiddel zou komen waarmee logische expressie omgezet zouden kunnen worden in dit soort json structuren.
 
 ## subscriptions.post
 
