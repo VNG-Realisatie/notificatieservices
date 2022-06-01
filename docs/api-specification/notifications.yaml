@@ -1844,6 +1844,7 @@ components:
           type: string
           format: url
           minLength: 1
+          nullable: true
           example: "https://www.vngrealisatie.nl/ZaakSysteem/Notificaties.html"
         filterAttributes:
           title: filterAttributes
@@ -1901,6 +1902,7 @@ components:
           type: string
           format: date-time
           minLength: 1
+          nullable: true
           example: "2022-03-16T15:29:30.833664Z"
         subscription:
           title: subscription
@@ -1908,18 +1910,21 @@ components:
           type: string
           format: uuid
           minLength: 1
+          nullable: true
           example: "a2de4777-1160-4562-a996-b79d27b30c99"
         subscriberReference:
           title: subscriberReference
           description: Usually empty. Only used in situations where notificationservices are chained. For example notificationservice2 (ns2) is subscribed to notifcationservice1 (ns1). When ns1 sends an event to ns2 this attribute COULD contain the subscriberReference the was specified when ns2 subscribed to ns1. Note this attribute is overwritten when the event is passed through to a client. It will be set to the value of the subscriberReference of the subscription of the client (when specified by the client).
           type: string
           minLength: 1
+          nullable: true
           example: "1285c6bc-1b54-48d8-96e2-c55a3f970c39"
         datacontenttype:
           title: datacontenttype
           description: Content type of data value. In this version of the API the value MUST be 'application/json'. In future versions of the API other values such as described in [RFC 2046](https://tools.ietf.org/html/rfc2046) MAY be used.
           type: string
           minLength: 1
+          nullable: true
           example: "application/json"
         dataschema:
           title: dataschema
@@ -1927,21 +1932,25 @@ components:
           type: string
           format: uri
           minLength: 1
+          nullable: true
           example: "https:www.vng.nl/zgw/zaken/status_gewijzigd_schema.json"
         subject:
           title: subject
           description: Included to be compatible with CloudEvents specification. The GOV NL profile states 'Decision on whether or not to use the attribute and/or the exact interpretation is postponed. To be determined partly on the basis of future agreements about subscription and filtering.'
           type: string
           minLength: 1
+          nullable: true
         sequence:
           description: Value expressing the relative order of the event. This enables interpretation of data supercedence.
           type: string
           minLength: 1
+          nullable: true
           example: "42"
         sequencetype:
           description: Specifies the semantics of the sequence attribute. (Currently limited to the value INTEGER).
           type: string
           minLength: 1
+          nullable: true
           enum:
             - Integer
     EventExtension:
@@ -1965,15 +1974,18 @@ components:
               type: object
               additionalProperties:
                 type: string
+              nullable: true
             data_base64:
               description: The presence of the data_base64 member clearly indicates that the value is a Base64 encoded binary data, which the serializer MUST decode into a binary runtime data type.
               type: string
               format: byte
+              nullable: true
             dataref:
               description: A reference to a location where the event payload is stored. If both the data attribute and the dataref attribute are specified their contents MUST be identical.
               type: string
               format: uri
               minLength: 1
+              nullable: true
 
     SubscriptionRequest:
       properties:
