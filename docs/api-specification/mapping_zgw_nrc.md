@@ -20,9 +20,9 @@ kenmerken     | &lt;domain&gt;.&lt;naam&gt; = &lt;value&gt; | - | nl.vng.zaken.v
 
 ZGW Attribuut | Events resource attribuut | Opmerkingen
 | :--- | :--- | :---
-hoofdobject | data.deprecated_hoofdObject | -
-resource    | data.deprecated_resource | -
-resourceUrl | data.deprecated_resourceUrl | -
+hoofdobject | data.deprecated_hoofdObject | Dit is hoofdobject en niet de subresource. Voorbeeld: Zaak (en niet Status).
+resource    | data.deprecated_resource | Dit is, indien van toepassing, de naam van de subresource. Voorbeeld: Status.
+resourceUrl | data.deprecated_resourceUrl | Dit is, indien van toepassing, de uri van de subresource. 
 
 Toelichting:
 Bij generiek gebruik van de API zullen er veel events zijn die impact hebben op meerdere resources. Bijvoorbeeld bij het ontstaan of registreren van een nieuw complex object met meerdere subresources. Er zijn dan twee opties: alle subresources vermelden of helemaal geen subresources vermelden. Er is gekozen voor het laatste. Ook voor de situaties waarin er 'toevallig' wel precies 1 (sub)resource wordt geraakt door het event.
