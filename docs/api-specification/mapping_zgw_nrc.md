@@ -1,5 +1,9 @@
 # Mapping op ZGW Notificatie Routering Component API
 
+Hieronder worden de verschillen tussen de bestaande ZGW NRC (notificatierouteringscomponent) API en de concept CloudEvents Notificatie API beschreven.
+
+Voor het domein Zaken is, als voorbeeld, een [nieuwe documentatie pagina](./voorbeeld_documentatielink_zaken_domein.md) met de beschrijving van de events (voorheen resources en acties) gemaakt.
+
 ## Events resource
 
 ZGW Attribuut | Events resource attribuut | Opmerkingen | Voorbeeld
