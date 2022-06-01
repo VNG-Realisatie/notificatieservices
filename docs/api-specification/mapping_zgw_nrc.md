@@ -20,7 +20,7 @@ kenmerken     | &lt;domain&gt;.&lt;naam&gt; = &lt;value&gt; | - | nl.vng.zaken.v
 
 ZGW Attribuut | Events resource attribuut | Opmerkingen
 | :--- | :--- | :---
-hoofdobject | data.deprecated_hoofdObject | Let op `hoofdObject` moet ook naar `events.data.resource` 
+hoofdobject | data.deprecated_hoofdObject | -
 resource    | data.deprecated_resource | -
 resourceUrl | data.deprecated_resourceUrl | -
 
