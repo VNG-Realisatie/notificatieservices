@@ -39,19 +39,19 @@ Voorbeelden van events.
   <tr>
       <td>nl.vng.zaken.zaak_gecreerd</td>
       <td>zaak</td>
-      <td>update</td>
+      <td>create</td>
       <td>Taalgebruik: Aangemaakt of gecreerd?</td>
   </tr>
   <tr>
       <td>nl.vng.zaken.zaak_gewijzigd</td>
       <td>zaak</td>
-      <td>destroy</td>
+      <td>update</td>
       <td>?</td>
   </tr>
   <tr>
       <td>nl.vng.zaken.zaak_verwijderd</td>
       <td>zaak</td>
-      <td>create</td>
+      <td>destroy</td>
       <td>?</td>
   </tr>
   <tr>
