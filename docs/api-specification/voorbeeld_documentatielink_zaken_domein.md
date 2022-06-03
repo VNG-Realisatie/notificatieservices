@@ -1,8 +1,8 @@
 # Notificaties
 
 **Documentatie over notificaties binnen het domein Zaken**
-
-Via een notificatiecomponent kunnen consumers zich abonneren op notificaties uit het domein Zaken.
+ 
+Via een notificatiecomponent kunnen consumers zich abonneren op notificaties uit het domein Zaken.  De notificaties van de ZGW Notificaties API zijn vertaald naar events conform de nieuwe (generieke) Notification API.
 
 ** Todo **
 - Als voorbeeld url naar referentie implementatie opnemen.
@@ -20,9 +20,7 @@ Namespace van het domein is `nl.vng.zaken`.
 
 ## Eventtypes (_Voorheen Resources en acties_)
 
-Voorbeelden van events. 
-
-** Todo ** Definitieve typenamen moeten nog worden vastgesteld.
+Vertaling van recources en acties naar eventttypes.
 
 <table>
   <tr>
@@ -37,41 +35,99 @@ Voorbeelden van events.
       <td><b>Toelichting</b></td>
   </tr>
   <tr>
-      <td>nl.vng.zaken.zaak_gecreerd</td>
+      <td>nl.vng.zaken.zaak_gecreeerd</td>
       <td>zaak</td>
       <td>create</td>
-      <td>Taalgebruik: Aangemaakt of gecreerd?</td>
+      <td></td>
   </tr>
   <tr>
       <td>nl.vng.zaken.zaak_gewijzigd</td>
       <td>zaak</td>
       <td>update</td>
-      <td>?</td>
+      <td></td>
   </tr>
   <tr>
       <td>nl.vng.zaken.zaak_verwijderd</td>
       <td>zaak</td>
       <td>destroy</td>
-      <td>?</td>
+      <td></td>
   </tr>
   <tr>
-      <td>nl.vng.zaken.status_gewijzigd</td>
+      <td>nl.vng.zaken.status_gecreeerd</td>
       <td>status</td>
       <td>create</td>
-      <td>Is de status nu in functionele zin gewijzigd of is er een nieuwe aangemaakt?</td>
+      <td></td>
   </tr>
-    
+  <tr>
+      <td>nl.vng.zaken.zaakobject_gecreeerd</td>
+      <td>zaakobject</td>
+      <td>create</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td>nl.vng.zaken.zaakobject_gewijzigd</td>
+      <td>zaakobject</td>
+      <td>update</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td>nl.vng.zaken.zaakobject_verwijderd</td>
+      <td>zaakobject</td>
+      <td>destroy</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td>nl.vng.zaken.klantcontact_gecreeerd</td>
+      <td>klantcontact</td>
+      <td>create</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td>nl.vng.zaken.rol_gecreeerd</td>
+      <td>rol</td>
+      <td>create</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td>nl.vng.zaken.rol_verwijderd</td>
+      <td>rol</td>
+      <td>destroy</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td>nl.vng.zaken.resultaat_gecreeerd</td>
+      <td>resultaat</td>
+      <td>create</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td>nl.vng.zaken.resultaat_gewijzigd</td>
+      <td>resultaat</td>
+      <td>update</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td>nl.vng.zaken.resultaat_verwijderd</td>
+      <td>resultaat</td>
+      <td>destroy</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td>nl.vng.zaken.zaakbesluit_gecreeerd</td>
+      <td>zaakbesluit</td>
+      <td>create</td>
+      <td></td>
+  </tr> 
+  <tr>
+      <td>nl.vng.zaken.zaakcontactmoment_gecreeerd</td>
+      <td>zaakcontactmoment</td>
+      <td>create</td>
+      <td></td>
+  </tr>  
+  <tr>
+      <td>nl.vng.zaken.zaakverzoek_gecreeerd</td>
+      <td>zaakverzoek</td>
+      <td>create</td>
+      <td></td>
+  </tr>
 </table>
-
-
-** Todo ** Nog om te zetten:
-
-    zaakobject: create, update, destroy
-    zaakinformatieobject: create
-    zaakeigenschap: create, update, destroy
-    klantcontact: create
-    rol: create, destroy
-    resultaat: create, update, destroy
-    zaakbesluit: create
-    zaakcontactmoment: create
-    zaakverzoek: create
