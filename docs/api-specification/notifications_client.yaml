@@ -17,12 +17,11 @@ info:
 security:
 - JWT-Claims: []
 paths:
-  /events:
-  # /{webhooks_path}:
+  /{webhooks_sink_resource}:
     post:
       operationId: events_post
       summary: Push event
-      description: The event will be pushed to the client by posting it to the events resource.
+      description: The event will be pushed to the sink (webhook) provided by the client in the subscription.
       requestBody:
         content:
           application/json:
@@ -39,10 +38,15 @@ paths:
               description: 'Version of the API. For example: 1.2.1.'
       tags:
       - events
-    parameters: []
+    parameters:
+    - name: webhooks_sink_resource
+      in: path
+      required: true
+      schema:
+        type: string
 
 servers:
-- url: /api/v1
+- url: "{webhooks_base_url}"
 components:
   securitySchemes:
     JWT-Claims:
