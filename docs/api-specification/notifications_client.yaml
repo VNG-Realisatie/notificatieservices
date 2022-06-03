@@ -17,11 +17,11 @@ info:
 security:
 - JWT-Claims: []
 paths:
-  /{webhooks_sink_resource}:
+  /{webhook_path}:
     post:
       operationId: events_post
       summary: Push event
-      description: The event will be pushed to the sink (webhook) provided by the client in the subscription.
+      description: The event will be pushed to the sink (also known as callback url or webhook) provided by the client in the subscription.
       requestBody:
         content:
           application/json:
@@ -39,14 +39,11 @@ paths:
       tags:
       - events
     parameters:
-    - name: webhooks_sink_resource
+    - name: webhook_path
       in: path
       required: true
       schema:
         type: string
-
-servers:
-- url: "{webhooks_base_url}"
 components:
   securitySchemes:
     JWT-Claims:
