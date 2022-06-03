@@ -30,17 +30,13 @@ paths:
               $ref: "#/components/schemas/Event"
         required: true
       responses:
-        '200':
-          description: OK
+        '204':
+          description: No Content
           headers:
             API-version:
               schema:
                 type: string
               description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Event"
       tags:
       - events
     parameters: []
