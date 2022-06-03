@@ -704,317 +704,317 @@ paths:
       security:
         - JWT-Claims:
             - (events.publish | events.consume)
-    put:
-      operationId: domains_put
-      summary: Update domain
-      description: Update the specified domain by replacing all properties.
-      parameters:
-        - in: "path"
-          name: "uuid"
-          required: true
-          schema:
-            type: string
-          description: Identifier for the domain.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Domain"
-      responses:
-        '200':
-          description: OK
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Domain'
-        '400':
-          description: Bad request
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ValidationError'
-        '401':
-          description: Unauthorized
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '403':
-          description: Forbidden
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Not found
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '406':
-          description: Not acceptable
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '409':
-          description: Conflict
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '410':
-          description: Gone
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '415':
-          description: Unsupported media type
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '429':
-          description: Too many requests
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal server error
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '501':
-          description: Not Implemented
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '503':
-          description: Service Unavailable
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-      tags:
-      - domains
-      security:
-        - JWT-Claims:
-            - events.publish
-    delete:
-      operationId: domains_delete
-      summary: Delete domain
-      description: Delete the specified domain.
-      parameters:
-        - in: "path"
-          name: "uuid"
-          required: true
-          schema:
-            type: string
-          description: Identifier for the domain.
-      responses:
-        '204':
-          description: No content
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-        '401':
-          description: Unauthorized
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '403':
-          description: Forbidden
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Not found
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '406':
-          description: Not acceptable
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '409':
-          description: Conflict
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '410':
-          description: Gone
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '415':
-          description: Unsupported media type
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '429':
-          description: Too many requests
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal server error
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '501':
-          description: Not Implemented
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '503':
-          description: Service Unavailable
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-      tags:
-      - domains
-      security:
-        - JWT-Claims:
-            - events.publish
+    # put:
+    #   operationId: domains_put
+    #   summary: Update domain
+    #   description: Update the specified domain by replacing all properties.
+    #   parameters:
+    #     - in: "path"
+    #       name: "uuid"
+    #       required: true
+    #       schema:
+    #         type: string
+    #       description: Identifier for the domain.
+    #   requestBody:
+    #     required: true
+    #     content:
+    #       application/json:
+    #         schema:
+    #           $ref: "#/components/schemas/Domain"
+    #   responses:
+    #     '200':
+    #       description: OK
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: '#/components/schemas/Domain'
+    #     '400':
+    #       description: Bad request
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/ValidationError'
+    #     '401':
+    #       description: Unauthorized
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '403':
+    #       description: Forbidden
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '404':
+    #       description: Not found
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '406':
+    #       description: Not acceptable
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '409':
+    #       description: Conflict
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '410':
+    #       description: Gone
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '415':
+    #       description: Unsupported media type
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '429':
+    #       description: Too many requests
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '500':
+    #       description: Internal server error
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '501':
+    #       description: Not Implemented
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '503':
+    #       description: Service Unavailable
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #   tags:
+    #   - domains
+    #   security:
+    #     - JWT-Claims:
+    #         - events.publish
+    # delete:
+    #   operationId: domains_delete
+    #   summary: Delete domain
+    #   description: Delete the specified domain.
+    #   parameters:
+    #     - in: "path"
+    #       name: "uuid"
+    #       required: true
+    #       schema:
+    #         type: string
+    #       description: Identifier for the domain.
+    #   responses:
+    #     '204':
+    #       description: No content
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #     '401':
+    #       description: Unauthorized
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '403':
+    #       description: Forbidden
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '404':
+    #       description: Not found
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '406':
+    #       description: Not acceptable
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '409':
+    #       description: Conflict
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '410':
+    #       description: Gone
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '415':
+    #       description: Unsupported media type
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '429':
+    #       description: Too many requests
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '500':
+    #       description: Internal server error
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '501':
+    #       description: Not Implemented
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #     '503':
+    #       description: Service Unavailable
+    #       headers:
+    #         API-version:
+    #           schema:
+    #             type: string
+    #           description: 'Version of the API. For example: 1.2.1.'
+    #       content:
+    #         application/problem+json:
+    #           schema:
+    #             $ref: '#/components/schemas/Error'
+    #   tags:
+    #   - domains
+    #   security:
+    #     - JWT-Claims:
+    #         - events.publish
   /subscriptions:
     get:
       operationId: subscriptions_list
