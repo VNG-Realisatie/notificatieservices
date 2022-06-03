@@ -47,51 +47,51 @@ paths:
           content:
             application/cloudevents+json; charset=utf-8:
               schema:
-                type: object
-        '201':
-          description: Created
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-            Location:
-              schema:
-                type: string
-                format: uri
-              description: 'Uri to the created instance.'
-          content:
-            application/cloudevents+json; charset=utf-8:
-              schema:
-                type: object
-        '202':
-          description: Accepted
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-            Location:
-              schema:
-                type: string
-                format: uri
-              description: 'Uri to the created instance.'
-          content:
-            application/cloudevents+json; charset=utf-8:
-              schema:
-                type: object
-        '204':
-          description: No content
-          headers:
-            API-version:
-              schema:
-                type: string
-              description: 'Version of the API. For example: 1.2.1.'
-            Location:
-              schema:
-                type: string
-                format: uri
-              description: 'Uri to the created instance.'
+                $ref: '#/components/schemas/Event'
+        # '201':
+        #   description: Created
+        #   headers:
+        #     API-version:
+        #       schema:
+        #         type: string
+        #       description: 'Version of the API. For example: 1.2.1.'
+        #     Location:
+        #       schema:
+        #         type: string
+        #         format: uri
+        #       description: 'Uri to the created instance.'
+        #   content:
+        #     application/cloudevents+json; charset=utf-8:
+        #       schema:
+        #         type: object
+        # '202':
+        #   description: Accepted
+        #   headers:
+        #     API-version:
+        #       schema:
+        #         type: string
+        #       description: 'Version of the API. For example: 1.2.1.'
+        #     Location:
+        #       schema:
+        #         type: string
+        #         format: uri
+        #       description: 'Uri to the created instance.'
+        #   content:
+        #     application/cloudevents+json; charset=utf-8:
+        #       schema:
+        #         type: object
+        # '204':
+        #   description: No content
+        #   headers:
+        #     API-version:
+        #       schema:
+        #         type: string
+        #       description: 'Version of the API. For example: 1.2.1.'
+        #     Location:
+        #       schema:
+        #         type: string
+        #         format: uri
+        #       description: 'Uri to the created instance.'
         '400':
           description: Bad request
           headers:
@@ -532,15 +532,15 @@ paths:
         - JWT-Claims:
             - events.publish
     parameters: []
-  /domains/{name}:
+  /domains/{uuid}:
     get:
       operationId: domains_get
       summary: Request domain info
       description: Returns information about the specified domain.
       parameters:
       - in: "path"
-        name: "name"
-        description: Name of the domain
+        name: "uuid"
+        description: Identifier for the domain.
         required: true
         schema:
           type: string
@@ -710,11 +710,11 @@ paths:
       description: Update the specified domain by replacing all properties.
       parameters:
         - in: "path"
-          name: "name"
+          name: "uuid"
           required: true
           schema:
             type: string
-          description: Name of the domain
+          description: Identifier for the domain.
       requestBody:
         required: true
         content:
@@ -876,11 +876,11 @@ paths:
       description: Delete the specified domain.
       parameters:
         - in: "path"
-          name: "name"
+          name: "uuid"
           required: true
           schema:
             type: string
-          description: Name of the domain
+          description: Identifier for the domain.
       responses:
         '204':
           description: No content
@@ -1826,12 +1826,27 @@ components:
       scheme: bearer
       type: http
   schemas:
-
     Domain:
       required:
       - name
       type: object
       properties:
+        url:
+          title: URL
+          description: URL reference to this resource. This link is generated automatically.
+          type: string
+          format: uri
+          maxLength: 2042
+          minLength: 1
+          readOnly: true
+          example: "https://example.com"
+        uuid:
+          title: uuid
+          description: Identifier for the domain.
+          type: string
+          format: uuid
+          readOnly: true
+          example: "7a22eb38-bca6-463f-9955-54ab040287cb"
         name:
           title: name
           description: Name of the domain.
