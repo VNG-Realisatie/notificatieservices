@@ -3,9 +3,8 @@ title: Tutorial notificeren
 weight: 40
 ---
 
-In deze tutorial configureren we de referentieimplementaties van de ZGW
-componenten voor het versturen en ontvangen van notificaties via de
-Notificaties API (NRC).
+In deze tutorial configureren we de referentieimplementaties van de algemene voor het versturen en ontvangen van notificaties via de generieke 
+Notificaties API.
 
 De tutorial is hands-on - onderaan vind je verdere referenties en bronnen
 indien je meer wil lezen.
