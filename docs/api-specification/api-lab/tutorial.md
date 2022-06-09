@@ -50,14 +50,14 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
    Authorization: Bearer abcd1234
    ```
    Het resultaat ziet er als onderstaand uit:
-   
+   ...
    {
         "name": "nl.vng.zaken",
         "documentationLink": "https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/voorbeeld_documentatielink_zaken_domein.md",
         "filterAttributes": [],
         "url": "https://notificaties-api.test.vng.cloud/api/v1/domains/3afb22e1-92f8-469f-9b50-35748642c82b"
     }
-   
+   ...
    Als het domein bestaat, kun je aan de hand van de UUID van het domein, de details van het domein opvragen (in dit geval zou dat dan 3afb22e1-92f8-469f-9b50-35748642c82b zijn)
    
    ```http
