@@ -25,9 +25,9 @@ De volgende componenten zijn meest relevant:
 
 ### Ontvangen en versturen van notificaties
 
-Het P:RC verstuurt notificaties naar het NRC. Het NRC distribueert deze vervolgens naar de abonnees.
+Het PRC verstuurt notificaties naar het NRC. Het NRC distribueert deze vervolgens naar de abonnees.
 
-De notificaties zijn inzichtelijk gemaakt op het NRC - ga naar `http://<nrc-ip>:8004` en klik op de homepage op de 'Logviewer'.
+De notificaties zijn inzichtelijk gemaakt op het NRC - ga naar [https://notificaties-api.test.vng.cloud/] en klik op de knop 'Logviewer'.
 
 Er zijn twee perspectieven:
 
