@@ -15,7 +15,7 @@ De volgende componenten zijn meest relevant:
 ## Wat zijn de vereisten voor deze tutorial?
 
 * API-key voor authorisatie
-
+* 
 * `optioneel`
   * `docker` en `docker-compose` om lokaal op je (ontwikkelmachine) de componenten te hosten. Tijdens het API-Lab kan de installatie en werking van het docker-image niet ondersteund worden.
 
@@ -53,7 +53,7 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
    
    {
         "name": "nl.vng.zaken",
-        "documentationLink": "https://github.com/VNG-Realisatie/zaken-api/",
+        "documentationLink": "https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/voorbeeld_documentatielink_zaken_domein.md",
         "filterAttributes": [],
         "url": "https://notificaties-api.test.vng.cloud/api/v1/domains/3afb22e1-92f8-469f-9b50-35748642c82b"
     }
@@ -74,8 +74,8 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
 
     {
       "naam": "nl.vng.zaken",
-      "documentatieLink": "https://github.com/VNG-Realisatie/zaken-api/",
-      "filters": [
+      "documentatieLink": "https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/voorbeeld_documentatielink_zaken_domein.md",
+      "filterAttributes": [
         "bronorganisatie",
         "zaaktype",
         "vertrouwelijkheidaanduiding"
@@ -83,54 +83,46 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
     }
     ```
 
-    De documentatielink hoort te documenteren welke kenmerken relevant zijn
-    voor een domein, en welke events gepubliceerd worden. Dit helpt consumers
-    om te bepalen waarop ze willen abonneren.
+    De documentatielink hoort te documenteren welke kenmerken relevant zijn voor een domein, en welke events gepubliceerd kunnen worden. Dit helpt consumers om te bepalen waarop ze willen abonneren.
 
 4. Verstuur een bericht
 
     ```http
-    POST https://ref.tst.vng.cloud/nrc/api/v1/notificaties HTTP/1.0
+    POST https://notificaties-api.test.vng.cloud/api/v1/events HTTP/1.0
     Authorization: Bearer abcd1234
     Content-Type: application/json
-
+    
     {
-      "kanaal": "zaken",
-      "hoofdObject": "https://ref.tst.vng.cloud/zrc/api/v1/zaken/ddc6d192",
-      "resource": "status",
-      "resourceUrl": "https://ref.tst.vng.cloud/zrc/api/v1/statussen/44fdcebf",
-      "actie": "create",
-      "aanmaakdatum": "2019-03-27T10:59:13Z",
-      "kenmerken": {
-        "bronorganisatie": "224557609",
-        "zaaktype": "https://ref.tst.vng.cloud/ztc/api/v1/catalogussen/39732928/zaaktypen/53c5c164",
-        "vertrouwelijkheidaanduiding": "openbaar"
-      }
+        "id": "042eecb9-be40-4588-8c3c-8de1e0c27ae8",
+        "specversion": "1.0",
+        "source": "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem",
+        "domain": "nl.vng.zaken",
+        "type": "nl.vng.zaken.zaak_gecreeerd",
+        "time": "2022-06-15T09:00:00.001Z",
+        "datacontenttype": "application/json",
+        "data": {
+            "foo": "bar"
+        }
     }
     ```
 
 #### Ik wil als consumer notificaties ontvangen
 
-Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben
-voor deze acties. Je kan de [tokentool][token-generator] gebruiken om een
-JWT te genereren.
+Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor deze acties. Je kan de [tokentool][token-generator] gebruiken om een JWT te genereren.
 
-1. Voorzie een endpoint om notificaties te ontvangen. Een eenvoudige manier om
-   deze te inspecteren is met de [webhook-site](https://webhook.site). Voor het
-   vervolgen gebruiken we `https://webhook.site/ea216914-fc38-462e-a24c-7dc7e969d873`
-   als voorbeeld-URL waarop notificaties bezorgd worden.
+1. Voorzie een endpoint om notificaties te ontvangen. Een eenvoudige manier om deze te inspecteren is met de [webhook-site](https://webhook.site). Voor het vervolgen gebruiken we `https://webhook.site/ea216914-fc38-462e-a24c-7dc7e969d873` als voorbeeld-URL waarop notificaties bezorgd worden.
 
-2. Vraag op welke kanalen beschikbaar zijn:
+2. Vraag op welke domeinen beschikbaar zijn:
 
    ```http
-   GET http://<nrc-ip>:8004/api/v1/kanaal HTTP/1.0
+   GET https://notificaties-api.test.vng.cloud/api/v1/domains HTTP/1.0
    Authorization: Bearer abcd1234
     ````
 
 3. Registreer je abonnement bij het NRC:
 
    ```http
-   POST http://<nrc-ip>:8004/api/v1/abonnement HTTP/1.0
+   POST  https://notificaties-api.test.vng.cloud/api/v1/subscription HTTP/1.0
    Authorization: Bearer abcd1234
    Content-Type: application/json
 
