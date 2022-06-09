@@ -36,23 +36,23 @@ Er zijn twee perspectieven:
 
 #### Ik wil als bron notificaties publiceren
 
-Het registreren van de kanalen eerder zorgde voor de noodzakelijke stappen.
+Het registreren van de domeinen is een noodzakelijke stap om notificaties te kunnen publiceren.
 
-Eenvoudigweg operaties uitvoeren op de ZRC en/of DRC API zal ervoor zorgen
-dat notificaties gepubliceerd worden. Je kan bijvoorbeeld via de API een zaak
-aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien.
+Eenvoudigweg operaties uitvoeren op de PRC API zal ervoor zorgen dat notificaties gepubliceerd worden. Je kan bijvoorbeeld via de API een zaak
+aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. De token om in het API-Lab te gebruiken, zal worden verspreid en biedt alle autorisaties.
 
-Je dient de scope `notificaties.scopes.publiceren` in het JWT te hebben
-voor deze acties. Je kan de [tokentool][token-generator] gebruiken om een
-JWT te genereren.
+1. Bepaal de naam van het domein. Voor bijvoorbeeld zaken is dit `nl.vng.zaken`.
 
-1. Bepaal de naam van het kanaal. Voor het ZRC bijvoorbeeld is dit `zaken`.
-
-2. Zorg dat het kanaal bekend is bij het NC. Je kan dit controleren door een
-   query te doen:
-
+2. Zorg dat het domein bekend is bij het NC. Je kan dit controleren door eerst de lijst met domeinen op te vragen:
+ 
    ```http
-   GET https://ref.tst.vng.cloud/nrc/api/v1/kanaal?naam=zaken HTTP/1.0
+   GET https://notificaties-api.test.vng.cloud/api/v1/domains/nl.vng.zaken HTTP/1.0
+   Authorization: Bearer abcd1234
+   ```
+
+   
+   ```http
+   GET https://notificaties-api.test.vng.cloud/api/v1/domains/nl.vng.zaken HTTP/1.0
    Authorization: Bearer abcd1234
    ```
 
