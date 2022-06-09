@@ -2105,7 +2105,7 @@ components:
               items:
                 title: "Filter entry"
                 oneOf:
-                # - $ref: "#/components/schemas/Filter"
+                - $ref: "#/components/schemas/Filter"
                 - $ref: "#/components/schemas/AllFilter"
                 - $ref: "#/components/schemas/AnyFilter"
                 - $ref: "#/components/schemas/NotFilter"
@@ -2127,7 +2127,7 @@ components:
               items:
                 title: "Filter entry"
                 oneOf:
-                  # - $ref: "#/components/schemas/Filter"
+                  - $ref: "#/components/schemas/Filter"
                   - $ref: "#/components/schemas/AllFilter"
                   - $ref: "#/components/schemas/AnyFilter"
                   - $ref: "#/components/schemas/NotFilter"
@@ -2145,7 +2145,7 @@ components:
             not:
               type: object
               oneOf:
-                # - $ref: "#/components/schemas/Filter"
+                - $ref: "#/components/schemas/Filter"
                 - $ref: "#/components/schemas/AllFilter"
                 - $ref: "#/components/schemas/AnyFilter"
                 - $ref: "#/components/schemas/NotFilter"
