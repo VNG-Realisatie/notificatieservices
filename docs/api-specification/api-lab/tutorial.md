@@ -50,7 +50,7 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
    Authorization: Bearer abcd1234
    ```
    Het resultaat ziet er als onderstaand uit:
-   ...
+   ...json
    {
         "name": "nl.vng.zaken",
         "documentationLink": "https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/voorbeeld_documentatielink_zaken_domein.md",
