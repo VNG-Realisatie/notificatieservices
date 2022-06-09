@@ -15,10 +15,8 @@ De volgende componenten zijn meest relevant:
 ## Wat zijn de vereisten voor deze tutorial?
 
 * API-key voor authorisatie
-* 
 * `optioneel`
-  * `docker` en `docker-compose` om lokaal op je (ontwikkelmachine) de componenten te hosten. Tijdens het API-Lab kan de installatie en werking van het docker-image niet ondersteund worden.
-
+* `docker` en `docker-compose` zijn aanwezig, tjdens het API-Lab kan de installatie en werking van het docker-image niet ondersteund worden.
 * Familiariteit met webhooks is een plus
 
 ## Aan de slag
