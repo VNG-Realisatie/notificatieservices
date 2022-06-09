@@ -46,29 +46,35 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
 2. Zorg dat het domein bekend is bij het NC. Je kan dit controleren door eerst de lijst met domeinen op te vragen:
  
    ```http
-   GET https://notificaties-api.test.vng.cloud/api/v1/domains/nl.vng.zaken HTTP/1.0
+   GET https://notificaties-api.test.vng.cloud/api/v1/domains HTTP/1.0
    Authorization: Bearer abcd1234
    ```
-
+   Het resultaat ziet er als onderstaand uit:
+   
+   {
+        "name": "nl.vng.zaken",
+        "documentationLink": "https://github.com/VNG-Realisatie/zaken-api/",
+        "filterAttributes": [],
+        "url": "https://notificaties-api.test.vng.cloud/api/v1/domains/3afb22e1-92f8-469f-9b50-35748642c82b"
+    }
+   
+   Als het domein bestaat, kun je aan de hand van de UUID van het domein, de details van het domein opvragen (in dit geval zou dat dan 3afb22e1-92f8-469f-9b50-35748642c82b zijn)
    
    ```http
-   GET https://notificaties-api.test.vng.cloud/api/v1/domains/nl.vng.zaken HTTP/1.0
+   GET https://notificaties-api.test.vng.cloud/api/v1/domains/UUID HTTP/1.0
    Authorization: Bearer abcd1234
    ```
 
-   Indien een lege lijst terugkomt, dan bestaat het kanaal nog niet. Indien het
-   kanaal wel al bestaat, ga dan naar stap 4.
-
-3. Registreer het kanaal (indien het nog niet bestaat)
+3. Registreer het domein (indien het nog niet bestaat)
 
     ```http
-    POST https://ref.tst.vng.cloud/nrc/api/v1/kanaal HTTP/1.0
+    POST https://notificaties-api.test.vng.cloud/api/v1/domains HTTP/1.0
     Authorization: Bearer abcd1234
     Content-Type: application/json
 
     {
-      "naam": "zaken",
-      "documentatieLink": "https://ref.tst.vng.cloud/zrc/ref/kanalen/#zaken",
+      "naam": "nl.vng.zaken",
+      "documentatieLink": "https://github.com/VNG-Realisatie/zaken-api/",
       "filters": [
         "bronorganisatie",
         "zaaktype",
@@ -78,7 +84,7 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
     ```
 
     De documentatielink hoort te documenteren welke kenmerken relevant zijn
-    voor een kanaal, en welke events gepubliceerd worden. Dit helpt consumers
+    voor een domein, en welke events gepubliceerd worden. Dit helpt consumers
     om te bepalen waarop ze willen abonneren.
 
 4. Verstuur een bericht
