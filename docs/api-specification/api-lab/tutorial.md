@@ -50,19 +50,22 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
    Authorization: Bearer abcd1234
    ```
    Het resultaat ziet er als onderstaand uit:
-   ...json
+   ```json
    {
-        "name": "nl.vng.zaken",
+        "name": "nl.vng.zaken2",
         "documentationLink": "https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/voorbeeld_documentatielink_zaken_domein.md",
-        "filterAttributes": [],
-        "url": "https://notificaties-api.test.vng.cloud/api/v1/domains/3afb22e1-92f8-469f-9b50-35748642c82b"
+        "filterAttributes": [
+            "bronorganisatie",
+            "vertrouwelijkheidsaanduiding",
+            "zaaktype"]
+        "url": "https://notificaties-api.test.vng.cloud/api/v1/domains/8ce0ae0d-941f-406e-99c8-5f1ac7ebc699"
     }
-   ...
-   Als het domein bestaat, kun je aan de hand van de UUID van het domein, de details van het domein opvragen (in dit geval zou dat dan 3afb22e1-92f8-469f-9b50-35748642c82b zijn)
+   ```
+   Als het domein bestaat, kun je aan de hand van de UUID van het domein, de details van het domein opvragen (in dit geval zou dat dan 8ce0ae0d-941f-406e-99c8-5f1ac7ebc699 zijn)
    
    ```http
-   GET https://notificaties-api.test.vng.cloud/api/v1/domains/UUID HTTP/1.0
-   Authorization: Bearer abcd1234
+   GET https://notificaties-api.test.vng.cloud/api/v1/domains/8ce0ae0d-941f-406e-99c8-5f1ac7ebc699 HTTP/1.0
+   Authorization: Bearer abcd1234   
    ```
 
 3. Registreer het domein (indien het nog niet bestaat)
