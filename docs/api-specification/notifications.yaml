@@ -2052,6 +2052,54 @@ components:
               - $ref: "#/components/schemas/PrefixFilter"
               - $ref: "#/components/schemas/SuffixFilter"
               # - $ref: "#/components/schemas/SqlFilter"
+          example: '[
+        {
+            "any": [
+                {
+                    "all": [
+                        {
+                            "exact": {
+                                "attribute": "domain",
+                                "value": "nl.vng.zaken"
+                            }
+                        },
+                        {
+                            "any": [
+                                {
+                                    "exact": {
+                                        "attribute": "domain",
+                                        "value": "nl.vng.zaken"
+                                    }
+                                },
+                                {
+                                    "exact": {
+                                        "attribute": "type",
+                                        "value": "nl.vng.zaken.zaak_gesloten"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "all": [
+                        {
+                            "exact": {
+                                "attribute": "domain",
+                                "value": "nl.vng.zaken"
+                            }
+                        },
+                        {
+                            "exact": {
+                                "attribute": "type",
+                                "value": "nl.vng.zaken.zaak_gesloten"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]'
         config:
           description: OPTIONAL. Implementation-specific configuration parameters needed by the subscription manager for acquiring events.
           type: object
