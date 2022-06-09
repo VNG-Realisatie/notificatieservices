@@ -1,32 +1,23 @@
----
-title: Tutorial notificeren
-weight: 40
----
+
+# Tutorial notificeren
 
 In deze tutorial configureren we de referentieimplementaties van de algemene voor het versturen en ontvangen van notificaties via de generieke 
 Notificaties API.
 
-De tutorial is hands-on - onderaan vind je verdere referenties en bronnen
-indien je meer wil lezen.
+De tutorial is hands-on - onderaan vind je verdere referenties en bronnen indien je meer wil lezen.
 
 De volgende componenten zijn meest relevant:
 
 * NRC: voor het routeren van notificaties, kanaal- en abonnementbeheer
-* ZRC: voor het versturen van `zaken`-notificaties
-* DRC: voor het versturen van `documenten`-notificaties
-* ZTC: voor validaties bij het aanmaken van zaken en documenten
+* PRC: voor het versturen van notificaties
+
 
 ## Wat zijn de vereisten voor deze tutorial?
 
-* `docker` en `docker-compose` om lokaal op je (ontwikkelmachine) de
-  componenten te hosten. Zie ['installatie en configuratie'](./installatie-en-configuratie) voor een
-  uitgebreide beschrijving.
+* API-key voor authorisatie
 
-* Het handigste is om de containers in 1 command prompt te hebben draaien, en
-  extra commando's in een tweede prompt ernaast uit te voeren. Zorg dat beide
-  prompts zich in de juiste directory bevinden: `/pad/naar/gemma-zaken/infra`.
-
-* De [eenmalige setup](./eenmalige-setup) is uitgevoerd.
+* `optioneel`
+  * `docker` en `docker-compose` om lokaal op je (ontwikkelmachine) de componenten te hosten. Tijdens het API-Lab kan de installatie en werking van het docker-image niet ondersteund worden.
 
 * Familiariteit met webhooks is een plus
 
@@ -34,11 +25,9 @@ De volgende componenten zijn meest relevant:
 
 ### Ontvangen en versturen van notificaties
 
-Het ZRC en DRC versturen notificaties naar het NRC. Het NRC distribueert deze
-vervolgens naar de abonnees.
+Het P:RC verstuurt notificaties naar het NRC. Het NRC distribueert deze vervolgens naar de abonnees.
 
-De notificaties zijn inzichtelijk gemaakt op het NRC - ga naar
-`http://<nrc-ip>:8004` en klik op de homepage op de 'Logviewer'.
+De notificaties zijn inzichtelijk gemaakt op het NRC - ga naar `http://<nrc-ip>:8004` en klik op de homepage op de 'Logviewer'.
 
 Er zijn twee perspectieven:
 
