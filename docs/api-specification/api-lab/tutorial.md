@@ -102,10 +102,12 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
         "domain": "nl.vng.zaken",
         "type": "nl.vng.zaken.zaak_gecreeerd",
         "time": "2022-06-15T09:00:00.001Z",
+	"subscriberReference": "RefnaarContract",
         "datacontenttype": "application/json",
         "data": {
             "foo": "bar"
-        }
+        },
+	"dataref": "https://www.vng.nl/"
     }
     ```
 
@@ -152,35 +154,54 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
     "domain": "nl.vng.zaken2",
     "types": [],
     "filters":
-    [ {
-       "any": [
-           {
-               "all": [
-                   {
-                       "exact": {
-                           "attribute": "domain",
-                           "value": "nl.vng.zaken2"
-                       }
-                   },
-                   {
-                       "any": [
-                           {
-                               "exact": {
-                                   "attribute": "type",
-                                   "value": "nl.vng.zaken2.zaak_gesloten"
-                               }
-                           },
-                           {
-                               "exact": {
-                                   "attribute": "type",
-                                   "value": "nl.vng.zaken2.zaak_geopend"
-                               }
-                           }
-                       ]
-                   }
-               ]
-         }
-				],
+    [
+	{
+		"any": [
+			{
+				"all": [
+					{
+						"exact": {
+							"attribute": "domain",
+							"value": "nl.vng.zaken2"
+						}
+					},
+					{
+						"any": [
+							{
+								"exact": {
+									"attribute": "type",
+									"value": "nl.vng.zaken2.zaak_gesloten"
+								}
+							},
+							{
+								"exact": {
+									"attribute": "type",
+									"value": "nl.vng.zaken2.zaak_geopend"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"all": [
+					{
+						"exact": {
+							"attribute": "domain",
+							"value": "nl.vng.burgerzaken"
+						}
+					},
+					{
+						"exact": {
+							"attribute": "type",
+							"value": "nl.vng.burgerzaken.kind_geboren_aangifte_elders"
+						}
+					}
+				]
+			}
+		]
+	}
+    ],
     "subscriberReference": "Ref"
     }
     ```
@@ -199,39 +220,43 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
 
     * `types` CloudEvent-types van de notificatie. Dit is een array van meerdere typen. Als dit leeggelaten wordt, ontvang je alle notificaties
 
-    * `filters` zijn optioneel. Dit is een recursieve structuur. Array of AllFilter (object) or AnyFilter (object) or NotFilter (object) or exact filter (object) or prefix filter (object) or suffix filter (object) (Filter entry). In dit voorbeeld is er gefilterd op het domein nl.vng.zaken2 en dan of het type nl.vng.zaken2.zaak_gesloten of het type
-      
+    * `filters` zijn optioneel. Dit is een recursieve structuur. Array of AllFilter (object) or AnyFilter (object) or NotFilter (object) or exact filter (object) or prefix filter (object) or suffix filter (object) (Filter entry). In dit voorbeeld is er als onderstaand gefilterd:
+    	
+		* Domein nl.vng.zaken2 en dan of het type nl.vng.zaken2.zaak_gesloten of het type nl.vng.zaken2.zaak_geopend 
+	* of 
+    	* Domein nl.vng.burgerzaken en dan type nl.vng.burgerzaken.kind_geboren_aangifte_elders
+	
     * `subscriberReference' is bv een contractnummer of interne referentie naar dit abonnement
-
-   
 
 4. Berichten worden nu naar je eigen endpoint gestuurd met een POST request
 
-    Hieronder staat een verzoek zoals dat gedaan wordt door het NRC. Je kan dit
-    verzoek uiteraard ook zelf sturen voor test doeleinden:
+    Hieronder staat een verzoek zoals dat gedaan wordt door het NRC. Je kan dit verzoek uiteraard ook zelf sturen voor test doeleinden:
 
    ```http
-   POST https://webhook.site/ea216914-fc38-462e-a24c-7dc7e969d873 HTTP/1.0
+   POST https://webhook.site/6f61b940-47fb-46d0-9b01-3587cacad9d9 HTTP/1.0
    Content-Type: application/json
-   Authorization: Token abcde12345
+   Authorization: Bearer abcde12345
 
    {
-     "kanaal": "zaken",
-     "hoofdObject": "https://zaken-api.vng.cloud/api/v1/zaken/ddc6d192",
-     "resource": "status",
-     "resourceUrl": "https://zaken-api.vng.cloud/api/v1/statussen/44fdcebf",
-     "actie": "create",
-     "aanmaakdatum": "2019-03-27T10:59:13Z",
-     "kenmerken": {
-       "bronorganisatie": "224557609",
-       "zaaktype": "https://catalogi-api.vng.cloud/api/v1/zaaktypen/53c5c164",
-       "vertrouwelijkheidaanduiding": "openbaar"
-     }
+   	"id": "042eecb9-be40-4588-8c3c-8de1e0c27ae8",
+	"data": 
+		{
+			"foo": "bar"
+		},
+	 "time": "2018-03-07T15:47:57.420Z",
+	 "type": "nl.vng.zaken.zaak_gecreeerd",
+	 "domain": "nl.vng.zaken",
+	 "source": "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem",
+	 "dataref": "https://www.vng.nl/",
+	 "specversion": "1.0",
+	 "datacontenttype": "application/json",
+	 "subscriberReference": "RefnaarContract",
+	 "subscription": "02b95def-c6be-4042-9672-6f73b094e997"
    }
    ```
 
     Merk op dat de `Authorization` header hier verschilt van de `Authorization`
-    naar het NRC. De notificatie wordt naar jouw eigen endpoint verstuurd,
+    naar het NRC (als dit aangegeven is. De notificatie wordt naar jouw eigen endpoint verstuurd,
     en bij het abonneren heb je aangegeven wat de `Authorization` header
     hiervoor moet zijn.
 
