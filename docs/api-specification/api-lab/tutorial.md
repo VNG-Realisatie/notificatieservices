@@ -207,7 +207,7 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
     ```
     * `protocol` is standaard HTTP
 
-    * `protocolSettings' wordt gebruikt om headers door te sturen naar de abonnee
+    * `protocolSettings` wordt gebruikt om headers door te sturen naar de abonnee
 
     * `sink` is de volledige URL naar je _eigen_ endpoint waar je de notificaties wenst op te ontvangen 
 
@@ -220,7 +220,7 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
 
     * `types` CloudEvent-types van de notificatie. Dit is een array van meerdere typen. Als dit leeggelaten wordt, ontvang je alle notificaties
 
-    * `filters` zijn optioneel. Dit is een recursieve structuur. Array of AllFilter (object) or AnyFilter (object) or NotFilter (object) or exact filter (object) or prefix filter (object) or suffix filter (object) (Filter entry). In dit voorbeeld is er als onderstaand gefilterd:
+    * `filters` zijn optioneel. Dit is een recursieve structuur. Array of AllFilter (object) or AnyFilter (object) or NotFilter (object) or exact filter (object) or prefix filter (object) or suffix filter (object) (Filter entry). (Zie ook nog https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/gedrag.md#beoordelen-filtercriteria). In bovenstaand voorbeeld is er als onderstaand gefilterd:
     	
 		* Domein nl.vng.zaken2 en dan of het type nl.vng.zaken2.zaak_gesloten of het type nl.vng.zaken2.zaak_geopend 
 	* of 
@@ -255,18 +255,9 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
    }
    ```
 
-    Merk op dat de `Authorization` header hier verschilt van de `Authorization`
-    naar het NRC (als dit aangegeven is. De notificatie wordt naar jouw eigen endpoint verstuurd,
-    en bij het abonneren heb je aangegeven wat de `Authorization` header
-    hiervoor moet zijn.
-
-[token-generator]: https://zaken-auth.vng.cloud
+    Merk op dat de `Authorization` header hier verschilt van de `Authorization` naar het NRC (als dit aangegeven is. De notificatie wordt naar jouw eigen endpoint verstuurd, en bij het abonneren heb je aangegeven wat de `Authorization` header hiervoor moet zijn. Voor het API-Lab wordt een specifiek gegenereerde Token gebruikt.
 
 
 ## Achtergrondinformatie
 
-De [technische notificaties achtergrond](/gemma-zaken/themas/achtergronddocumentatie/notificaties) bevat de
-design-standpunten en onderkent de limitaties en risico's van deze aanpak.
-
-[Hier](./_assets/notificeren.pptx) is de presentatie te vinden die gegeven is op het
-API-lab.
+Er zijn enkele beperkingen en de uitgangspunten en beperkingen staan op https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/ontwerpbesluiten.md
