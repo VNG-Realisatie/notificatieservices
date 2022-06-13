@@ -261,3 +261,9 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
 ## Achtergrondinformatie
 
 Er zijn enkele beperkingen en de uitgangspunten en beperkingen staan op https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/ontwerpbesluiten.md
+
+## Postman scripts ##
+
+Om de API zelf te kunnen testen, zijn er enkele voorbeeld scripts gemaakt voor gebruik in Postman. 
+
+[Notificaties API-Lab.postman_collection.json.zip](https://github.com/VNG-Realisatie/notificatieservices/files/8890465/Notificaties.API-Lab.postman_collection.json.zip)
