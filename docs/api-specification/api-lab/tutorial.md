@@ -15,9 +15,11 @@ De volgende componenten zijn meest relevant:
 ## Wat zijn de vereisten voor deze tutorial?
 
 * API-key voor authorisatie
+ * Voor het API-Lab is dat de API-Key:
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s
 * `optioneel`
-* `docker` en `docker-compose` zijn aanwezig, tjdens het API-Lab kan de installatie en werking van het docker-image niet ondersteund worden.
 * Familiariteit met webhooks is een plus
+* `docker` en `docker-compose` zijn aanwezig, tjdens het API-Lab kan de installatie en werking van het docker-image niet ondersteund worden.
 
 ## Aan de slag
 
@@ -39,13 +41,13 @@ Het registreren van de domeinen is een noodzakelijke stap om notificaties te kun
 Eenvoudigweg operaties uitvoeren op de PRC API zal ervoor zorgen dat notificaties gepubliceerd worden. Je kan bijvoorbeeld via de API een zaak
 aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. De token om in het API-Lab te gebruiken, zal worden verspreid en biedt alle autorisaties.
 
-1. Bepaal de naam van het domein. Voor bijvoorbeeld zaken is dit `nl.vng.zaken`.
+1. Bepaal de naam van het domein. Voor bijvoorbeeld zaken is dit `nl.vng.zaken2`.
 
 2. Zorg dat het domein bekend is bij het NC. Je kan dit controleren door eerst de lijst met domeinen op te vragen:
  
    ```http
    GET https://notificaties-api.test.vng.cloud/api/v1/domains HTTP/1.0
-   Authorization: Bearer abcd1234
+   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s
    ```
    Het resultaat ziet er als onderstaand uit:
    ```json
@@ -63,7 +65,7 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
    
    ```http
    GET https://notificaties-api.test.vng.cloud/api/v1/domains/8ce0ae0d-941f-406e-99c8-5f1ac7ebc699 HTTP/1.0
-   Authorization: Bearer abcd1234   
+   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s   
    ```
 
 3. Registreer het domein (indien het nog niet bestaat)
@@ -74,7 +76,7 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
     Content-Type: application/json
 
     {
-      "naam": "nl.vng.zaken",
+      "naam": "nl.vng.zaken2",
       "documentatieLink": "https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/voorbeeld_documentatielink_zaken_domein.md",
       "filterAttributes": [
         "bronorganisatie",
@@ -90,7 +92,7 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
 
     ```http
     POST https://notificaties-api.test.vng.cloud/api/v1/events HTTP/1.0
-    Authorization: Bearer abcd1234
+    Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s
     Content-Type: application/json
     
     {
@@ -117,29 +119,37 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
 
    ```http
    GET https://notificaties-api.test.vng.cloud/api/v1/domains HTTP/1.0
-   Authorization: Bearer abcd1234
+   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s
     ````
 
 3. Registreer je abonnement bij het NRC:
 
    ```http
    POST  https://notificaties-api.test.vng.cloud/api/v1/subscription HTTP/1.0
-   Authorization: Bearer abcd1234
+   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s
    Content-Type: application/json
 
    {
-     "callbackUrl": "https://webhook.site/ea216914-fc38-462e-a24c-7dc7e969d873",
-     "auth": "dummy",
-     "kanalen": [
-       {
-         "naam": "zaken",
-         "filters": {
-           "bronorganisatie": "224557609"
-         }
-       }
-     ]
-   }
-   ```
+    "protocol": "HTTP",
+    "sink": "https://webhook.site/6f61b940-47fb-46d0-9b01-3587cacad9d9",
+    "source": "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem",
+    "protocolSettings": {
+        "headers": {
+            "X-Custom-Header": "foobar"
+        },
+        "method": "POST"
+    },
+    "sinkCredential": {
+        "credentialType": "ACCESSTOKEN",
+        "accessToken": "abcd1234",
+        "accessTokenExpiresUtc": "2022-12-31T23:59:00.000Z",
+        "accessTokenType": "bearer"
+    },
+    "config": {},
+    "domain": "nl.vng.zaken",
+    "types": []
+    }
+    ```
 
     * `callbackUrl` is de volledige URL naar je _eigen_ endpoint waar je
       notificaties wenst op te ontvangen
