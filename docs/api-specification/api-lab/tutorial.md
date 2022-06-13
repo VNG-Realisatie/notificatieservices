@@ -141,29 +141,69 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
     },
     "sinkCredential": {
         "credentialType": "ACCESSTOKEN",
-        "accessToken": "abcd1234",
+        "accessToken": "abcdef",
         "accessTokenExpiresUtc": "2022-12-31T23:59:00.000Z",
         "accessTokenType": "bearer"
     },
-    "config": {},
-    "domain": "nl.vng.zaken",
-    "types": []
+    "config": {
+       "property1":"string1",
+       "property1":"string2"
+    },
+    "domain": "nl.vng.zaken2",
+    "types": [],
+    "filters":
+    [ {
+       "any": [
+           {
+               "all": [
+                   {
+                       "exact": {
+                           "attribute": "domain",
+                           "value": "nl.vng.zaken2"
+                       }
+                   },
+                   {
+                       "any": [
+                           {
+                               "exact": {
+                                   "attribute": "type",
+                                   "value": "nl.vng.zaken2.zaak_gesloten"
+                               }
+                           },
+                           {
+                               "exact": {
+                                   "attribute": "type",
+                                   "value": "nl.vng.zaken2.zaak_geopend"
+                               }
+                           }
+                       ]
+                   }
+               ]
+         }
+				],
+    "subscriberReference": "Ref"
     }
     ```
+    * `protocol` is standaard HTTP
 
-    * `callbackUrl` is de volledige URL naar je _eigen_ endpoint waar je
-      notificaties wenst op te ontvangen
+    * `protocolSettings' wordt gebruikt om headers door te sturen naar de abonnee
 
-    * `auth` is de waarde van de `Authorization` header om je _eigen_ endpoint
-      te kunnen benaderen. Deze waarde wordt gebruikt door het NRC om berichten
-      af te leveren. Voor `webhook.site` kan een dummy waarde gebruikt worden.
+    * `sink` is de volledige URL naar je _eigen_ endpoint waar je de notificaties wenst op te ontvangen 
 
-    * `kanalen` is een lijst van kanalen waarop je wenst te abonneren, met de
-      relevante filters. De beschikbare kenmerken waarop gefilterd kan worden
-      horen gedocumenteerd te zijn op de kanalen die opgevraagd zijn in stap 2.
+    * `sinkCredential` is de waarde van de `Authorization` header om je _eigen_ endpoint te kunnen benaderen. Deze waarde wordt gebruikt door het NRC om berichten
+      af te leveren. Voor `webhook.site` kan een dummy waarde gebruikt worden 
 
-    * `filters` zijn optioneel. Indien je een filter weglaat, dan geldt dit als
-      wildcard.
+    * `source` is the bron van het systeem waar de notificatie vandaan komt
+
+    * `domain` Domein, waarvoor de notificatie van toepassing is. De beschikbare domeinen, zijn de domeinen, zoals opgevraagd kunnen worden in stap 2
+
+    * `types` CloudEvent-types van de notificatie. Dit is een array van meerdere typen. Als dit leeggelaten wordt, ontvang je alle notificaties
+
+    * `filters` zijn optioneel. Dit is een recursieve structuur. Array of AllFilter (object) or AnyFilter (object) or NotFilter (object) or exact filter (object) or prefix filter (object) or suffix filter (object) (Filter entry). In dit voorbeeld is er gefilterd op het domein nl.vng.zaken2 en dan of het type nl.vng.zaken2.zaak_gesloten of het type
+      
+    * `subscriberReference' is bv een contractnummer of interne referentie naar dit abonnement
+
+   
 
 4. Berichten worden nu naar je eigen endpoint gestuurd met een POST request
 
