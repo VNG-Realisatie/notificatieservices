@@ -10,7 +10,7 @@ De tutorial is hands-on. Onderaan staan diverse referenties en bronnen voor wie 
 * API-key voor authorisatie
     * Voor het API-Lab is dat de API-Key:
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s
-* Familiariteit met webhooks is een plus
+* Bekendheid met webhooks is een plus
 
 Optioneel:
 * `docker` en `docker-compose` zijn aanwezig.
@@ -20,6 +20,8 @@ Optioneel:
 ## Aan de slag
 
 ### Ontvangen en versturen van notificaties
+
+
 
 Een bron(register) verstuurt notificaties naar de Notificatierouteringscomponent (NRC). De NRC distribueert deze vervolgens naar de abonnees.
 
