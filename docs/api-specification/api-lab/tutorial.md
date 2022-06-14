@@ -43,7 +43,7 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
 
 1. Bepaal de naam van het domein. Voor bijvoorbeeld zaken is dit `nl.vng.zaken2`.
 
-2. Zorg dat het domein bekend is bij het NC. Je kan dit controleren door eerst de lijst met domeinen op te vragen:
+2. Zorg dat het domein bekend is bij het NRC. Je kan dit controleren door eerst de lijst met domeinen op te vragen:
  
    ```http
    GET https://notificaties-api.test.vng.cloud/api/v1/domains HTTP/1.0
