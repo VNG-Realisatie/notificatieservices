@@ -2077,6 +2077,15 @@ components:
         - $ref: "#/components/schemas/SubscriptionRequest"
         - type: object
           properties:
+            url:
+              title: URL
+              description: URL reference to this resource. This link is generated automatically.
+              type: string
+              format: uri
+              maxLength: 2042
+              minLength: 1
+              readOnly: true
+              example: "https://example.com"          
             id:
               type: string
               format: uuid
@@ -2084,6 +2093,7 @@ components:
               # example: 1119920371
               example: "a2de4777-1160-4562-a996-b79d27b30c99"
       required:
+        - url
         - id
         - sink
         - protocol
