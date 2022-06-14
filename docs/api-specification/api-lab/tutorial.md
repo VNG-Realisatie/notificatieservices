@@ -5,6 +5,8 @@ In deze tutorial configureren we de referentieimplementatie van de Notificatiero
 
 De tutorial is hands-on. Onderaan staan diverse referenties en bronnen voor wie meer wil lezen.
 
+Overal waar in deze tutorial het woord `notificatie` voorkomt kan ook het begrip `event` gelezen worden. De term `event` wordt gebruikt door de internationale CloudEvents standaard. 
+
 ## Wat zijn de vereisten voor deze tutorial?
 
 * API-key voor authorisatie
@@ -21,24 +23,29 @@ Optioneel:
 
 ### Ontvangen en versturen van notificaties
 
+In het notificatieproces zijn de volgende stappen te onderkennen:
+1. Een bron maakt bij de Notificatierouteringscomponent (NRC) een domain aan (indien nog niet aanwezig).
+2. Een afnemer abonneert zich bij de NRC een geeft daarbij eventuele filtercriteria op.
+3. Een bron levert een notificatie (event) af bij de NRC zodat deze verspreid kan worden.
+4. De NRC controleert, op basis van de filtercriteria in de abonnementen, bij welke afnemers het aangeleverde event afgeleverd moet worden.
+5. De NRC levert de relevante events af bij de afnemer. (Door een POST uit te voeren op de door de afnemer in het abonnement opgegeven `sink` = end-point).
 
+De events zijn in te zien op de NRC. Ga hiervoor naar [de hoofdpagina van de referentieimplementatie](https://notificaties-api.test.vng.cloud/) en klik op de knop 'Logviewer'.
 
-Een bron(register) verstuurt notificaties naar de Notificatierouteringscomponent (NRC). De NRC distribueert deze vervolgens naar de abonnees.
-
-De notificaties zijn in te zien op de NRC. Ga hiervoor naar [de hoofdpagina van de referentieimplementatie](https://notificaties-api.test.vng.cloud/) en klik op de knop 'Logviewer'.
-
-De tutorial bestaat uit twee delen:
+De tutorial hieronder bestaat uit twee delen:
 * [Notificaties publiceren](#ik-wil-als-bron-notificaties-publiceren)
 * [Notificaties ontvangen](#ik-wil-als-consumer-notificaties-ontvangen)
 
 #### Ik wil als bron notificaties publiceren
 
-Het registreren van de domeinen is een noodzakelijke stap om notificaties te kunnen publiceren.
+Zoals in het notificatieproces beschreven is het registreren van een domein een noodzakelijke stap om notificaties te kunnen distribueren.
 
-Eenvoudigweg operaties uitvoeren op de PRC API zal ervoor zorgen dat notificaties gepubliceerd worden. Je kan bijvoorbeeld via de API een zaak
-aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. De token om in het API-Lab te gebruiken, zal worden verspreid en biedt alle autorisaties.
+_Tip: Maak tijdens het API-lab een eigen domein en bijbehorende eventtypes aan zodat de uitgevoerde testen van elkaar gescheiden blijven._
+_Bijvoorbeeld: domein: nl.vng.zaken.<leverancier> en dan als types: nl.vng.zaken.<leverancier>.zaak_gesloten etc._
 
-1. Bepaal de naam van het domein. Voor bijvoorbeeld zaken is dit `nl.vng.zaken2`.
+Stappen:
+	
+1. Bepaal de naam van het domein. Voor bijvoorbeeld zaken is dit `nl.vng.zaken.leverancierX`.
 
 2. Zorg dat het domein bekend is bij het NRC. Je kan dit controleren door eerst de lijst met domeinen op te vragen:
  
@@ -46,7 +53,7 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
    GET https://notificaties-api.test.vng.cloud/api/v1/domains HTTP/1.0
    Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s
    ```
-   Het resultaat ziet er als onderstaand uit:
+   Het resultaat ziet er bijvoorbeeld als onderstaand uit:
    ```json
    {
         "name": "nl.vng.zaken2",
@@ -69,7 +76,7 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
 
     ```http
     POST https://notificaties-api.test.vng.cloud/api/v1/domains HTTP/1.0
-    Authorization: Bearer abcd1234
+    Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s
     Content-Type: application/json
 
     {
@@ -83,7 +90,7 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
     }
     ```
 
-    De documentatielink hoort te documenteren welke kenmerken relevant zijn voor een domein, en welke events gepubliceerd kunnen worden. Dit helpt consumers om te bepalen waarop ze willen abonneren.
+    De documentatielink hoort te documenteren welke kenmerken relevant zijn voor een domein en welke events gepubliceerd kunnen worden. Dit helpt afnemers om te bepalen waarop ze willen abonneren.
 
 4. Verstuur een bericht
 
@@ -99,7 +106,6 @@ aanmaken, wijzigen of statussen toevoegen op een zaak om dit in actie te zien. D
         "domain": "nl.vng.zaken",
         "type": "nl.vng.zaken.zaak_gecreeerd",
         "time": "2022-06-15T09:00:00.001Z",
-	"subscriberReference": "RefnaarContract",
         "datacontenttype": "application/json",
         "data": {
             "foo": "bar"
