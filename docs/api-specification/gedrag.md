@@ -191,6 +191,11 @@ In deze laatste vorm zal de expressie aangeleverd moeten worden.
 
 Waarschijnlijk is deze vorm door de CE werkgroep gekozen omdat de expressie in deze vorm direct uit te voeren is (en niet eerst geparseerd hoeft te worden). Het zou wel bijzonder handig zijn als er iets van een hulpmiddel zou komen waarmee logische expressie omgezet zouden kunnen worden in dit soort json structuren.
 
+n.b.
+- De interne logica van subscriptions wordt niet gevalideerd. Het is dus mogelijk een syntactisch valide filter op te geven dat inhoudelijk zinloos is (en daardoor geen enkel event doorstuurt).
+- Operatoren zoals de `exact` mogen een lege value hebben. Het attribuut moet dan voorkomen EN leeg zijn.
+- Bij operatoren zoals de `exact` wordt case insensitive gezocht naar het attribuut. De vergelijking van de `value` gebeurt case sensitive.
+
 ## /subscriptions post
 
 Bij een post op de subscription resource moet o.a. het eindpoint (de sink) gevalideerd worden. Hierbij volgende we de webhooks specificatie van CloudEvent. Deze is voor de volledigheid hieronder overgenomen.
