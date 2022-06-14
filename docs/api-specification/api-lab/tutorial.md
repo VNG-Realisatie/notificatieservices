@@ -3,8 +3,6 @@
 
 In deze tutorial configureren we de referentieimplementatie van de Notificatierouteringscomponent (NRC) voor het versturen en ontvangen van notificaties via de Gemeentelijke Generieke Notificatie API (gebaseerd op CloudEvents).
 
-De tutorial is hands-on. Onderaan staan diverse referenties en bronnen voor wie meer wil lezen.
-
 Overal waar in deze tutorial het woord `notificatie` voorkomt kan ook het begrip `event` gelezen worden. De term `event` wordt gebruikt door de internationale CloudEvents standaard. 
 
 ## Wat zijn de vereisten voor deze tutorial?
@@ -33,10 +31,10 @@ In het notificatieproces zijn de volgende stappen te onderkennen:
 De events zijn in te zien op de NRC. Ga hiervoor naar [de hoofdpagina van de referentieimplementatie](https://notificaties-api.test.vng.cloud/) en klik op de knop 'Logviewer'.
 
 De tutorial hieronder bestaat uit twee delen:
-* [Notificaties publiceren](#ik-wil-als-bron-notificaties-publiceren)
-* [Notificaties ontvangen](#ik-wil-als-consumer-notificaties-ontvangen)
+* [Events publiceren](#ik-wil-als-bron-events-publiceren)
+* [Events ontvangen](#ik-wil-als-afnemer-events-ontvangen)
 
-#### Ik wil als bron notificaties publiceren
+#### Ik wil als bron events publiceren
 
 Zoals in het notificatieproces beschreven is het registreren van een domein een noodzakelijke stap om notificaties te kunnen distribueren.
 
@@ -56,7 +54,7 @@ Stappen:
    Het resultaat ziet er bijvoorbeeld als onderstaand uit:
    ```json
    {
-        "name": "nl.vng.zaken2",
+        "name": "nl.vng.zaken.leverancierX",
         "documentationLink": "https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/voorbeeld_documentatielink_zaken_domein.md",
         "filterAttributes": [
             "bronorganisatie",
@@ -80,7 +78,7 @@ Stappen:
     Content-Type: application/json
 
     {
-      "naam": "nl.vng.zaken2",
+      "naam": "nl.vng.zaken.leverancierX",
       "documentatieLink": "https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/voorbeeld_documentatielink_zaken_domein.md",
       "filterAttributes": [
         "bronorganisatie",
@@ -103,8 +101,8 @@ Stappen:
         "id": "042eecb9-be40-4588-8c3c-8de1e0c27ae8",
         "specversion": "1.0",
         "source": "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem",
-        "domain": "nl.vng.zaken",
-        "type": "nl.vng.zaken.zaak_gecreeerd",
+        "domain": "nl.vng.zaken.leverancierX",
+        "type": "nl.vng.zaken.leverancierX.zaak_gecreeerd",
         "time": "2022-06-15T09:00:00.001Z",
         "datacontenttype": "application/json",
         "data": {
@@ -114,11 +112,13 @@ Stappen:
     }
     ```
 
-#### Ik wil als consumer notificaties ontvangen
+#### Ik wil als afnemer events ontvangen
 
-Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor deze acties. Je kan de [tokentool][token-generator] gebruiken om een JWT te genereren.
+1. Zorg voor een endpoint om events te ontvangen. Gebruik bijvoorbeeld de [webhook-site](https://webhook.site) om events eenvoudig te ontvangen en bekijken. 
 
-1. Voorzie een endpoint om notificaties te ontvangen. Een eenvoudige manier om deze te inspecteren is met de [webhook-site](https://webhook.site). Voor het vervolgen gebruiken we `https://webhook.site/ea216914-fc38-462e-a24c-7dc7e969d873` als voorbeeld-URL waarop notificaties bezorgd worden.
+_Let op: Zorg dat het eindpoint als statuscode de code 204 retourneerd en niet de standaard 200._
+_Op webhook.site kan dit door rechtsboven op de optie `edit` te klikken en in vervolgens de default status code aan te passen naar 204._
+_n.b. In de voorbeelden is geen sink/eind-point ingevuld._
 
 2. Vraag op welke domeinen beschikbaar zijn:
 
@@ -136,7 +136,7 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
 
    {
     "protocol": "HTTP",
-    "sink": "",
+    "sink": "<your end-point here>",
     "source": "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem",
     "protocolSettings": {
         "headers": {
@@ -154,7 +154,7 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
        "property1":"string1",
        "property1":"string2"
     },
-    "domain": "nl.vng.zaken2",
+    "domain": "nl.vng.zaken.leverancierX",
     "types": [],
     "filters":
     [
@@ -165,7 +165,7 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
 					{
 						"exact": {
 							"attribute": "domain",
-							"value": "nl.vng.zaken2"
+							"value": "nl.vng.zaken.leverancierX"
 						}
 					},
 					{
@@ -173,13 +173,13 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
 							{
 								"exact": {
 									"attribute": "type",
-									"value": "nl.vng.zaken2.zaak_gesloten"
+									"value": "nl.vng.zaken.leverancierX.zaak_gesloten"
 								}
 							},
 							{
 								"exact": {
 									"attribute": "type",
-									"value": "nl.vng.zaken2.zaak_geopend"
+									"value": "nl.vng.zaken.leverancierX.zaak_geopend"
 								}
 							}
 						]
@@ -208,37 +208,47 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
     "subscriberReference": "Ref"
     }
     ```
-    * `protocol` is standaard HTTP
-
-    * `protocolSettings` wordt gebruikt om headers door te sturen naar de abonnee
-
-    * `sink` is de volledige URL naar je _eigen_ endpoint waar je de notificaties wenst op te ontvangen 
-
-    * `sinkCredential` is de waarde van de `Authorization` header om je _eigen_ endpoint te kunnen benaderen. Deze waarde wordt gebruikt door het NRC om berichten
-      af te leveren. Voor `webhook.site` kan een dummy waarde gebruikt worden 
-
-    * `source` is the bron van het systeem waar de notificatie vandaan komt
-
-    * `domain` Domein, waarvoor de notificatie van toepassing is. De beschikbare domeinen, zijn de domeinen, zoals opgevraagd kunnen worden in stap 2
-
-    * `types` CloudEvent-types van de notificatie. Dit is een array van meerdere typen. Als dit leeggelaten wordt, ontvang je alle notificaties
-
-    * `filters` zijn optioneel. Dit is een recursieve structuur. Array of AllFilter (object) or AnyFilter (object) or NotFilter (object) or exact filter (object) or prefix filter (object) or suffix filter (object) (Filter entry). (Zie ook nog https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/gedrag.md#beoordelen-filtercriteria). In bovenstaand voorbeeld is er als onderstaand gefilterd:
-    	
-		* Domein nl.vng.zaken2 en dan of het type nl.vng.zaken2.zaak_gesloten of het type nl.vng.zaken2.zaak_geopend 
-	* of 
-    	* Domein nl.vng.burgerzaken en dan type nl.vng.burgerzaken.kind_geboren_aangifte_elders
 	
-    * `subscriberReference' is bv een contractnummer of interne referentie naar dit abonnement
+* `protocol`: Enige toegestane protocol is HTTP.
 
+* `protocolSettings`: Wordt gebruikt om headers door te sturen naar de afnemer.
+    * Als het end-point met access tokens werkt dan kunnen deze opgegeven worden in `sinkCredential`. Maakt het end-point nog gebruik van een username/password dan kunnen deze eventueel in de `protocolSettings` als `header` opgegeven worden.
+
+* `sink`: De volledige URL naar je _eigen_ endpoint waar je de events wenst op te ontvangen.
+
+* `sinkCredential`: Hier moet de informatie opgegeven worden over het access token dat nodig is om het end-point te kunnen benaderen. Voor `webhook.site` kunnen dummy waarden gebruikt worden.
+
+* `source`: Filteroptie. Hier kan opgegeven worden van welke bron events afkomstig moeten zijn.
+
+* `domain`: Filteroptie. Hier kan opgegeven worden van welke domein events afkomstig moeten zijn.
+
+* `types`: Filteroptie. Hier kan opgegeven worden aan welke typen het type van het event moet voldoen.
+
+* `filters`: Filteroptie. Hiërarchische structuur met daarin een logische expressie. In bovenstaande voorbeeld is onderstaand gefilterd uitgeschreven:
+
+```
+(
+  (domain = nl.vng.zaken.leverancierX)
+  AND
+  ( (type = nl.vng.zaken.leverancierX.zaak_gesloten) OR (type = nl.vng.zaken.leverancierX.zaak_geopend) ) 
+)
+OR 
+( 
+  (domein = nl.vng.burgerzaken) AND (type = nl.vng.burgerzaken.kind_geboren_aangifte_elders) 
+)
+```
+   Zie ook https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/gedrag.md#beoordelen-filtercriteria).
+
+* `subscriberReference': Deze referentie wordt opgenomen in events die doorgestuurd worden naar de afnemer op basis van dit abonnement. De afnemer kan deze informatie bijvoorbeeld gebruiken voor interne routering van het event.
+	
 4. Berichten worden nu naar je eigen endpoint gestuurd met een POST request
 
-    Hieronder staat een verzoek zoals dat gedaan wordt door het NRC. Je kan dit verzoek uiteraard ook zelf sturen voor test doeleinden:
+    Hieronder staat een voorbeeld HTTP message zoals deze gepost wordt door de NRC op het end-point. 
 
    ```http
-   POST https://webhook.site/6f61b940-47fb-46d0-9b01-3587cacad9d9 HTTP/1.0
+   POST <your end-point here> HTTP/1.0
    Content-Type: application/json
-   Authorization: Bearer abcde12345
+   Authorization: Bearer <your access token>
 
    {
    	"id": "042eecb9-be40-4588-8c3c-8de1e0c27ae8",
@@ -247,23 +257,16 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
 			"foo": "bar"
 		},
 	 "time": "2018-03-07T15:47:57.420Z",
-	 "type": "nl.vng.zaken.zaak_gecreeerd",
-	 "domain": "nl.vng.zaken",
+	 "type": "nl.vng.zaken.leverancierX.zaak_gecreeerd",
+	 "domain": "nl.vng.zaken.leverancierX",
 	 "source": "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem",
 	 "dataref": "https://www.vng.nl/",
 	 "specversion": "1.0",
 	 "datacontenttype": "application/json",
-	 "subscriberReference": "RefnaarContract",
+	 "subscriberReference": "<your reference>",
 	 "subscription": "02b95def-c6be-4042-9672-6f73b094e997"
    }
    ```
-
-    Merk op dat de `Authorization` header hier verschilt van de `Authorization` naar het NRC (als dit aangegeven is. De notificatie wordt naar jouw eigen endpoint verstuurd, en bij het abonneren heb je aangegeven wat de `Authorization` header hiervoor moet zijn. Voor het API-Lab wordt een specifiek gegenereerde Token gebruikt.
-
-
-## Achtergrondinformatie
-
-Er zijn enkele beperkingen en de uitgangspunten en beperkingen staan op https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/ontwerpbesluiten.md
 
 ## Postman scripts ##
 
