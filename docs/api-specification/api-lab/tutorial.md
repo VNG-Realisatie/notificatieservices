@@ -1,16 +1,9 @@
 
 # Tutorial notificeren
 
-In deze tutorial configureren we de referentieimplementaties van de algemene voor het versturen en ontvangen van notificaties via de generieke 
-Notificaties API.
+In deze tutorial configureren we de referentieimplementatie van de Notificatierouteringscomponent (NRC) voor het versturen en ontvangen van notificaties via de Gemeentelijke Generieke Notificatie API (gebaseerd op CloudEvents).
 
-De tutorial is hands-on - onderaan vind je verdere referenties en bronnen indien je meer wil lezen.
-
-De volgende componenten zijn meest relevant:
-
-* NRC: voor het routeren van notificaties, kanaal- en abonnementbeheer
-* PRC: voor het versturen van notificaties
-
+De tutorial is hands-on. Onderaan staan diverse referenties en bronnen voor wie meer wil lezen.
 
 ## Wat zijn de vereisten voor deze tutorial?
 
@@ -18,19 +11,20 @@ De volgende componenten zijn meest relevant:
  * Voor het API-Lab is dat de API-Key:
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s
 * Familiariteit met webhooks is een plus
-* `optioneel`
-* `docker` en `docker-compose` zijn aanwezig, tjdens het API-Lab kan de installatie en werking van het docker-image niet ondersteund worden.
+
+Optioneel:
+* `docker` en `docker-compose` zijn aanwezig.
+**n.b. Tijdens het API-Lab kunnen we geen ondersteuning verlenen bij issues ivm installatie en werking van de docker-image.**
 
 ## Aan de slag
 
 ### Ontvangen en versturen van notificaties
 
-Het PRC verstuurt notificaties naar het NRC. Het NRC distribueert deze vervolgens naar de abonnees.
+Een bron(register) verstuurt notificaties naar de Notificatierouteringscomponent (NRC). De NRC distribueert deze vervolgens naar de abonnees.
 
-De notificaties zijn inzichtelijk gemaakt op het NRC - ga naar [https://notificaties-api.test.vng.cloud/] en klik op de knop 'Logviewer'.
+De notificaties zijn in te zien op de NRC. Ga hiervoor naar [de hoofdpagina van de referentieimplementatie](https://notificaties-api.test.vng.cloud/) en klik op de knop 'Logviewer'.
 
-Er zijn twee perspectieven:
-
+De tutorial bestaat uit twee delen:
 * [Notificaties publiceren](#ik-wil-als-bron-notificaties-publiceren)
 * [Notificaties ontvangen](#ik-wil-als-consumer-notificaties-ontvangen)
 
