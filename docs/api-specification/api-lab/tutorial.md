@@ -266,4 +266,4 @@ Er zijn enkele beperkingen en de uitgangspunten en beperkingen staan op https://
 
 Om de API zelf te kunnen testen, zijn er enkele voorbeeld scripts gemaakt voor gebruik in Postman. 
 
-
+Zie deze link voor de [Postman scripts](./Notificaties API-Lab.postman_collection.json.zip)
