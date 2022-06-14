@@ -242,7 +242,7 @@ OR
 ```
    Zie ook https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/gedrag.md#beoordelen-filtercriteria).
 
-* `subscriberReference': Deze referentie wordt opgenomen in events die doorgestuurd worden naar de afnemer op basis van dit abonnement. De afnemer kan deze informatie bijvoorbeeld gebruiken voor interne routering van het event.
+* `subscriberReference`: Deze referentie wordt opgenomen in events die doorgestuurd worden naar de afnemer op basis van dit abonnement. De afnemer kan deze informatie bijvoorbeeld gebruiken voor interne routering van het event.
 	
 4. Berichten worden nu naar je eigen endpoint gestuurd met een POST request
 
