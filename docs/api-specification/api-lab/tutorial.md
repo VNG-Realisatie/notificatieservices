@@ -117,8 +117,10 @@ Stappen:
 
 1. Zorg voor een endpoint om events te ontvangen. Gebruik bijvoorbeeld de [webhook-site](https://webhook.site) om events eenvoudig te ontvangen en bekijken. 
 
-_Let op: Zorg dat het eindpoint als statuscode de code 204 retourneerd en niet de standaard 200._
+**_Let op: Zorg dat het eindpoint als statuscode de code 204 retourneerd en niet de standaard 200._**
+
 _Op webhook.site kan dit door rechtsboven op de optie `edit` te klikken en in vervolgens de default status code aan te passen naar 204._
+
 _n.b. In de voorbeelden is geen sink/eind-point ingevuld._
 
 2. Vraag op welke domeinen beschikbaar zijn:
