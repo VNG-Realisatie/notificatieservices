@@ -17,8 +17,8 @@ De volgende componenten zijn meest relevant:
 * API-key voor authorisatie
  * Voor het API-Lab is dat de API-Key:
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0ZXN0c3VpdGUiLCJpYXQiOjE2NTQwODk3NzAsImNsaWVudF9pZCI6Im5yYyIsInVzZXJfaWQiOiJ0ZXN0X3VzZXJfaWQiLCJ1c2VyX3JlcHJlc2VudGF0aW9uIjoiVGVzdCBVc2VyIn0.9CjhYTw-eREVXtdiTQbwyOsXAkAMln5sRj5lzmsaa1s
-* `optioneel`
 * Familiariteit met webhooks is een plus
+* `optioneel`
 * `docker` en `docker-compose` zijn aanwezig, tjdens het API-Lab kan de installatie en werking van het docker-image niet ondersteund worden.
 
 ## Aan de slag
@@ -133,7 +133,7 @@ Je dient de scope `notificaties.scopes.consumeren` in het JWT te hebben voor dez
 
    {
     "protocol": "HTTP",
-    "sink": "https://webhook.site/6f61b940-47fb-46d0-9b01-3587cacad9d9",
+    "sink": "",
     "source": "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem",
     "protocolSettings": {
         "headers": {
@@ -266,4 +266,4 @@ Er zijn enkele beperkingen en de uitgangspunten en beperkingen staan op https://
 
 Om de API zelf te kunnen testen, zijn er enkele voorbeeld scripts gemaakt voor gebruik in Postman. 
 
-Zie deze link voor de [Postman scripts](./Notificaties API-Lab.postman_collection.json.zip)
+Zie deze link voor de [Postman scripts](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/api-lab/Notificaties%20API-Lab.postman_collection.json.zip)
