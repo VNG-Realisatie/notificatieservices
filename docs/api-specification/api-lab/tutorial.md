@@ -38,8 +38,9 @@ De tutorial hieronder bestaat uit twee delen:
 
 Zoals in het notificatieproces beschreven is het registreren van een domein een noodzakelijke stap om notificaties te kunnen distribueren.
 
-_Tip: Maak tijdens het API-lab een eigen domein en bijbehorende eventtypes aan zodat de uitgevoerde testen van elkaar gescheiden blijven._
-_Bijvoorbeeld: domein: nl.vng.zaken.<leverancier> en dan als types: nl.vng.zaken.<leverancier>.zaak_gesloten etc._
+*_Tip: Maak tijdens het API-lab een eigen domein en bijbehorende eventtypes aan zodat de uitgevoerde testen van elkaar gescheiden blijven._*
+
+*_Bijvoorbeeld: domein: nl.vng.zaken.leverancierX en dan als types: nl.vng.zaken.leverancierX.zaak_gesloten etc._*
 
 Stappen:
 	
