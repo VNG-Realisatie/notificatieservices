@@ -275,5 +275,5 @@ OR
 
 Om de API zelf te kunnen testen, zijn er enkele voorbeeld scripts gemaakt voor gebruik in Postman. 
 
-Zie [Notificaties API-Lab.postman_collection.json.zip](https://github.com/VNG-Realisatie/notificatieservices/files/8899632/Notificaties.API-Lab.postman_collection.json.zip) voor Postman scripts 
+Zie [Postman scripts](./Notificaties%API-Lab.postman_collection.zip) voor Postman scripts 
 
