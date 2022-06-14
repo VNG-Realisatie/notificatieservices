@@ -275,4 +275,4 @@ OR
 
 Om de API zelf te kunnen testen, zijn er enkele voorbeeld scripts gemaakt voor gebruik in Postman. 
 
-Zie deze link voor de [Postman scripts](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/api-lab/Notificaties%20API-Lab.postman_collection.json.zip) (zip file, opslaan via context menu).
+Zie deze link voor de [Postman scripts](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/api-lab/Notificaties%20API-Lab.postman_collection.json.zip).
