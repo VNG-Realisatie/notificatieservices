@@ -2,23 +2,18 @@ openapi: 3.0.0
 info:
   title: Notification API
   description: "The API consists of three parts:
-
     1. **Publishing events (resource Events)** <br> The events resource is based on the [GOV NL profile for CloudEvents](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents).
       This specification only contains brief descriptions of the attributes of the event. Please refer to the GOV NL profile for additional information.
-
     2. **Subscribing to receive events (resource Subscriptions)**<br>
     The subscription resource was derived from the [CloudEvents Subscription v1.0.0-wip](https://github.com/cloudevents/spec/tree/main/subscriptions).
     This specification only contains brief descriptions of the attributes of the subscription. Please refer to the draft CE Subscription Specification for additional information.
-
     3. **Basic information about domains (resource Domains)** <br>The scopes for autorisation are described [here](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/scopes.md).
-
-
     This specification is work in progress. It can be changed completely without notice.
     "
   license:
     name: EUPL 1.2
     url: https://opensource.org/licenses/EUPL-1.2
-  version: 0.1.1
+  version: 0.1.2
 security:
 - JWT-Claims: []
 paths:
@@ -233,23 +228,28 @@ paths:
           content:
             application/json:
               schema:
-                required:
-                - count
-                - results
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  next:
-                    type: string
-                    format: uri
-                  previous:
-                    type: string
-                    format: uri
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Domain'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Domain'          
+            # application/json:
+            #   schema:
+            #     required:
+            #     - count
+            #     - results
+            #     type: object
+            #     properties:
+            #       count:
+            #         type: integer
+            #       next:
+            #         type: string
+            #         format: uri
+            #       previous:
+            #         type: string
+            #         format: uri
+            #       results:
+            #         type: array
+            #         items:
+            #           $ref: '#/components/schemas/Domain'
         '400':
           description: Bad request
           headers:
@@ -1028,23 +1028,28 @@ paths:
           content:
             application/json:
               schema:
-                required:
-                - count
-                - results
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  next:
-                    type: string
-                    format: uri
-                  previous:
-                    type: string
-                    format: uri
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Subscription'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscription'          
+            # application/json:
+            #   schema:
+            #     required:
+            #     - count
+            #     - results
+            #     type: object
+            #     properties:
+            #       count:
+            #         type: integer
+            #       next:
+            #         type: string
+            #         format: uri
+            #       previous:
+            #         type: string
+            #         format: uri
+            #       results:
+            #         type: array
+            #         items:
+            #           $ref: '#/components/schemas/Subscription'
         '400':
           description: Bad request
           headers:
@@ -2193,7 +2198,7 @@ components:
       #     additionalProperties: false
     SuffixFilter:
       allOf:
-        - $ref: "#/components/schemas/Filter"
+        # - $ref: "#/components/schemas/Filter"
         - type: object
           title: "suffix filter"
           description: "This filter evaluates to 'true' if the 'value' is a suffix of the value of the indicated CloudEvents context attribute"
