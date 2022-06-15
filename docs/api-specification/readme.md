@@ -9,7 +9,7 @@ API voor notificatie component:
 [ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications.yaml&nocors)
 
 API voor notificatie client:
-[ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications_client.yaml)
+[ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications_client.yaml&nocors)
 
 Aanvullende specificaties:
 - [Beschrijving gedrag](./gedrag.md)
