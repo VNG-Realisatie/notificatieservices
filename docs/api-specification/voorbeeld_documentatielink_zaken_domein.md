@@ -76,6 +76,30 @@ Vertaling van recources en acties naar eventttypes.
       <td>destroy</td>
       <td></td>
   </tr>
+ <tr>
+      <td>nl.vng.zaken.zaakinformatieobject_gecreeerd</td>
+      <td>zaakinformatieobject</td>
+      <td>create</td>
+      <td></td>
+  </tr>
+ <tr>
+      <td>nl.vng.zaken.zaakeigenschap_gecreeerd</td>
+      <td>zaakeigenschap</td>
+      <td>create</td>
+      <td></td>
+  </tr>
+ <tr>
+      <td>nl.vng.zaken.zaakeigenschap_gewijzigd</td>
+      <td>zaakeigenschap</td>
+      <td>update</td>
+      <td></td>
+  </tr>
+ <tr>
+      <td>nl.vng.zaken.zaakeigenschap_verwijderd</td>
+      <td>zaakeigenschap</td>
+      <td>destroy</td>
+      <td></td>
+  </tr>
   <tr>
       <td>nl.vng.zaken.klantcontact_gecreeerd</td>
       <td>klantcontact</td>
