@@ -6,7 +6,7 @@ De API-specificatie is work in progress. _Alles kan nog op ieder moment wijzigen
 ## Quick reference: OAS3 Specificaties
 
 API voor notificatie component:
-[ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications.yaml)
+[ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications.yaml&nocors)
 
 API voor notificatie client:
 [ReDoc](http://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/notificatieservices/main/docs/api-specification/notifications_client.yaml)
