@@ -14,7 +14,7 @@ andere vorm.
 
 ## Scope
 
-Gebeurtenissen doen zich in vele vormen en binnen vele contexten voor. Bij uitvoering van het project is gekozen voor een afbakening van de scope om te voorkomen dat er teveel vraagstukken tegelijkertijd zouden moeten worden opgelost. Een belangrijke afbakening is bijv. dat het project zich richt op geautomatiseerd notifceren tussen applicaties. Overigens is de verwachting dat veel projectresultaten ook bruikbaar zullen zijn voor zaken die nu buiten scope zijn geplaatst. U vindt hier een toelichting op de [scope van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/20211228_Scope_Notificeren.pdf).
+Gebeurtenissen doen zich in vele vormen en binnen vele contexten voor. Bij uitvoering van het project is gekozen voor een afbakening van de scope om te voorkomen dat er teveel vraagstukken tegelijkertijd zouden moeten worden opgelost. Een belangrijke afbakening is bijv. dat het project zich richt op geautomatiseerd notifceren tussen applicaties. Overigens is de verwachting dat veel projectresultaten ook bruikbaar zullen zijn voor zaken die nu buiten scope zijn geplaatst. U vindt hier een toelichting op de binnen project Notificatieservices gehanteerde [scope van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Notificatieservices_Scope.pdf).
 
 ## Producten
 
@@ -43,25 +43,19 @@ aantal vaak gebruikte gegevensformaten, transportprotocollen en patronen:
 
 ### Functionele handreikingen
 
-Onderstaande meer 'functionele handreikingen' beschrijven op een toegankelijke manieren een aantal belangrijke aspecten van gebeurtenisgedreven werken en notificeren:
+Onderstaande meer 'functionele handreikingen' beschrijven op een toegankelijke manieren belangrijke aspecten van gebeurtenisgedreven werken en notificeren:
 
-- [Introductie van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/20211223_Introductie_van_Notificeren.pdf) (definities, vormen, rollen, etc.)
-- [Waarom van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/20211223_Waarom_Notificeren.pdf)
-- [Randvoorwaardelijke aspecten](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/20211223_Randvoorwaarden_Notificeren.pdf) bij notificeren
-- [Leerpunten beproevingen](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/20211111---5e-bijeenkomst-community.pdf) van de concept berichtenstandaard. De van 1 t/m 5 november 2021 gehouden Hackathon waarin de berichtstandaard is berproeft heeft tot [deze demo](https://youtu.be/IdneTcAQFbA) geleid.
+- [Introductie van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Introductie_van_Notificeren.pdf)
+- [Het waarom van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Waarom_Notificeren.pdf)
+- [Definieren van gebeurtenistypes](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Gebeurtenistypes_Definieren.pdf)
+- [Randvoorwaardelijke aspecten](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Randvoorwaarden_Notificeren.pdf)
+- [Notificatiescenario's](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Notificatiescenarios.pdf)
 
-In 2022 worden nog opgeleverd:
+### Architectuur handreiking
 
-- 'Transitiescenario's'
-- 'Definieren van gebeurtenenissen'
+- [Notificatieservices Architectuur](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Notificatieservices_Architectuur.pdf) - De handreiking beschrijft een breed scala aan architectuuraspecten met betrekking tot gebeurtenisgedreven werken en notificeren. De handreiking is bedoeld om kennis die tijdens het project Notificatieservices is opgedaan beschikbaar te stellen voor toekomstig gebruik. Er is hierbij dankbaar gebruik gemaakt van wat wereldwijd aan kennis en ervaring op dit vlak aanwezig is.
 
-### Architectuur handreikingen
 
-Binnen de overheid is het gebruik van gebeurtenisgedreven oplossingen nog relatief weinig ontwikkeld. Onderstaande handreiking beschrijft
-architectuuraspecten met betrekking tot gebeurtenisgedreven werken en notificeren. De handreiking is mede bedoeld om kennis hierover te
-vergroten zodat er in de toekomst effectief gebruik wordt gemaakt van wat er op dit vlak al beschikbaar is.
-
-- [Architectuuraspecten notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Notificeren-Bijlage-Architectuur.v0.2.pdf) met o.a. architectuurstijlen, uitwerking van het publish-subscribe patroon en implementatiepatronen. _Deze notitie wordt in jan 2022 vervangen door een sterk gewijzigde versie 0.3._
 
 ## Verwijzingen
 
