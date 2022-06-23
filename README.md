@@ -14,7 +14,7 @@ andere vorm.
 
 ## Scope
 
-Gebeurtenissen doen zich in vele vormen en binnen vele contexten voor. Bij uitvoering van het project is gekozen voor een afbakening van de scope om te voorkomen dat er teveel vraagstukken tegelijkertijd zouden moeten worden opgelost. Een belangrijke afbakening is bijv. dat het project zich richt op geautomatiseerd notifceren tussen applicaties. Overigens is de verwachting dat veel projectresultaten ook bruikbaar zullen zijn voor zaken die nu buiten scope zijn geplaatst. U vindt hier een toelichting op de binnen project Notificatieservices gehanteerde [scope van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Notificatieservices_Scope.pdf).
+Gebeurtenissen doen zich in vele vormen en binnen vele contexten voor. Bij uitvoering van het project is gekozen voor een afbakening van de scope om te voorkomen dat er teveel vraagstukken tegelijkertijd zouden moeten worden opgelost. Een belangrijke afbakening is bijv. dat het project zich richt op geautomatiseerd notifceren tussen applicaties. Overigens is de verwachting dat veel projectresultaten ook bruikbaar zullen zijn voor zaken die nu buiten scope zijn geplaatst. U vindt hier een toelichting op de binnen project Notificatieservices gehanteerde [scope van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/Notificatieservices_Scope.pdf).
 
 ## Producten
 
@@ -41,21 +41,20 @@ aantal vaak gebruikte gegevensformaten, transportprotocollen en patronen:
 - [HTTP-protocol](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents/blob/main/NL-GOV-Guideline-for-CloudEvents-HTTP.md)
 - [Webhook interactiepatroon](https://github.com/VNG-Realisatie/NL-GOV-profile-for-CloudEvents/blob/main/NL-GOV-Guideline-for-CloudEvents-Webhook.md).
 
-### Functionele handreikingen
+# Functionele handreikingen
 
 Onderstaande meer 'functionele handreikingen' beschrijven op een toegankelijke manieren belangrijke aspecten van gebeurtenisgedreven werken en notificeren:
 
-- [Introductie van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Introductie_van_Notificeren.pdf)
-- [Het waarom van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Waarom_Notificeren.pdf)
-- [Definieren van gebeurtenistypes](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Gebeurtenistypes_Definieren.pdf)
-- [Randvoorwaardelijke aspecten](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Randvoorwaarden_Notificeren.pdf)
-- [Notificatiescenario's](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Notificatiescenarios.pdf)
-
-### Architectuur handreiking
-
-- [Notificatieservices Architectuur](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/Achtergrond-documentatie/Notificatieservices_Architectuur.pdf) - De handreiking beschrijft een breed scala aan architectuuraspecten met betrekking tot gebeurtenisgedreven werken en notificeren. De handreiking is bedoeld om kennis die tijdens het project Notificatieservices is opgedaan beschikbaar te stellen voor toekomstig gebruik. Er is hierbij dankbaar gebruik gemaakt van wat wereldwijd aan kennis en ervaring op dit vlak aanwezig is.
+- [Introductie van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/introductie_van_notificeren.pdf)
+- [Het waarom van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/waarom_notificeren.pdf)
+- [Definieren van gebeurtenistypes](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/gebeurtenistypes_definieren.pdf)
+- [Randvoorwaardelijke aspecten](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/randvoorwaarden_notificeren.pdf)
+- [Notificatiescenario's](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/notificatiescenarios.pdf)
 
 
+# Architectuur handreiking
+
+- [Notificatieservices Architectuur](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/notificatieservices_architectuur.pdf) - De handreiking beschrijft een breed scala aan architectuuraspecten met betrekking tot gebeurtenisgedreven werken en notificeren. De handreiking is bedoeld om kennis die tijdens het project Notificatieservices is opgedaan beschikbaar te stellen voor toekomstig gebruik. Er is hierbij dankbaar gebruik gemaakt van wat wereldwijd aan kennis en ervaring op dit vlak aanwezig is.
 
 ## Verwijzingen
 
