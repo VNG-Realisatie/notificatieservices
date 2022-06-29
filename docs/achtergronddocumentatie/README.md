@@ -4,7 +4,7 @@ Het [Project Notificatieservices](https://github.com/VNG-Realisatie/notificaties
       
 # Functionele handreikingen
 
-Onderstaande meer 'functionele handreikingen' beschrijven op een toegankelijke manieren belangrijke aspecten van gebeurtenisgedreven werken en notificeren:
+Onderstaande handreikingen beschrijven op een toegankelijke manier belangrijke aspecten van gebeurtenisgedreven werken en notificeren:
 
 - [Introductie van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/introductie_van_notificeren.pdf)
 - [Het waarom van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/waarom_notificeren.pdf)
