@@ -8,7 +8,7 @@ Bij de uitvoering hebben verschillende soorten overheidsorganisaties, uitvoering
 
 ## Scope
 
-Gebeurtenissen vinden continu en in allelei vormen plaats. Bij de start van het project Notificaties heeft een noodzakelijke afbakening plaatsgevonden. Het project richtte zich bijv. uitsluitend op geautomatiseerd notifceren van applicaties (en dus niet op notificeren van mensen). Wat overigens niet wil zeggen dat projectresultaten niet bruikbaar zijn voor zaken die buiten de projectscope vallen. U vindt een toelichting  in de notitie ['projectscope'](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/Notificatieservices_Scope.pdf).
+Gebeurtenissen vinden continu en in allelei vormen plaats. Bij de start van het project Notificaties heeft een noodzakelijke afbakening plaatsgevonden. Het project richtte zich bijv. uitsluitend op geautomatiseerd notifceren van applicaties (en dus niet op notificeren van mensen). Wat overigens niet wil zeggen dat projectresultaten niet bruikbaar zijn voor zaken die buiten de projectscope vallen. U vindt een toelichting  in de notitie ['projectscope'](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/notificatieservices_scope.pdf).
 
 ## Producten
 
@@ -48,13 +48,13 @@ Onderstaande handreikingen beschrijven op een toegankelijke manier een aantal be
 
 De uitgebreide handreiking [Notificatieservices Architectuur](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/notificatieservices_architectuur.pdf) beschrijft een breed scala aan architectuuraspecten met betrekking tot gebeurtenisgedreven werken. De handreiking is bedoeld om kennis die tijdens het project Notificatieservices is opgedaan beschikbaar te stellen voor toekomstig gebruik. Er is hierbij dankbaar gebruik gemaakt van wat wereldwijd aan kennis en ervaring op dit vlak bestaat.
 
-## Verwijzingen
+## Diversen
 
-- [Samenwerkingsruimte voor project Notificatieservices](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices): de plaats waar in 2021 binnen het project met een commmunity van overheids- en uitvoeringsorganisaties en leveranciers is samengewerkt.
 - [Community presentaties](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices/files/e49f6a1d-c1ae-4128-95c9-edc3d3e89caf): alle presentaties die gebruikt zijn tijdens
   communitybijeenkomsten
 - [Werkgroep Berichtenstandaard presentaties](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices/files/4ff096f5-ba66-4c60-a9d1-44dcd9798897): alle presentaties die gebruikt zijn tijdens
   de werkgroep waarmee de berichtenstandaard is ontwikkeld.
+- [Samenwerkingsruimte voor project Notificatieservices](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices): de plaats waar in 2021 binnen het project met een commmunity van overheids- en uitvoeringsorganisaties en leveranciers is samengewerkt.
 
 ## Informatie en vervolg
 
