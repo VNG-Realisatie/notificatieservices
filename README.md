@@ -1,7 +1,5 @@
 ## Inleiding
 
-
-
 Het project Notificatieservices is in 2021 uitgevoerd door VNG Realisatie in opdracht van het Ministerie van Binnenlandse Zaken. Doel van het project was om geautomatiseerd notificeren van applicaties binnen de Nederlandse overheid te standaardiseren. Meer algemeen was het doel om als overheid beter en vaker gebeurtenisgedreven ('event driven') te kunnen werken. 
 
 Een aanleiding voor het project was de wens om als overheid effectiever gebruik te gaan maken van bronregistraties en daarmee lokale datakopieen overbodig te maken. Naast het opvragen van gegevens via gestandaardiseerde API's zijn daarvoor notificaties nodig als er gebeurtenissen hebben plaatsgevonden die wijzigingen in bronregistraties als gevolg hebben.
@@ -10,7 +8,7 @@ Bij de uitvoering hebben verschillende soorten overheidsorganisaties, uitvoering
 
 ## Scope
 
-Bij uitvoering van het project is gekozen voor een afbakening van de scope. Een belangrijke afbakening is bijv. dat het project zich richt op geautomatiseerd notifceren tussen applicaties. Veel projectresultaten zijn overigens (ook) bruikbaar voor zaken die buiten de [projectscope](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/Notificatieservices_Scope.pdf) vallen.
+Gebeurtenissen vinden continu en in allelei vormen plaats. Bij de start van het project Notificaties heeft een noodzakelijke afbakening plaatsgevonden. Het project richtte zich bijv. uitsluitend op geautomatiseerd notifceren van applicaties (en dus niet op notificeren van mensen). Wat overigens niet wil zeggen dat projectresultaten niet bruikbaar zijn voor zaken die buiten de projectscope vallen. U vindt een toelichting  in de notitie ['projectscope'](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/Notificatieservices_Scope.pdf).
 
 ## Producten
 

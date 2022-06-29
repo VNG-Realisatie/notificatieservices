@@ -1,10 +1,10 @@
 # Achtergrond documentatie
 
-Het [Project Notificatieservices](https://github.com/VNG-Realisatie/notificatieservices) heeft naast het <a href="https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents">NL GOV for CloudEvents profile</a> ook een aantal ondersteunende producten gemaakt. Bedoeld om opgedane kennis vast te leggen en beschikbaar te stellen voor gebruik binnen  projecten die zich richten op gebeurtenisgedreven inrichten van informatievoorziening in het algemeen en geautomatiseerd notificeren van applicaties in het bijzonder.
+Het [Project Notificatieservices](https://github.com/VNG-Realisatie/notificatieservices) heeft naast het <a href="https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents">NL GOV for CloudEvents profile</a> ook een aantal andere producten gemaakt. Deze zijn bedoeld om opgedane kennis binnen het project beschikbaar te stellen voor gebruik binnen projecten die zich richten op gebeurtenisgedreven inrichten van informatievoorziening in het algemeen en geautomatiseerd notificeren van applicaties in het bijzonder.
       
 # Functionele handreikingen
 
-Onderstaande handreikingen beschrijven op een toegankelijke manier een aantal belangrijke aspecten van gebeurtenisgedreven werken en notificeren:
+Onderstaande handreikingen beschrijven op een toegankelijke manier een aantal belangrijke aspecten van gebeurtenisgedreven werken:
 
 - [Introductie van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/introductie_van_notificeren.pdf)
 - [Het waarom van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/waarom_notificeren.pdf)
@@ -12,10 +12,9 @@ Onderstaande handreikingen beschrijven op een toegankelijke manier een aantal be
 - [Randvoorwaardelijke aspecten](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/randvoorwaarden_notificeren.pdf)
 - [Notificatiescenario's](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/notificatiescenarios.pdf)
 
-
 # Architectuur handreiking
 
-- [Notificatieservices Architectuur](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/notificatieservices_architectuur.pdf) - De handreiking beschrijft een breed scala aan architectuuraspecten met betrekking tot gebeurtenisgedreven werken en notificeren. De handreiking is bedoeld om kennis die tijdens het project Notificatieservices is opgedaan beschikbaar te stellen voor toekomstig gebruik. Er is hierbij dankbaar gebruik gemaakt van wat wereldwijd aan kennis en ervaring op dit vlak aanwezig is.
+De uitgebreide handreiking [Notificatieservices Architectuur](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/notificatieservices_architectuur.pdf) beschrijft een breed scala aan architectuuraspecten met betrekking tot gebeurtenisgedreven werken. Er is hierbij gebruik gemaakt van wat wereldwijd aan kennis en ervaring op dit vlak bestaat.
 
 # Diversen
 
