@@ -8,7 +8,7 @@ Onderstaande handreikingen beschrijven op een toegankelijke manier een aantal be
 
 - [Introductie van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/introductie_van_notificeren.pdf)
 - [Het waarom van notificeren](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/waarom_notificeren.pdf)
-- [Definieren van gebeurtenistypes](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/gebeurtenistypes_definieren.pdf)
+- [Definiëren van gebeurtenistypes](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/gebeurtenistypes_definieren.pdf)
 - [Randvoorwaardelijke aspecten](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/randvoorwaarden_notificeren.pdf)
 - [Notificatiescenario's](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/achtergronddocumentatie/notificatiescenarios.pdf)
 
