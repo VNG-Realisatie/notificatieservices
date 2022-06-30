@@ -4,3 +4,5 @@ Binnen project Notificatieservices is in 2021 in commmunityverband samengewerkt 
 
 - De map 'werkgroep_berichtstandaard' bevat de presentatie die zijn gebruikt tijdens bijeenkomsten van de werkgroep-Berichtstandaard. 
 
+- De map 'Hackathon' bevat de presentaties en samenvattingen van de hackathon, gehouden in november 2021
+
