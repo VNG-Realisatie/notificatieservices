@@ -55,6 +55,7 @@ De uitgebreide handreiking [Notificatieservices Architectuur](https://github.com
 - [Werkgroep Berichtenstandaard presentaties](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices/files/4ff096f5-ba66-4c60-a9d1-44dcd9798897): alle presentaties die gebruikt zijn tijdens
   de werkgroep waarmee de berichtenstandaard is ontwikkeld.
 - [Samenwerkingsruimte voor project Notificatieservices](https://samenwerken.pleio.nl/groups/view/1fde4814-ec84-49bd-a67a-935eb712e7a2/notificatieservices): de plaats waar in 2021 binnen het project met een commmunity van overheids- en uitvoeringsorganisaties en leveranciers is samengewerkt.
+- [Concept API-specificatie voor geautomatiseerd abonneren](https://github.com/VNG-Realisatie/notificatieservices/tree/main/docs/api-specification): een API die als onderdeel van een beproeving met VNG Realisatie is ontwikkeld in lijn met de concept CloudEvents-standaard voor geautomatiseerd abonneren op ontvangst van notificaties.
 
 ## Informatie en vervolg
 
