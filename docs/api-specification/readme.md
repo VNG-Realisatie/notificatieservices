@@ -1,6 +1,6 @@
 # Notifications API
-
-*Let op! Het project Notificatieservices is beeindigd per 30 juni 2022. De documenten in de map 'api-specification' zijn gebruikt voor een beproeving in juni 2022 waarbij de bestaande ZGW-Notificatie-API (in beheer bij VNG Realisatie) is omgezet naar een generieke Notificatie-API conform het NL GOV profile for CloudEvents. Verdere ontwikkeling van deze API zal plaatsvinden in de [VNG-Realisatie/notificaties-api](https://github.com/VNG-Realisatie/notificaties-api) repository.*
+<!--
+*Let op! Het project Notificatieservices is beeindigd per 30 juni 2022. De documenten in de map 'api-specification' zijn gebruikt voor een beproeving in juni 2022 waarbij de bestaande ZGW-Notificatie-API (in beheer bij VNG Realisatie) is omgezet naar een generieke Notificatie-API conform het NL GOV profile for CloudEvents. Verdere ontwikkeling van deze API zal plaatsvinden in de [VNG-Realisatie/notificaties-api](https://github.com/VNG-Realisatie/notificaties-api) repository.* -->
 
 Dit is een tijdelijke locatie om te kunnen werken aan API-specificatie voor een generieke notificatiecomponent.
 De API-specificatie is work in progress. _Alles kan nog op ieder moment wijzigen!_
