@@ -2,18 +2,23 @@ openapi: 3.0.0
 info:
   title: Notification API
   description: "The API consists of three parts:
+  
     1. **Publishing events (resource Events)** <br> The events resource is based on the [GOV NL profile for CloudEvents](https://vng-realisatie.github.io/NL-GOV-profile-for-CloudEvents).
       This specification only contains brief descriptions of the attributes of the event. Please refer to the GOV NL profile for additional information.
+      
+      
     2. **Subscribing to receive events (resource Subscriptions)**<br>
     The subscription resource was derived from the [CloudEvents Subscription v1.0.0-wip](https://github.com/cloudevents/spec/tree/main/subscriptions).
     This specification only contains brief descriptions of the attributes of the subscription. Please refer to the draft CE Subscription Specification for additional information.
+    
+    
     3. **Basic information about domains (resource Domains)** <br>The scopes for autorisation are described [here](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/scopes.md).
     This specification is work in progress. It can be changed completely without notice.
     "
   license:
     name: EUPL 1.2
     url: https://opensource.org/licenses/EUPL-1.2
-  version: 0.1.2
+  version: 0.1.4
 security:
 - JWT-Claims: []
 paths:
@@ -1854,7 +1859,7 @@ components:
           description: Name of the domain.
           type: string
           minLength: 1
-          example: "nl.vng.zaken"
+          example: "nl.vng.zgw.zaken"
         documentationLink:
           title: documentationLink
           description: Link to human readable information about the domain and its notifications
@@ -1870,8 +1875,7 @@ components:
           items:
             type: string
             minLength: 1
-
-    EventCore:
+    Event:
       required:
       - id
       - source
@@ -1879,6 +1883,8 @@ components:
       - specversion
       - type
       type: object
+      additionalProperties:
+        type: string
       properties:
         specversion:
           title: specversion
@@ -1905,14 +1911,14 @@ components:
           type: string
           format: reverse-dns
           minLength: 1
-          example: "nl.vng.zaken"
+          example: "nl.vng.zgw.zaken"
         type:
           title: type
           description: This attribute contains a value describing the type of event. Type SHOULD start with the domain followed by the name of the event. Events SHOULD be expressed in the past tense. If subtypes are required those SHOULD be expressed using a dot '.' between the super and subtype(s). The type MAY contain version information. Version information SHOULD be appended at the end of the string.
           type: string
           format: reverse-dns
           minLength: 1
-          example: "nl.vng.zaken.status_gewijzigd"
+          example: "nl.vng.zgw.zaken.status_gewijzigd"
         time:
           title: time
           description: Timestamp of the event. SHOULD be the timestamp the event was registerd in the source system and NOT the time the event occurred in reality. The exact meaning of time MUST be clearly documented.
@@ -1970,39 +1976,46 @@ components:
           nullable: true
           enum:
             - Integer
-    EventExtension:
-      type: object
-      properties:
-        <key1>:
+        data:
+          oneOf:
+            - type: object
+            - type: string
+            - type: number
+            - type: array
+            - type: boolean
+              nullable: true # Truukje omdat "type: null" niet wordt toegestaan in OAS
+        data_base64:
+          description: The presence of the data_base64 member clearly indicates that the value is a Base64 encoded binary data, which the serializer MUST decode into a binary runtime data type.
           type: string
-          example: "<value1>"
-        <key2>:
+          format: byte
+          nullable: true
+        dataref:
+          description: A reference to a location where the event payload is stored. If both the data attribute and the dataref attribute are specified their contents MUST be identical.
           type: string
-          example: "<value2>"
-        <keyN>:
-          type: string
-          example: "<valueN>"
-    Event:
-      allOf:
-        - $ref: "#/components/schemas/EventCore"
-        - $ref: "#/components/schemas/EventExtension"
-        - properties:
-            data:
-              type: object
-              additionalProperties:
-                type: string
-              nullable: true
-            data_base64:
-              description: The presence of the data_base64 member clearly indicates that the value is a Base64 encoded binary data, which the serializer MUST decode into a binary runtime data type.
-              type: string
-              format: byte
-              nullable: true
-            dataref:
-              description: A reference to a location where the event payload is stored. If both the data attribute and the dataref attribute are specified their contents MUST be identical.
-              type: string
-              format: uri
-              minLength: 1
-              nullable: true
+          format: uri
+          minLength: 1
+          nullable: true
+      example: {
+        "specversion": "1.0",
+        "id": "2febb675-b06c-4f3a-8fc3-f6649aa25ae4",
+        "source": "urn:nld:oin:00000001234567890000:systeem:Zaaksysteem",
+        "domain": "nl.vng.zgw.zaken",
+        "type": "nl.vng.zgw.zaken.status_gewijzigd",
+        "time": "2022-03-16T15:29:30.833664Z",
+        "subscription": "a2de4777-1160-4562-a996-b79d27b30c99",
+        "subscriberReference": "1285c6bc-1b54-48d8-96e2-c55a3f970c39",
+        "datacontenttype": "application/json",
+        "dataschema": "https:www.vng.nl/zgw/zaken/status_gewijzigd_schema.json",
+        "subject": "string",
+        "sequence": "42",
+        "sequencetype": "Integer",
+        "data": {},
+        "data_base64": "string",
+        "dataref": "string",
+        "<filterAttribute1>": "string",
+        "<filterAttribute2>": "string",
+        "<filterAttributeN>": "string"
+      }
 
     SubscriptionRequest:
       properties:
@@ -2023,6 +2036,7 @@ components:
           example: "https://endpoint.example.com/webhook"
         sinkCredential:
           oneOf:
+            # Waarom zijn SinkCredential en PlainCredential uitgezet?
             # - $ref: "#/components/schemas/SinkCredential"
             - $ref: "#/components/schemas/AccessTokenCredential"
             # - $ref: "#/components/schemas/PlainCredential"
@@ -2049,7 +2063,7 @@ components:
           items:
             title: "Filter entry"
             oneOf:
-              # - $ref: "#/components/schemas/Filter"
+              - $ref: "#/components/schemas/Filter"
               - $ref: "#/components/schemas/AllFilter"
               - $ref: "#/components/schemas/AnyFilter"
               - $ref: "#/components/schemas/NotFilter"
@@ -2057,7 +2071,20 @@ components:
               - $ref: "#/components/schemas/PrefixFilter"
               - $ref: "#/components/schemas/SuffixFilter"
               # - $ref: "#/components/schemas/SqlFilter"
-          example: "Recursive structure. See documentation."    
+          # example: "Recursive structure. See documentation."    
+          example: [
+            {
+              "prefix": {
+                "type": "nl.vng.zgw.zaken."
+              }
+            },    
+            {
+              "exact": {
+                "nl.vng.zgw.zaken.bronorganisatie": "224557609",
+                "nl.vng.zgw.zaken.vertrouwelijkheidaanduiding": "openbaar"
+              }
+            }
+          ]
         config:
           description: OPTIONAL. Implementation-specific configuration parameters needed by the subscription manager for acquiring events.
           type: object
@@ -2103,14 +2130,14 @@ components:
       enum: ["HTTP"]
       description: REQUIRED. Identifier of a delivery protocol.
       example: "HTTP"
-    # Filter:
-    #   title: "Filter"
-    #   description: "A filter from a selection of multiple filter types and dialects"
-    #   type: object
-    #   additionalProperties: true
+    Filter:
+      title: "Filter"
+      description: "A filter from a selection of multiple filter types and dialects"
+      type: object
+      additionalProperties: true
     AllFilter:
       allOf:
-        # - $ref: "#/components/schemas/Filter"
+        - $ref: "#/components/schemas/Filter"
         - type: object
           description: "all filter"
           properties:
@@ -2121,7 +2148,7 @@ components:
               items:
                 title: "Filter entry"
                 oneOf:
-                # - $ref: "#/components/schemas/Filter"
+                - $ref: "#/components/schemas/Filter"
                 - $ref: "#/components/schemas/AllFilter"
                 - $ref: "#/components/schemas/AnyFilter"
                 - $ref: "#/components/schemas/NotFilter"
@@ -2132,7 +2159,7 @@ components:
           additionalProperties: false
     AnyFilter:
       allOf:
-        # - $ref: "#/components/schemas/Filter"
+        - $ref: "#/components/schemas/Filter"
         - type: object
           description: "any filter"
           properties:
@@ -2143,7 +2170,7 @@ components:
               items:
                 title: "Filter entry"
                 oneOf:
-                  # - $ref: "#/components/schemas/Filter"
+                  - $ref: "#/components/schemas/Filter"
                   - $ref: "#/components/schemas/AllFilter"
                   - $ref: "#/components/schemas/AnyFilter"
                   - $ref: "#/components/schemas/NotFilter"
@@ -2154,14 +2181,14 @@ components:
           additionalProperties: false
     NotFilter:
       allOf:
-        # - $ref: "#/components/schemas/Filter"
+        - $ref: "#/components/schemas/Filter"
         - type: object
           description: "not filter"
           properties:
             not:
               type: object
               oneOf:
-                # - $ref: "#/components/schemas/Filter"
+                - $ref: "#/components/schemas/Filter"
                 - $ref: "#/components/schemas/AllFilter"
                 - $ref: "#/components/schemas/AnyFilter"
                 - $ref: "#/components/schemas/NotFilter"
@@ -2172,59 +2199,34 @@ components:
           additionalProperties: false
     ExactFilter:
       allOf:
+        - $ref: "#/components/schemas/Filter"
         - type: object
           title: "exact filter"
           description: "This filter evaluates to 'true' if the 'value' exactly matches the value of the indicated CloudEvents context attribute"
           properties:
             exact:
-              $ref: "#/components/schemas/CompareAttribute"
+              $ref: "#/components/schemas/CloudEventsAttribute"
           additionalProperties: false
-      # allOf:
-      #   - $ref: "#/components/schemas/Filter"
-      #   - type: object
-      #     title: "exact filter"
-      #     description: "This filter evaluates to 'true' if the 'value' exactly matches the value of the indicated CloudEvents context attribute"
-      #     properties:
-      #       exact:
-      #         $ref: "#/components/schemas/CloudEventsAttribute"
-      #     additionalProperties: false
     PrefixFilter:
       allOf:
+        - $ref: "#/components/schemas/Filter"
         - type: object
           title: "prefix filter"
           description: "This filter evaluates to 'true' if the 'value' is a prefix of the value of the indicated CloudEvents context attribute"
           properties:
             prefix:
-              $ref: "#/components/schemas/CompareAttribute"
+              $ref: "#/components/schemas/CloudEventsAttribute"
           additionalProperties: false
-      # allOf:
-      #   - $ref: "#/components/schemas/Filter"
-      #   - type: object
-      #     title: "prefix filter"
-      #     description: "This filter evaluates to 'true' if the 'value' is a prefix of the value of the indicated CloudEvents context attribute"
-      #     properties:
-      #       prefix:
-      #         $ref: "#/components/schemas/CloudEventsAttribute"
-      #     additionalProperties: false
     SuffixFilter:
       allOf:
-        # - $ref: "#/components/schemas/Filter"
+        - $ref: "#/components/schemas/Filter"
         - type: object
           title: "suffix filter"
           description: "This filter evaluates to 'true' if the 'value' is a suffix of the value of the indicated CloudEvents context attribute"
           properties:
             suffix:
-              $ref: "#/components/schemas/CompareAttribute"
-          additionalProperties: false    
-      # allOf:
-      #   - $ref: "#/components/schemas/Filter"
-      #   - type: object
-      #     title: "suffix filter"
-      #     description: "This filter evaluates to 'true' if the 'value' is a suffix of the value of the indicated CloudEvents context attribute"
-      #     properties:
-      #       suffix:
-      #         $ref: "#/components/schemas/CloudEventsAttribute"
-      #     additionalProperties: false
+              $ref: "#/components/schemas/CloudEventsAttribute"
+          additionalProperties: false
     # SqlFilter:
     #   allOf:
     #     - $ref: "#/components/schemas/Filter"
@@ -2235,47 +2237,36 @@ components:
     #           type: string
     #           description: "The CESQL expression"
     #       additionalProperties: true
-    CompareAttribute:
+    CloudEventsAttribute:
       type: object
-      description: "Attribute Values pair for comparison filters"
-      additionalProperties: false
+      description: "CloudEvents defined attributes."
+      additionalProperties: # extension attributes
+        type: string
       properties:
-        attribute:
+        id:
           type: string
-          description: Identifies the CloudEvents context attribute
-        value:
+          description: Identifies the event.
+        source:
           type: string
-          description: Value to compare to the value of the attribute
-    # CloudEventsAttribute:
-    #   type: object
-    #   description: "CloudEvents defined attributes."
-    #   additionalProperties: # extension attributes
-    #     type: string
-    #   properties:
-    #     id:
-    #       type: string
-    #       description: Identifies the event.
-    #     source:
-    #       type: string
-    #       description: Identifies the context in which an event happened.
-    #     specversion:
-    #       type: string
-    #       description: The version of the CloudEvents specification which the event uses.
-    #     type:
-    #       type: string
-    #       description: Describes the type of event related to the originating occurrence.
-    #     datacontenttype:
-    #       type: string
-    #       description: Content type of the data value.
-    #     dataschema:
-    #       type: string
-    #       description: Identifies the schema that data adheres to.
-    #     subject:
-    #       type: string
-    #       description: Describes the subject of the event in the context of the event producer.
-    #     time:
-    #       type: string
-    #       description: Timestamp of when the occurrence happened.
+          description: Identifies the context in which an event happened.
+        specversion:
+          type: string
+          description: The version of the CloudEvents specification which the event uses.
+        type:
+          type: string
+          description: Describes the type of event related to the originating occurrence.
+        datacontenttype:
+          type: string
+          description: Content type of the data value.
+        dataschema:
+          type: string
+          description: Identifies the schema that data adheres to.
+        subject:
+          type: string
+          description: Describes the subject of the event in the context of the event producer.
+        time:
+          type: string
+          description: Timestamp of when the occurrence happened.
     ProtocolSettings:
       type: object
       additionalProperties: false
