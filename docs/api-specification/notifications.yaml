@@ -18,7 +18,7 @@ info:
   license:
     name: EUPL 1.2
     url: https://opensource.org/licenses/EUPL-1.2
-  version: 0.1.4
+  version: 0.1.5
 security:
 - JWT-Claims: []
 paths:
@@ -222,6 +222,12 @@ paths:
       operationId: domains_list
       summary: List domains
       description: Returns a list with information about all domains.
+      parameters:
+        - in: "query"
+          name: "name"
+          schema:
+            type: string
+          description: Name of the domain.
       responses:
         '200':
           description: OK
@@ -231,30 +237,30 @@ paths:
                 type: string
               description: 'Version of the API. For example: 1.2.1.'
           content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Domain'          
             # application/json:
             #   schema:
-            #     required:
-            #     - count
-            #     - results
-            #     type: object
-            #     properties:
-            #       count:
-            #         type: integer
-            #       next:
-            #         type: string
-            #         format: uri
-            #       previous:
-            #         type: string
-            #         format: uri
-            #       results:
-            #         type: array
-            #         items:
-            #           $ref: '#/components/schemas/Domain'
+            #     type: array
+            #     items:
+            #       $ref: '#/components/schemas/Domain'          
+            application/json:
+              schema:
+                required:
+                - count
+                - results
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type: string
+                    format: uri
+                  previous:
+                    type: string
+                    format: uri
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Domain'
         '400':
           description: Bad request
           headers:
@@ -1031,30 +1037,30 @@ paths:
                 type: string
               description: 'Version of the API. For example: 1.2.1.'
           content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Subscription'          
             # application/json:
             #   schema:
-            #     required:
-            #     - count
-            #     - results
-            #     type: object
-            #     properties:
-            #       count:
-            #         type: integer
-            #       next:
-            #         type: string
-            #         format: uri
-            #       previous:
-            #         type: string
-            #         format: uri
-            #       results:
-            #         type: array
-            #         items:
-            #           $ref: '#/components/schemas/Subscription'
+            #     type: array
+            #     items:
+            #       $ref: '#/components/schemas/Subscription'          
+            application/json:
+              schema:
+                required:
+                - count
+                - results
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type: string
+                    format: uri
+                  previous:
+                    type: string
+                    format: uri
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
         '400':
           description: Bad request
           headers:
@@ -1511,6 +1517,172 @@ paths:
       operationId: subscription_put
       summary: Update subscription
       description: Update the specified subscription by replacing all properties.
+      parameters:
+        - in: "path"
+          name: "uuid"
+          required: true
+          schema:
+            type: string
+          description: Uuid of the subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Subscription"
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          description: Bad request
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Unauthorized
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not found
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '406':
+          description: Not acceptable
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Conflict
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '410':
+          description: Gone
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '415':
+          description: Unsupported media type
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Too many requests
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '501':
+          description: Not Implemented
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: Service Unavailable
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Version of the API. For example: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - subscriptions
+      security:
+        - JWT-Claims:
+            - events.consume
+    patch:
+      operationId: subscription_patch
+      summary: Patch subscription
+      description: Update the specified subscription by replacing the modified properties.
       parameters:
         - in: "path"
           name: "uuid"
