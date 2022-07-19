@@ -125,7 +125,7 @@ any:
     vertrouwelijkheid: normaal
 ```
 
-vertaald naar een Json structuur krijgen we vervolgens:
+vertaald naar een JSON-structuur krijgen we vervolgens:
 
 ```json
 {
@@ -162,7 +162,7 @@ vertaald naar een Json structuur krijgen we vervolgens:
 	]
 }
 ```
-In deze laatste vorm zal de expressie aangeleverd moeten worden.
+Bovenstaande expressie kan gevalideerd worden in het van het OAS afgeleide [JSON schema](https://github.com/VNG-Realisatie/notificatieservices/blob/main/docs/api-specification/filters_schema.json). In deze laatste vorm zal de expressie aangeleverd moeten worden.
 
 Waarschijnlijk is deze vorm door de CE werkgroep gekozen omdat de expressie in deze vorm direct uit te voeren is (en niet eerst geparseerd hoeft te worden). Het zou wel bijzonder handig zijn als er iets van een hulpmiddel zou komen waarmee logische expressie omgezet zouden kunnen worden in dit soort json structuren.
 
