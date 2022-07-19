@@ -111,80 +111,55 @@ In deze vorm is het voor mensen redelijk leesbaar. Voor executie door software i
 De expressie komt er, zonder allerlei haakjes maar met zorgvuldig inspringen, alsvolgt uit te zien:
 
 ```yaml
-- any:
-  - all:
+any:
+- all:
+  - exact:
+      domain: nl.vng.zaken
+  - any:
     - exact:
-        attribute: domain
-        value: nl.vng.zaken
-    - any:
-      - exact:
-          attribute: domain
-          value: nl.vng.zaken
-      - exact:
-          attribute: type
-          value: nl.vng.zaken.zaak_gesloten
-  - all:
+        type: nl.vng.zaken.status_gewijzigd
     - exact:
-        attribute: domain
-        value: nl.vng.zaken
-    - exact:
-        attribute: type
-        value: nl.vng.zaken.zaak_gesloten
+        type: nl.vng.zaken.zaak_gesloten
+- exact:
+    domain: nl.vng.documenten
+    vertrouwelijkheid: normaal
 ```
 
 vertaald naar een Json structuur krijgen we vervolgens:
 
 ```json
 {
-    "id": "....",
-    "filters": [
-        {
-            "any": [
-                {
-                    "all": [
-                        {
-                            "exact": {
-                                "attribute": "domain",
-                                "value": "nl.vng.zaken"
-                            }
-                        },
-                        {
-                            "any": [
-                                {
-                                    "exact": {
-                                        "attribute": "domain",
-                                        "value": "nl.vng.zaken"
-                                    }
-                                },
-                                {
-                                    "exact": {
-                                        "attribute": "type",
-                                        "value": "nl.vng.zaken.zaak_gesloten"
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "all": [
-                        {
-                            "exact": {
-                                "attribute": "domain",
-                                "value": "nl.vng.zaken"
-                            }
-                        },
-                        {
-                            "exact": {
-                                "attribute": "type",
-                                "value": "nl.vng.zaken.zaak_gesloten"
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+	"any": [
+		{
+			"all": [
+				{
+					"exact": {
+						"domain": "nl.vng.zaken"
+					}
+				},
+				{
+					"any": [
+						{
+							"exact": {
+								"type": "nl.vng.zaken.status_gewijzigd"
+							}
+						},
+						{
+							"exact": {
+								"type": "nl.vng.zaken.zaak_gesloten"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"exact": {
+				"domain": "nl.vng.documenten",
+				"vertrouwelijkheid": "normaal"
+			}
+		}
+	]
 }
 ```
 In deze laatste vorm zal de expressie aangeleverd moeten worden.
