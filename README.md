@@ -1,3 +1,8 @@
+| Eigenaar | Ingevuld door |
+| --- | --- |
+| Kennis centrum Architectuur | Henri Korver |
+<hr/>
+
 ## Inleiding
 
 Het project Notificatieservices is in 2021 uitgevoerd door VNG Realisatie in opdracht van het Ministerie van Binnenlandse Zaken. Doel van het project was om geautomatiseerd notificeren van applicaties binnen de Nederlandse overheid te standaardiseren. Meer algemeen was het doel om als overheid beter en vaker gebeurtenisgedreven ('event driven') te kunnen werken. 
